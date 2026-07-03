@@ -14,7 +14,7 @@ import {
 const emblemSvgLarge = (
   <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-blue-400 filter drop-shadow-[0_0_15px_rgba(37,99,235,0.4)]">
     <circle cx="12" cy="12" r="10" stroke="rgba(59, 130, 246, 0.4)" strokeWidth="1" />
-    <circle cx="12" cy="12" r="7" stroke="rgba(212, 168, 83, 0.5)" />
+    <circle cx="12" cy="12" r="7" stroke="rgba(15, 118, 110, 0.5)" />
     <circle cx="12" cy="12" r="4" stroke="currentColor" />
     <path d="M12 1v22M1 12h22" strokeWidth="0.8" opacity="0.3" strokeDasharray="1 1" />
     <path d="M12 5a7 7 0 0 0-7 7" fill="none" strokeWidth="1.5" strokeLinecap="round" />
@@ -31,7 +31,7 @@ const usersList = [
     designation: 'Director General, SCRB',
     email: 'prashant.kumar@ksp.gov.in',
     badgeId: 'KSP-SCRB-100',
-    passcode: '100',
+    passcode: '123',
     description: 'Statewide intelligence, trends, and risk settings access.'
   },
   {
