@@ -11,6 +11,7 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
   const [error, setError] = useState(null);
 
   const recognitionRef = useRef(null);
+  const autoSubmitRef = useRef(false);
 
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -30,13 +31,16 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
         const current = event.resultIndex;
         const resultText = event.results[current][0].transcript;
         setTranscript(resultText);
+        autoSubmitRef.current = true;
       };
 
       rec.onerror = (event) => {
         if (event.error === 'no-speech') {
-          setError('No speech detected. Please try again.');
+          setError('No speech detected. Please try again or type below.');
         } else if (event.error === 'not-allowed') {
-          setError('Microphone access denied. Please check your browser settings.');
+          setError('Microphone access denied. Please type your query below.');
+        } else if (event.error === 'network') {
+          setError('Speech recognition network error. Please type your query below.');
         } else {
           setError(`Error: ${event.error}`);
         }
@@ -84,7 +88,7 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:3000/server/voice_ai/', {
+      const response = await fetch('/server/voice_ai/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -119,9 +123,12 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
   };
 
   useEffect(() => {
-    if (!isListening && transcript && !processing && isOpen) {
+    if (!isListening && transcript && !processing && isOpen && autoSubmitRef.current) {
       const timer = setTimeout(() => {
-        handleProcessSpeech(transcript);
+        if (autoSubmitRef.current) {
+          handleProcessSpeech(transcript);
+          autoSubmitRef.current = false;
+        }
       }, 800);
       return () => clearTimeout(timer);
     }
@@ -317,10 +324,35 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
                 </div>
               )}
 
-              <div className="min-h-[4rem] flex items-center justify-center p-3 rounded-2xl bg-slate-950/60 border border-slate-800/80 shadow-inner">
-                <p className={`text-sm italic font-medium leading-relaxed ${transcript ? 'text-slate-100' : 'text-slate-500'}`}>
-                  {transcript || (lang === 'kn-IN' ? '"Shivajinagar PS ನಲ್ಲಿ ಆಸ್ತಿ ಅಪರಾಧ..."' : '"Show active cases in Bengaluru Urban..."')}
-                </p>
+              <div className="relative min-h-[4rem] flex items-center justify-center rounded-2xl bg-slate-950/60 border border-slate-800/80 shadow-inner group">
+                <textarea
+                  value={transcript}
+                  onChange={(e) => {
+                    setTranscript(e.target.value);
+                    autoSubmitRef.current = false;
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      handleProcessSpeech(transcript);
+                      autoSubmitRef.current = false;
+                    }
+                  }}
+                  placeholder={lang === 'kn-IN' ? 'Shivajinagar PS ನಲ್ಲಿ ಆಸ್ತಿ ಅಪರಾಧ...' : 'Show active cases in Bengaluru Urban...'}
+                  className="w-full bg-transparent text-sm italic font-medium leading-relaxed text-slate-100 placeholder-slate-500 focus:outline-none resize-none p-3 pb-8 text-center"
+                  rows={2}
+                />
+                <button 
+                  onClick={() => {
+                    handleProcessSpeech(transcript);
+                    autoSubmitRef.current = false;
+                  }}
+                  disabled={!transcript.trim() || processing}
+                  className="absolute bottom-2 right-2 p-1.5 bg-blue-600/20 text-blue-400 hover:bg-blue-600/40 rounded-lg transition-colors disabled:opacity-50"
+                  title="Submit Query"
+                >
+                  <Sparkles className="h-4 w-4" />
+                </button>
               </div>
             </div>
           </div>
