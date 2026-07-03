@@ -21,7 +21,7 @@ const emblemSvg = (
   </svg>
 );
 
-export default function Sidebar({ activeTab, setActiveTab }) {
+export default function Sidebar({ activeTab, setActiveTab, onLogout }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const navItems = [
@@ -100,7 +100,10 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           </div>
         )}
 
-        <button className="w-full flex items-center space-x-3 p-2.5 text-slate-400 hover:text-[#cc3333] rounded-lg hover:bg-[#8b0000]/5 transition-colors group">
+        <button 
+          onClick={onLogout}
+          className="w-full flex items-center space-x-3 p-2.5 text-slate-400 hover:text-[#cc3333] rounded-lg hover:bg-[#8b0000]/5 transition-colors group"
+        >
           <LogOut className="h-5 w-5 shrink-0" />
           {!isCollapsed && <span className="text-sm font-medium">Logout</span>}
         </button>

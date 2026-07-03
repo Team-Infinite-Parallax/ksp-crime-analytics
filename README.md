@@ -109,6 +109,18 @@ ksp-datathon/
 
 ---
 
+## 🔑 Testing Credentials
+
+The portal features role-based access control. You can log in using the quick-access profiles on the login screen, or enter the credentials manually:
+
+| Role | Officer Name | Badge ID / Email | Passcode | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| **SCRB Admin (State HQ)** | Prashant Kumar | `KSP-SCRB-100` / `prashant.kumar@ksp.gov.in` | `100` | State-wide analytics and config access |
+| **District Officer** | Praveen Verma | `KSP-DIST-009` / `praveen.verma@ksp.gov.in` | `009` | Bengaluru Urban district surveillance |
+| **Investigating Officer** | Mohammed Puttaiah | `KSP-UNIT-001` / `mohammed.puttaiah@ksp.gov.in` | `001` | Shivajinagar PS station-level case log |
+
+---
+
 ## ☁️ Deployment
 
 Deploying the application to Zoho Catalyst is fully automated via the Catalyst CLI:

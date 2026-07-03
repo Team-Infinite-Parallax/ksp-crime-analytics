@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Sidebar from './components/Layout/Sidebar';
 import Navbar from './components/Layout/Navbar';
+import Login from './components/Auth/Login';
 import MetricCard from './components/Dashboard/MetricCard';
 import Filters from './components/Dashboard/Filters';
 import CrimeTrendsChart from './components/Dashboard/CrimeTrendsChart';
@@ -32,6 +33,7 @@ const emblemSvg = (
 );
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [activeRole, setActiveRole] = useState('SCRB_ADMIN');
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -231,9 +233,20 @@ export default function App() {
     }
   };
 
+  if (!isLoggedIn) {
+    return <Login onLogin={(role) => {
+      setActiveRole(role);
+      setIsLoggedIn(true);
+    }} />;
+  }
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-slate-950 text-slate-50">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} onLogout={handleLogout} />
 
       <main className="flex-1 flex flex-col overflow-y-auto relative">
         <Navbar
