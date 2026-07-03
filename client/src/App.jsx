@@ -7,6 +7,8 @@ import Filters from './components/Dashboard/Filters';
 import CrimeTrendsChart from './components/Dashboard/CrimeTrendsChart';
 import RiskCard from './components/Dashboard/RiskCard';
 import RiskProfiling from './components/Dashboard/RiskProfiling';
+import WantedMissing from './components/Dashboard/WantedMissing';
+import ReportsAnalytics from './components/Dashboard/ReportsAnalytics';
 import CopBot from './components/Dashboard/CopBot';
 import RecentCrimesTable from './components/Dashboard/RecentCrimesTable';
 import HotspotMap from './components/Dashboard/HotspotMap';
@@ -421,7 +423,19 @@ export default function App() {
           />
         )}
 
-        {activeTab !== 'dashboard' && activeTab !== 'hotspots' && activeTab !== 'network' && activeTab !== 'risk' && (
+        {activeTab === 'wanted' && (
+          <WantedMissing activeRole={activeRole} />
+        )}
+
+        {activeTab === 'reports' && (
+          <ReportsAnalytics
+            crimes={filteredCrimes}
+            offenders={filteredOffenders}
+            activeRole={activeRole}
+          />
+        )}
+
+        {activeTab !== 'dashboard' && activeTab !== 'hotspots' && activeTab !== 'network' && activeTab !== 'risk' && activeTab !== 'wanted' && activeTab !== 'reports' && (
           <div className="p-8 grow flex flex-col items-center justify-center text-center">
             <div className="p-4 bg-[#0a1628] border border-[#d4a853]/15 rounded-3xl text-slate-400 mb-4">
               <Users className="h-10 w-10 text-[#d4a853]" />

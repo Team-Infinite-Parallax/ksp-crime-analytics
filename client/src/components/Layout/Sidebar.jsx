@@ -7,7 +7,9 @@ import {
   UserX,
   Menu,
   ChevronLeft,
-  LogOut
+  LogOut,
+  UserCheck,
+  BarChart3
 } from 'lucide-react';
 
 const emblemSvg = (
@@ -29,6 +31,8 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout }) {
     { id: 'hotspots', label: 'Crime Mapping', icon: MapPin },
     { id: 'network', label: 'Network Analysis', icon: GitFork },
     { id: 'risk', label: 'Risk Profiling', icon: UserX },
+    { id: 'wanted', label: 'Wanted / Missing', icon: UserCheck },
+    { id: 'reports', label: 'Data Reports', icon: BarChart3 },
   ];
 
   return (
