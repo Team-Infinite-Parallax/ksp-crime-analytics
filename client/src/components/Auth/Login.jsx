@@ -12,15 +12,9 @@ import {
 } from 'lucide-react';
 
 const emblemSvgLarge = (
-<<<<<<< HEAD
   <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-[var(--color-primary)] filter drop-shadow-[0_0_15px_var(--color-primary)]">
     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1" opacity="0.4" />
     <circle cx="12" cy="12" r="7" stroke="rgba(212, 168, 83, 0.5)" />
-=======
-  <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-blue-400 filter drop-shadow-[0_0_15px_rgba(37,99,235,0.4)]">
-    <circle cx="12" cy="12" r="10" stroke="rgba(59, 130, 246, 0.4)" strokeWidth="1" />
-    <circle cx="12" cy="12" r="7" stroke="rgba(15, 118, 110, 0.5)" />
->>>>>>> f14d70a538fb017aad2a578a0645c40705bee612
     <circle cx="12" cy="12" r="4" stroke="currentColor" />
     <path d="M12 1v22M1 12h22" strokeWidth="0.8" opacity="0.3" strokeDasharray="1 1" />
     <path d="M12 5a7 7 0 0 0-7 7" fill="none" strokeWidth="1.5" strokeLinecap="round" />
