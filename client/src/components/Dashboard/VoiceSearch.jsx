@@ -231,7 +231,7 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="p-2.5 bg-slate-950 border border-slate-700 rounded-xl text-slate-400 hover:text-blue-400 hover:bg-slate-900 transition-all hover:scale-105 duration-150 flex items-center justify-center cursor-pointer shadow-md"
+        className="p-2.5 bg-slate-950 border border-slate-700 rounded-xl text-slate-400 hover:text-blue-400 hover:bg-slate-900 transition-all hover:scale-105 duration-150 flex items-center justify-center cursor-pointer shadow-md shrink-0"
         title="Voice Search AI"
       >
         <Mic className="h-5 w-5 shrink-0" />

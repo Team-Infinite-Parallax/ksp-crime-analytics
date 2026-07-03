@@ -28,30 +28,30 @@ export default function Navbar({ activeRole, setActiveRole, searchTerm, setSearc
   ];
 
   return (
-    <header className="h-20 border-b border-slate-800 bg-slate-900/90 backdrop-blur-md flex items-center justify-between px-8 sticky top-0 z-40">
-      <div className="flex items-center space-x-3">
-        <div className="relative w-96 group">
+    <header className="h-20 border-b border-slate-800 bg-slate-900/90 backdrop-blur-md flex items-center justify-between px-4 sm:px-6 lg:px-8 sticky top-0 z-40">
+      <div className="flex items-center space-x-2 md:space-x-3 flex-grow max-w-[240px] sm:max-w-sm md:max-w-md lg:max-w-lg mr-2">
+        <div className="relative w-full group">
           <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-400 transition-colors">
             <Search className="h-[18px] w-[18px]" />
           </span>
           <input
             type="text"
-            placeholder="Search suspects, FIR numbers, stations, sections..."
+            placeholder="Search suspects, FIR numbers..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-700 text-slate-50 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-800 placeholder-[#8a887e] transition-all duration-200"
+            className="w-full bg-slate-950 border border-slate-700 text-slate-50 rounded-xl py-2.5 pl-10 pr-4 text-xs sm:text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-800 placeholder-[#8a887e] transition-all duration-200"
           />
         </div>
         <VoiceSearch onVoiceFilters={onVoiceFilters} activeRole={activeRole} />
       </div>
 
-      <div className="flex items-center space-x-6">
-        <div className="flex items-center space-x-2 bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5">
-          <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Role:</span>
+      <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-6 flex-shrink-0">
+        <div className="flex items-center space-x-2 bg-slate-950 border border-slate-800 rounded-xl px-2.5 py-1.5 sm:px-3">
+          <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider hidden sm:inline">Role:</span>
           <select
             value={activeRole}
             onChange={(e) => setActiveRole(e.target.value)}
-            className="bg-transparent text-xs font-bold text-blue-400 focus:outline-none cursor-pointer pr-2"
+            className="bg-transparent text-xs font-bold text-blue-400 focus:outline-none cursor-pointer pr-2 max-w-[85px] sm:max-w-[130px] md:max-w-none truncate"
           >
             {roles.map(r => (
               <option key={r.id} value={r.id} className="bg-slate-950 text-slate-50">
@@ -59,7 +59,7 @@ export default function Navbar({ activeRole, setActiveRole, searchTerm, setSearc
               </option>
             ))}
           </select>
-          <span className="text-[8px] text-yellow-500 font-bold uppercase tracking-wider border-l border-slate-700 pl-2 ml-1">For Demo</span>
+          <span className="text-[8px] text-yellow-500 font-bold uppercase tracking-wider border-l border-slate-700 pl-2 ml-1 hidden md:inline-block">For Demo</span>
         </div>
 
         <div className="flex items-center space-x-3">
