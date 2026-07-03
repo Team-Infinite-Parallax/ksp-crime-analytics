@@ -101,7 +101,7 @@ function requireAuth(allowedRoles = []) {
         // Try to initialize app if credentials might exist, otherwise fail silently for mock fallback
         let app = null;
         try {
-          app = catalyst.initializeApp(req);
+          app = catalyst.initialize(req);
         } catch (initErr) {
           // Silently proceed; we will fall back to static mock data
         }
@@ -138,7 +138,7 @@ function requireAuth(allowedRoles = []) {
       // 2. Standard Zoho Catalyst Authentication Flow
       let app;
       try {
-        app = catalyst.initializeApp(req);
+        app = catalyst.initialize(req);
       } catch (initErr) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({

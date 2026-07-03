@@ -30,7 +30,7 @@ class MockResponse {
 
 // Mock the Zoho Catalyst SDK for offline testing of standard auth paths
 const catalyst = require('zcatalyst-sdk-node');
-catalyst.initializeApp = (req) => {
+catalyst.initialize = (req) => {
   return {
     userManagement: () => {
       return {

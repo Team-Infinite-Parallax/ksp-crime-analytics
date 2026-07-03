@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   
   await authHandler(req, res, async (req, res) => {
     try {
-      const app = catalyst.initializeApp(req);
+      const app = catalyst.initialize(req);
       const datastore = app.datastore();
       const user = req.user;
 
@@ -50,11 +50,11 @@ module.exports = async (req, res) => {
         }
       }
 
-      if (query.startDate) {
+      if (query.startDate && /^\d{4}-\d{2}-\d{2}$/.test(query.startDate)) {
         conditions.push(`cm.RegistrationDate >= '${query.startDate}'`);
       }
 
-      if (query.endDate) {
+      if (query.endDate && /^\d{4}-\d{2}-\d{2}$/.test(query.endDate)) {
         conditions.push(`cm.RegistrationDate <= '${query.endDate}'`);
       }
 

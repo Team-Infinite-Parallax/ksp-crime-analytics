@@ -99,7 +99,7 @@ function requireAuth(allowedRoles = []) {
 
         let app = null;
         try {
-          app = catalyst.initializeApp(req);
+          app = catalyst.initialize(req);
         } catch (initErr) {
           // Fall back to defaults offline
         }
@@ -134,7 +134,7 @@ function requireAuth(allowedRoles = []) {
 
       let app;
       try {
-        app = catalyst.initializeApp(req);
+        app = catalyst.initialize(req);
       } catch (initErr) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({

@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   
   await authHandler(req, res, async (req, res) => {
     try {
-      const app = catalyst.initializeApp(req);
+      const app = catalyst.initialize(req);
       const datastore = app.datastore();
       const user = req.user;
 

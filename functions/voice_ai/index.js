@@ -53,7 +53,7 @@ module.exports = async (req, res) => {
       let app;
       let zia;
       try {
-        app = catalyst.initializeApp(req);
+        app = catalyst.initialize(req);
         zia = app.zia();
       } catch (err) {
         console.warn('Zia SDK initialization failed, utilizing parser fallback:', err.message);

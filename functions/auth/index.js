@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
   // Route: /login-status
   if (route.endsWith('/login-status')) {
     try {
-      const app = catalyst.initializeApp(req);
+      const app = catalyst.initialize(req);
       
       // Check for mock headers
       const mockRole = req.headers['x-mock-role'];
