@@ -7,6 +7,7 @@ import Filters from './components/Dashboard/Filters';
 import CrimeTrendsChart from './components/Dashboard/CrimeTrendsChart';
 import RiskCard from './components/Dashboard/RiskCard';
 import RiskProfiling from './components/Dashboard/RiskProfiling';
+import CopBot from './components/Dashboard/CopBot';
 import RecentCrimesTable from './components/Dashboard/RecentCrimesTable';
 import HotspotMap from './components/Dashboard/HotspotMap';
 import NetworkGraph from './components/Dashboard/NetworkGraph';
@@ -444,6 +445,7 @@ export default function App() {
           </div>
         )}
       </main>
+      <CopBot activeRole={activeRole} />
     </div>
   );
 }
