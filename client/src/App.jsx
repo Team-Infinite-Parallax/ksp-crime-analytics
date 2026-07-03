@@ -6,6 +6,7 @@ import MetricCard from './components/Dashboard/MetricCard';
 import Filters from './components/Dashboard/Filters';
 import CrimeTrendsChart from './components/Dashboard/CrimeTrendsChart';
 import RiskCard from './components/Dashboard/RiskCard';
+import RiskProfiling from './components/Dashboard/RiskProfiling';
 import RecentCrimesTable from './components/Dashboard/RecentCrimesTable';
 import HotspotMap from './components/Dashboard/HotspotMap';
 import NetworkGraph from './components/Dashboard/NetworkGraph';
@@ -23,12 +24,21 @@ import {
 } from 'lucide-react';
 
 const emblemSvg = (
-  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-blue-400">
-    <circle cx="12" cy="12" r="10" />
-    <circle cx="12" cy="12" r="6" />
-    <path d="M12 2v20M2 12h20" strokeWidth="1" opacity="0.3" />
-    <path d="M12 6a6 6 0 0 0-6 6" fill="none" strokeWidth="1.5" />
-    <path d="M12 18a6 6 0 0 0 6-6" fill="none" strokeWidth="1.5" />
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#d4a853]">
+    <circle cx="12" cy="12" r="10" stroke="#d4a853" strokeWidth="1.2" />
+    <circle cx="12" cy="12" r="7" stroke="#d4a853" strokeWidth="0.8" />
+    <circle cx="12" cy="12" r="4" stroke="#d4a853" strokeWidth="1" />
+    <path d="M12 2v20M2 12h20" stroke="#d4a853" strokeWidth="0.6" opacity="0.3" />
+    <path d="M12 5a7 7 0 0 0-7 7" fill="none" stroke="#d4a853" strokeWidth="1.2" />
+    <path d="M12 19a7 7 0 0 0 7-7" fill="none" stroke="#d4a853" strokeWidth="1.2" />
+    {[0,1,2,3].map(i => {
+      const angle = i * 22.5 * Math.PI / 180;
+      const x1 = 12 + 3 * Math.sin(angle);
+      const y1 = 12 - 3 * Math.cos(angle);
+      const x2 = 12 + 6 * Math.sin(angle);
+      const y2 = 12 - 6 * Math.cos(angle);
+      return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#d4a853" strokeWidth="0.5" opacity="0.4" />;
+    })}
   </svg>
 );
 
@@ -402,10 +412,18 @@ export default function App() {
           </div>
         )}
 
-        {activeTab !== 'dashboard' && activeTab !== 'hotspots' && activeTab !== 'network' && (
+        {activeTab === 'risk' && (
+          <RiskProfiling
+            offenders={filteredOffenders}
+            crimes={filteredCrimes}
+            activeRole={activeRole}
+          />
+        )}
+
+        {activeTab !== 'dashboard' && activeTab !== 'hotspots' && activeTab !== 'network' && activeTab !== 'risk' && (
           <div className="p-8 grow flex flex-col items-center justify-center text-center">
-            <div className="p-4 bg-slate-900 border border-slate-800 rounded-3xl text-slate-400 mb-4">
-              <Users className="h-10 w-10 text-blue-400" />
+            <div className="p-4 bg-[#0a1628] border border-[#d4a853]/15 rounded-3xl text-slate-400 mb-4">
+              <Users className="h-10 w-10 text-[#d4a853]" />
             </div>
             <h2 className="text-lg font-bold text-slate-50 capitalize">{activeTab} Analytics Module</h2>
             <p className="text-xs text-slate-400 max-w-sm mt-1">
@@ -413,7 +431,7 @@ export default function App() {
             </p>
             <button
               onClick={() => setActiveTab('dashboard')}
-              className="mt-6 px-4 py-2 bg-blue-600/50 hover:bg-blue-700/50 text-blue-400 font-bold rounded-xl text-xs transition-colors border border-slate-700"
+              className="mt-6 px-4 py-2 bg-[#d4a853]/20 hover:bg-[#d4a853]/30 text-[#d4a853] font-bold rounded-xl text-xs transition-colors border border-[#d4a853]/30"
             >
               Return to Dashboard
             </button>
