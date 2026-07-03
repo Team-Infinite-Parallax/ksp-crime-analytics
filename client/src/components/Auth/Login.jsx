@@ -115,19 +115,19 @@ export default function Login({ onLogin }) {
   };
 
   return (
-    <div className="min-h-screen w-screen bg-slate-950 flex flex-col items-center justify-center p-6 text-slate-100 relative overflow-hidden font-sans">
+    <div className="h-screen w-screen bg-[var(--color-canvas-dark)] flex flex-col items-center justify-center p-4 lg:p-6 text-[var(--color-on-dark)] relative overflow-hidden font-sans">
       {/* Decorative scanline or grid patterns */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(15,23,42,0.6),rgba(2,6,23,1))]" />
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent animate-pulse" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-surface-card-dark),var(--color-canvas-dark))]" />
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--color-primary)]/20 to-transparent animate-pulse" />
 
       {/* Main Container */}
-      <div className="relative z-10 max-w-5xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div className="relative z-10 max-w-5xl w-full grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-stretch max-h-full">
         
         {/* Left Side: Info Briefing Panel */}
-        <div className="lg:col-span-5 flex flex-col justify-between p-8 rounded-3xl glass-panel bg-slate-900/40 border border-slate-800 shadow-2xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none" />
+        <div className="lg:col-span-5 flex flex-col justify-between p-6 bg-[#0a192f] border border-blue-900/30 rounded-2xl shadow-2xl text-[var(--color-on-dark)] relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent pointer-events-none" />
           
-          <div className="space-y-6">
+          <div className="space-y-4">
             <div className="flex items-center space-x-3.5">
               <div className="p-3 bg-blue-950/80 rounded-2xl border border-slate-700/60 shadow-lg">
                 {emblemSvgLarge}
@@ -139,18 +139,18 @@ export default function Login({ onLogin }) {
               </div>
             </div>
 
-            <div className="border-t border-slate-800/80 pt-6 space-y-4">
-              <h2 className="text-xs font-bold text-slate-300 uppercase tracking-widest flex items-center">
-                <Shield className="h-4 w-4 mr-2 text-blue-400" />
+            <div className="border-t border-[var(--color-hairline-dark)] pt-4 space-y-3">
+              <h2 className="text-xs font-bold text-[var(--color-on-dark)] uppercase tracking-widest flex items-center">
+                <Shield className="h-4 w-4 mr-2 text-[var(--color-primary)]" />
                 Authorized Access Protocol
               </h2>
-              <p className="text-xs text-slate-400 leading-relaxed font-medium">
+              <p className="text-xs text-[var(--color-muted)] leading-relaxed font-medium">
                 Welcome to the Karnataka State Police Crime Intelligence Portal. Access to this system is restricted to designated personnel under strict security clearance guidelines. All active sessions, searches, and analysis actions are audit-logged.
               </p>
             </div>
           </div>
 
-          <div className="mt-8 border-t border-slate-800/80 pt-6">
+          <div className="mt-4 border-t border-[var(--color-hairline-dark)] pt-4">
             <div className="bg-[#cc3333]/10 border border-[#cc3333]/30 rounded-2xl p-4 flex items-start space-x-3">
               <AlertTriangle className="h-5 w-5 text-[#cc3333] shrink-0 mt-0.5" />
               <div className="text-[11px] leading-relaxed">
@@ -164,18 +164,18 @@ export default function Login({ onLogin }) {
         </div>
 
         {/* Right Side: Credentials & Quick Login Selectors */}
-        <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
+        <div className="lg:col-span-7 flex flex-col justify-center space-y-4">
           
           {/* Main Credentials Panel */}
-          <div className="p-8 rounded-3xl glass-panel bg-slate-900/60 border border-slate-800/80 shadow-2xl relative">
+          <div className="p-6 bg-[#0a192f] border border-blue-900/30 rounded-2xl shadow-2xl text-[var(--color-on-dark)] relative">
             <div className="absolute top-0 right-0 p-3">
-              <span className="text-[8px] bg-blue-900/50 text-blue-400 border border-slate-700 px-2 py-0.5 rounded-md font-bold uppercase tracking-wider">
+              <span className="text-[10px] bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)] border border-[var(--color-primary)]/30 px-2 py-0.5 rounded-sm font-bold uppercase tracking-wider">
                 Classified
               </span>
             </div>
 
-            <h3 className="text-md font-bold text-slate-100 mb-6 flex items-center">
-              <Lock className="h-4.5 w-4.5 text-blue-500 mr-2" />
+            <h3 className="text-md font-bold text-[var(--color-on-dark)] mb-4 flex items-center">
+              <Lock className="h-4.5 w-4.5 text-[var(--color-primary)] mr-2" />
               Portal Authentication
             </h3>
 
@@ -205,7 +205,7 @@ export default function Login({ onLogin }) {
                     value={badgeId}
                     onChange={(e) => setBadgeId(e.target.value)}
                     placeholder="Enter KSP-SCRB-100 or email..."
-                    className="w-full bg-slate-950/80 border border-slate-700 text-slate-100 text-sm rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-800 placeholder-[#5a584e] transition-all font-medium"
+                    className="w-full bg-[var(--color-canvas-dark)] border border-[var(--color-hairline-dark)] text-[var(--color-on-dark)] text-[14px] rounded-sm py-3 pl-10 pr-4 focus:outline-none focus:border-[var(--color-primary)] transition-all font-medium"
                     disabled={loading || success}
                   />
                 </div>
@@ -222,7 +222,7 @@ export default function Login({ onLogin }) {
                     value={passcode}
                     onChange={(e) => setPasscode(e.target.value)}
                     placeholder="Enter passcode..."
-                    className="w-full bg-slate-950/80 border border-slate-700 text-slate-100 text-sm rounded-xl py-3 pl-10 pr-12 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-800 placeholder-[#5a584e] transition-all tracking-widest font-mono"
+                    className="w-full bg-[var(--color-canvas-dark)] border border-[var(--color-hairline-dark)] text-[var(--color-on-dark)] text-[14px] rounded-sm py-3 pl-10 pr-12 focus:outline-none focus:border-[var(--color-primary)] transition-all font-mono"
                     disabled={loading || success}
                   />
                   <button
@@ -239,7 +239,7 @@ export default function Login({ onLogin }) {
               <button
                 type="submit"
                 disabled={loading || success}
-                className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-slate-100 py-3.5 px-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all duration-200 shadow-lg shadow-blue-900/30 flex items-center justify-center space-x-2 border border-blue-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full mt-6 btn-primary py-3.5 px-4 rounded-sm text-[14px] font-bold uppercase transition-all flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <div className="h-4 w-4 border-2 border-slate-100 border-t-transparent rounded-full animate-spin" />
@@ -254,8 +254,8 @@ export default function Login({ onLogin }) {
           </div>
 
           {/* Quick Profile Selectors Panel */}
-          <div className="p-5 rounded-3xl glass-panel bg-slate-900/60 border border-slate-800/80 shadow-2xl space-y-3">
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center border-b border-slate-800/60 pb-3">
+          <div className="p-4 bg-[#0a192f] border border-blue-900/30 rounded-2xl shadow-2xl text-[var(--color-on-dark)] space-y-2">
+            <p className="text-[10px] font-bold text-[var(--color-muted)] uppercase tracking-widest text-center border-b border-[var(--color-hairline-dark)] pb-3">
               Quick Officer Access Profiles (Only for Demo)
             </p>
             <div className="space-y-2">
@@ -266,10 +266,10 @@ export default function Login({ onLogin }) {
                     key={user.role}
                     type="button"
                     onClick={() => handleProfileSelect(user)}
-                    className={`w-full text-left px-4 py-3 rounded-xl border transition-all duration-200 flex items-center space-x-3 group ${
+                    className={`w-full text-left px-4 py-2.5 rounded-sm border transition-all duration-200 flex items-center space-x-3 group ${
                       isActive 
-                        ? 'border-blue-500/80 bg-blue-950/20 shadow-md shadow-blue-900/25' 
-                        : 'border-slate-800 hover:border-slate-700 hover:bg-slate-900/50'
+                        ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/10' 
+                        : 'border-[var(--color-hairline-dark)] hover:border-[var(--color-primary)]/50 hover:bg-[var(--color-surface-elevated-dark)]'
                     }`}
                   >
                     <span className={`text-[8px] px-1.5 py-0.5 rounded font-extrabold uppercase tracking-wide shrink-0 ${

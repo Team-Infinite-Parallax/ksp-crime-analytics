@@ -23,11 +23,11 @@ export default function Filters({
   ];
 
   return (
-    <div className="glass-panel p-4 rounded-2xl border border-slate-800 bg-slate-900 flex flex-wrap gap-4 items-center justify-between shadow-lg">
+    <div className="card-dark p-6 flex flex-wrap gap-4 items-center justify-between">
       <div className="flex flex-wrap gap-3 items-center">
-        <div className="flex items-center space-x-2 text-slate-400 mr-2">
-          <Filter className="h-4 w-4 text-blue-400" />
-          <span className="text-[9px] font-bold uppercase tracking-[0.12em]">Filters</span>
+        <div className="flex items-center space-x-2 text-[var(--color-muted)] mr-2">
+          <Filter className="h-4 w-4 text-[var(--color-primary)]" />
+          <span className="text-[12px] font-bold uppercase tracking-[0.12em]">Filters</span>
         </div>
 
         <div className="relative">
@@ -35,7 +35,7 @@ export default function Filters({
             value={filters.districtId}
             disabled={activeRole !== 'SCRB_ADMIN'}
             onChange={(e) => setFilters({ ...filters, districtId: e.target.value, unitId: 'all' })}
-            className={`bg-slate-950 border border-slate-700 text-slate-50 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 cursor-pointer ${activeRole !== 'SCRB_ADMIN' ? 'opacity-60 cursor-not-allowed' : ''
+            className={`bg-[var(--color-surface-elevated-dark)] border-none text-[var(--color-on-dark)] text-[14px] font-medium rounded-sm px-3 py-2 focus:outline-none cursor-pointer h-[40px] ${activeRole !== 'SCRB_ADMIN' ? 'opacity-60 cursor-not-allowed' : ''
               }`}
           >
             <option value="all">All Districts</option>
@@ -50,7 +50,7 @@ export default function Filters({
             value={filters.unitId}
             disabled={activeRole === 'INVESTIGATION_OFFICER'}
             onChange={(e) => setFilters({ ...filters, unitId: e.target.value })}
-            className={`bg-slate-950 border border-slate-700 text-slate-50 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 cursor-pointer ${activeRole === 'INVESTIGATION_OFFICER' ? 'opacity-60 cursor-not-allowed' : ''
+            className={`bg-[var(--color-surface-elevated-dark)] border-none text-[var(--color-on-dark)] text-[14px] font-medium rounded-sm px-3 py-2 focus:outline-none cursor-pointer h-[40px] ${activeRole === 'INVESTIGATION_OFFICER' ? 'opacity-60 cursor-not-allowed' : ''
               }`}
           >
             <option value="all">All Stations</option>
@@ -67,7 +67,7 @@ export default function Filters({
           <select
             value={filters.dateRange}
             onChange={(e) => setFilters({ ...filters, dateRange: e.target.value })}
-            className="bg-slate-950 border border-slate-700 text-slate-50 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 cursor-pointer"
+            className="bg-[var(--color-surface-elevated-dark)] border-none text-[var(--color-on-dark)] text-[14px] font-medium rounded-sm px-3 py-2 focus:outline-none cursor-pointer h-[40px]"
           >
             {dateRanges.map(d => (
               <option key={d.id} value={d.id}>{d.label}</option>
@@ -79,7 +79,7 @@ export default function Filters({
           <select
             value={filters.gravity}
             onChange={(e) => setFilters({ ...filters, gravity: e.target.value })}
-            className="bg-slate-950 border border-slate-700 text-slate-50 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 cursor-pointer"
+            className="bg-[var(--color-surface-elevated-dark)] border-none text-[var(--color-on-dark)] text-[14px] font-medium rounded-sm px-3 py-2 focus:outline-none cursor-pointer h-[40px]"
           >
             {gravities.map(g => (
               <option key={g.id} value={g.id}>{g.label}</option>
@@ -91,9 +91,9 @@ export default function Filters({
       <div>
         <button
           onClick={onReset}
-          className="flex items-center space-x-1.5 px-3 py-2 bg-slate-950 border border-slate-700 text-slate-400 hover:text-slate-50 hover:border-blue-500/40 transition-colors text-xs font-bold rounded-xl"
+          className="flex items-center space-x-2 px-4 py-2 bg-transparent text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] transition-colors text-[14px] font-medium rounded-sm h-[40px]"
         >
-          <RefreshCw className="h-3.5 w-3.5 shrink-0" />
+          <RefreshCw className="h-4 w-4 shrink-0" />
           <span>Reset Filters</span>
         </button>
       </div>

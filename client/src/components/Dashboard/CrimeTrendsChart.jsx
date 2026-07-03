@@ -71,14 +71,14 @@ export default function CrimeTrendsChart({ title, data }) {
   });
 
   return (
-    <div className="glass-card p-6 rounded-2xl border border-slate-800 bg-slate-800/50 flex flex-col h-[340px] relative select-none">
-      <div className="flex items-center justify-between mb-4">
+    <div className="card-dark p-6 flex flex-col h-[340px] relative select-none">
+      <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-sm font-bold tracking-wide text-slate-50">{title}</h3>
-          <p className="text-[9px] text-slate-400 font-semibold uppercase tracking-[0.12em] mt-0.5">Statistical Trend Projection</p>
+          <h3 className="text-[20px] font-semibold text-[var(--color-on-dark)]">{title}</h3>
+          <p className="text-[14px] text-[var(--color-muted)] font-medium mt-0.5">Statistical Trend Projection</p>
         </div>
-        <div className="flex items-center space-x-1.5 text-xs text-blue-400 font-bold bg-blue-900/30 px-2.5 py-1.5 border border-slate-800 rounded-xl">
-          <Calendar className="h-3.5 w-3.5" />
+        <div className="flex items-center space-x-2 text-[14px] text-[var(--color-primary)] font-bold bg-[var(--color-surface-elevated-dark)] px-4 py-2 rounded-sm">
+          <Calendar className="h-4 w-4" />
           <span>Year-on-Year</span>
         </div>
       </div>
@@ -95,11 +95,11 @@ export default function CrimeTrendsChart({ title, data }) {
         >
           <defs>
             <linearGradient id="chart-area-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#d4a853" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#d4a853" stopOpacity="0.0" />
+              <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0.0" />
             </linearGradient>
             <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#d4a853" floodOpacity="0.2" />
+              <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="var(--color-primary)" floodOpacity="0.2" />
             </filter>
           </defs>
 
@@ -110,18 +110,18 @@ export default function CrimeTrendsChart({ title, data }) {
                 y1={g.y}
                 x2={width - paddingRight}
                 y2={g.y}
-                stroke="#2a2a3a"
+                stroke="var(--color-hairline-dark)"
                 strokeWidth="1"
                 strokeDasharray="4 4"
               />
               <text
                 x={paddingLeft - 8}
                 y={g.y + 4}
-                fill="#8a887e"
-                fontSize="10"
-                fontFamily="Inter"
+                fill="var(--color-muted)"
+                fontSize="12"
+                fontFamily="JetBrains Mono, monospace"
                 textAnchor="end"
-                fontWeight="600"
+                fontWeight="500"
               >
                 {g.val}
               </text>
@@ -136,10 +136,10 @@ export default function CrimeTrendsChart({ title, data }) {
                 key={idx}
                 x={p.x}
                 y={height - paddingBottom + 18}
-                fill="#8a887e"
-                fontSize="10"
-                fontFamily="Inter"
-                fontWeight="700"
+                fill="var(--color-muted)"
+                fontSize="12"
+                fontFamily="var(--font-nova)"
+                fontWeight="500"
                 textAnchor="middle"
               >
                 {p.label}
@@ -152,7 +152,7 @@ export default function CrimeTrendsChart({ title, data }) {
           <path
             d={linePath}
             fill="none"
-            stroke="#d4a853"
+            stroke="var(--color-primary)"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -166,15 +166,15 @@ export default function CrimeTrendsChart({ title, data }) {
                 y1={paddingTop}
                 x2={points[hoveredIdx].x}
                 y2={height - paddingBottom}
-                stroke="#2a2a3a"
+                stroke="var(--color-hairline-dark)"
                 strokeWidth="1.5"
               />
               <circle
                 cx={points[hoveredIdx].x}
                 cy={points[hoveredIdx].y}
                 r="5"
-                fill="#0a0f1a"
-                stroke="#d4a853"
+                fill="var(--color-canvas-dark)"
+                stroke="var(--color-primary)"
                 strokeWidth="3"
               />
             </>
@@ -183,12 +183,12 @@ export default function CrimeTrendsChart({ title, data }) {
 
         {hoveredIdx !== null && (
           <div
-            className="absolute bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 shadow-2xl pointer-events-none z-30 flex flex-col items-start translate-x-3 -translate-y-12"
+            className="absolute bg-[var(--color-surface-card-dark)] border border-[var(--color-hairline-dark)] rounded-sm p-3 shadow-lg pointer-events-none z-30 flex flex-col items-start translate-x-3 -translate-y-12"
             style={{ left: `${tooltipPos.x}px`, top: `${tooltipPos.y}px` }}
           >
-            <span className="text-[9px] text-slate-400 font-bold uppercase">{points[hoveredIdx].label}</span>
-            <span className="text-xs font-black text-slate-50 mt-0.5">
-              Cases: <span className="text-blue-400">{points[hoveredIdx].value}</span>
+            <span className="text-[12px] text-[var(--color-muted)] font-medium">{points[hoveredIdx].label}</span>
+            <span className="text-[16px] font-bold font-plex text-[var(--color-on-dark)] mt-0.5">
+              Cases: <span className="text-[var(--color-primary)]">{points[hoveredIdx].value}</span>
             </span>
           </div>
         )}

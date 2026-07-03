@@ -69,7 +69,7 @@ const CYTO_STYLE = [
     style: {
       'shape': 'ellipse',
       'background-color': '#3a1a08',
-      'border-color': '#d4a853',
+      'border-color': 'var(--color-primary)',
       'border-width': 2,
       'color': '#e6d4a4',
       'width': 30,
@@ -112,11 +112,11 @@ const CYTO_STYLE = [
   {
     selector: 'node:selected',
     style: {
-      'border-color': '#d4a853',
+      'border-color': 'var(--color-primary)',
       'border-width': 3,
       'color': '#e6e2d8',
       'shadow-blur': 16,
-      'shadow-color': '#d4a853',
+      'shadow-color': 'var(--color-primary)',
       'shadow-opacity': 0.3,
       'shadow-offset-x': 0,
       'shadow-offset-y': 0,
@@ -125,10 +125,10 @@ const CYTO_STYLE = [
   {
     selector: 'node.highlighted',
     style: {
-      'border-color': '#d4a853',
+      'border-color': 'var(--color-primary)',
       'border-width': 3,
       'shadow-blur': 20,
-      'shadow-color': '#d4a853',
+      'shadow-color': 'var(--color-primary)',
       'shadow-opacity': 0.5,
       'shadow-offset-x': 0,
       'shadow-offset-y': 0,
@@ -144,10 +144,10 @@ const CYTO_STYLE = [
   {
     selector: 'node.neighbor-revealed',
     style: {
-      'border-color': '#d4a853',
+      'border-color': 'var(--color-primary)',
       'border-width': 2.5,
       'shadow-blur': 12,
-      'shadow-color': '#d4a853',
+      'shadow-color': 'var(--color-primary)',
       'shadow-opacity': 0.5,
       'shadow-offset-x': 0,
       'shadow-offset-y': 0,
@@ -179,7 +179,7 @@ const CYTO_STYLE = [
     selector: 'edge[type="victimized"]',
     style: {
       'line-color': '#3a1a08',
-      'target-arrow-color': '#d4a853',
+      'target-arrow-color': 'var(--color-primary)',
       'width': 1,
       'line-style': 'dashed',
       'line-dash-pattern': [4, 3],
@@ -198,7 +198,7 @@ const CYTO_STYLE = [
     selector: 'edge[type="coAccused"]',
     style: {
       'line-color': '#5c3a1a',
-      'target-arrow-color': '#d4a853',
+      'target-arrow-color': 'var(--color-primary)',
       'target-arrow-shape': 'none',
       'width': 2,
       'line-style': 'dashed',
@@ -252,7 +252,7 @@ const LAYOUT_CONFIG = {
 
 const NODE_TYPE_META = {
   offender:      { label: 'Repeat Offender', color: '#cc3333', Icon: User },
-  victim:        { label: 'Victim',           color: '#d4a853', Icon: Users },
+  victim:        { label: 'Victim',           color: 'var(--color-primary)', Icon: Users },
   policeStation: { label: 'Police Station',   color: '#2b5f9e', Icon: Shield },
   crime:         { label: 'Crime Event',      color: '#8a887e', Icon: AlertTriangle },
 };
@@ -262,8 +262,8 @@ const COMMUNITY_COLORS = communities.map(c => c.color);
 function DetailRow({ label, value, accent }) {
   return (
     <div className="flex items-start justify-between py-1.5 border-b border-blue-500/5 last:border-0">
-      <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-wide shrink-0 mr-2">{label}</span>
-      <span className={`text-[11px] font-medium text-right ${accent || 'text-slate-50'}`}>{value ?? '—'}</span>
+      <span className="text-[9px] font-semibold text-[var(--color-muted)] uppercase tracking-wide shrink-0 mr-2">{label}</span>
+      <span className={`text-[11px] font-medium text-right ${accent || 'text-[var(--color-on-dark)]'}`}>{value ?? '—'}</span>
     </div>
   );
 }
@@ -495,13 +495,13 @@ export default function NetworkGraph({ activeRole }) {
 
   const getRiskColor = (score) => {
     if (score >= 80) return 'text-[#cc3333]';
-    if (score >= 60) return 'text-blue-400';
+    if (score >= 60) return 'text-[var(--color-primary)]';
     return 'text-[#2e7d32]';
   };
 
   const getRiskBg = (score) => {
     if (score >= 80) return 'bg-[#8b0000]/10 border-[#8b0000]/30';
-    if (score >= 60) return 'bg-blue-900/50 border-slate-700';
+    if (score >= 60) return 'bg-[var(--color-surface-elevated-dark)] border-[var(--color-hairline-dark)]';
     return 'bg-[#2e7d32]/10 border-[#2e7d32]/30';
   };
 
@@ -512,39 +512,39 @@ export default function NetworkGraph({ activeRole }) {
   return (
     <div className="flex flex-col h-full w-full gap-0 relative overflow-hidden">
 
-      <div className="flex items-center justify-between px-6 py-3 border-b border-slate-800 bg-slate-900 shrink-0 z-10">
+      <div className="flex items-center justify-between px-6 py-3 border-b border-[var(--color-hairline-dark)] bg-[var(--color-surface-card-dark)] shrink-0 z-10">
         <div className="flex items-center space-x-3">
-          <div className="p-2 rounded-lg bg-blue-900/50 border border-slate-700">
-            <Network className="h-4 w-4 text-blue-400" />
+          <div className="p-2 rounded-sm bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)]">
+            <Network className="h-4 w-4 text-[var(--color-primary)]" />
           </div>
           <div>
-            <h2 className="text-sm font-bold text-slate-50 tracking-wide">Criminal Intelligence Network</h2>
-            <p className="text-[9px] text-slate-400 font-semibold uppercase tracking-wider">
+            <h2 className="text-sm font-bold text-[var(--color-on-dark)] tracking-wide">Criminal Intelligence Network</h2>
+            <p className="text-[9px] text-[var(--color-muted)] font-semibold uppercase tracking-wider">
               {isLoading ? 'Initialising graph engine\u2026' : `${stats.nodes} Nodes \u00B7 ${stats.edges} Connections \u00B7 ${stats.communities} Communities`}
             </p>
           </div>
         </div>
 
         <div className="relative flex-1 max-w-xs mx-6">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400 pointer-events-none" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[var(--color-muted)] pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="Search nodes, suspects, stations\u2026"
-            className="w-full pl-9 pr-4 py-2 bg-slate-950 border border-slate-700 rounded-lg text-xs text-slate-50 placeholder:text-slate-400 focus:outline-none focus:border-blue-700 focus:ring-1 focus:ring-blue-900 transition-all"
+            className="w-full pl-9 pr-4 py-2 bg-[var(--color-canvas-dark)] border border-[var(--color-hairline-dark)] rounded-sm text-xs text-[var(--color-on-dark)] placeholder:text-[var(--color-muted)] focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-all"
           />
           {searchResults.length > 0 && (
-            <div className="absolute top-full left-0 right-0 mt-1 bg-slate-950 border border-slate-700 rounded-xl shadow-2xl z-50 overflow-hidden max-h-48 overflow-y-auto">
+            <div className="absolute top-full left-0 right-0 mt-1 bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)] rounded-sm shadow-2xl z-50 overflow-hidden max-h-48 overflow-y-auto">
               {searchResults.map(r => (
                 <button
                   key={r.id}
                   onClick={() => panToNode(r.id)}
-                  className="w-full flex items-center space-x-2.5 px-3 py-2.5 hover:bg-slate-900/60 text-left border-b border-slate-800 last:border-0 transition-colors"
+                  className="w-full flex items-center space-x-2.5 px-3 py-2.5 hover:bg-[var(--color-canvas-dark)]/60 text-left border-b border-[var(--color-hairline-dark)] last:border-0 transition-colors"
                 >
                   {getNodeIcon(r.type)}
-                  <span className="text-xs text-slate-50 font-medium">{r.label}</span>
-                  <span className="text-[9px] text-slate-400 ml-auto capitalize">{r.type}</span>
+                  <span className="text-xs text-[var(--color-on-dark)] font-medium">{r.label}</span>
+                  <span className="text-[9px] text-[var(--color-muted)] ml-auto capitalize">{r.type}</span>
                 </button>
               ))}
             </div>
@@ -552,34 +552,34 @@ export default function NetworkGraph({ activeRole }) {
         </div>
 
         <div className="flex items-center space-x-2">
-          <span className={`text-[8px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md border ${layoutRunning ? 'text-blue-400 bg-blue-900/50 border-slate-700 animate-pulse' : 'text-[#2e7d32] bg-[#2e7d32]/10 border-[#2e7d32]/30'}`}>
+          <span className={`text-[8px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md border ${layoutRunning ? 'text-[var(--color-primary)] bg-[var(--color-surface-elevated-dark)] border-[var(--color-hairline-dark)] animate-pulse' : 'text-[#2e7d32] bg-[#2e7d32]/10 border-[#2e7d32]/30'}`}>
             {layoutRunning ? '\u27F3 Computing' : '\u25CF Live'}
           </span>
         </div>
       </div>
 
-      <div className="flex items-center space-x-2 px-6 py-2.5 bg-slate-900/80 border-b border-slate-800 shrink-0 z-10 overflow-x-auto">
-        <span className="text-[9px] text-slate-400 font-semibold uppercase shrink-0">Node Type:</span>
+      <div className="flex items-center space-x-2 px-6 py-2.5 bg-[var(--color-surface-card-dark)] border-b border-[var(--color-hairline-dark)] shrink-0 z-10 overflow-x-auto">
+        <span className="text-[9px] text-[var(--color-muted)] font-semibold uppercase shrink-0">Node Type:</span>
         {['all', 'offender', 'victim', 'policeStation', 'crime'].map(f => (
           <button
             key={f}
             onClick={() => setActiveFilter(f)}
             className={`shrink-0 text-[9px] font-semibold uppercase tracking-wide px-2.5 py-1 rounded-md border transition-all ${
               activeFilter === f
-                ? 'bg-blue-600/50 border-blue-700 text-blue-400'
-                : 'bg-transparent border-slate-700 text-slate-400 hover:text-slate-50 hover:border-slate-700'
+                ? 'bg-[var(--color-primary)]/50 border-blue-700 text-[var(--color-primary)]'
+                : 'bg-transparent border-[var(--color-hairline-dark)] text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:border-[var(--color-hairline-dark)]'
             }`}
           >
             {f === 'policeStation' ? 'Stations' : f === 'all' ? 'All Nodes' : f.charAt(0).toUpperCase() + f.slice(1) + 's'}
           </button>
         ))}
 
-        <div className="w-px h-4 bg-blue-600/50 mx-2 shrink-0" />
+        <div className="w-px h-4 bg-[var(--color-primary)]/50 mx-2 shrink-0" />
 
-        <span className="text-[9px] text-slate-400 font-semibold uppercase shrink-0">Community:</span>
+        <span className="text-[9px] text-[var(--color-muted)] font-semibold uppercase shrink-0">Community:</span>
         <button
           onClick={() => setCommunityFilter('all')}
-          className={`shrink-0 text-[9px] font-semibold px-2.5 py-1 rounded-md border transition-all ${communityFilter === 'all' ? 'bg-blue-600/50 border-blue-700 text-blue-400' : 'border-slate-700 text-slate-400 hover:border-slate-700'}`}
+          className={`shrink-0 text-[9px] font-semibold px-2.5 py-1 rounded-md border transition-all ${communityFilter === 'all' ? 'bg-[var(--color-primary)]/50 border-blue-700 text-[var(--color-primary)]' : 'border-[var(--color-hairline-dark)] text-[var(--color-muted)] hover:border-[var(--color-hairline-dark)]'}`}
         >
           All
         </button>
@@ -589,8 +589,8 @@ export default function NetworkGraph({ activeRole }) {
             onClick={() => setCommunityFilter(communityFilter === String(c.id) ? 'all' : String(c.id))}
             className={`shrink-0 flex items-center space-x-1.5 text-[9px] font-semibold px-2.5 py-1 rounded-md border transition-all ${
               communityFilter === String(c.id)
-                ? 'border-opacity-60 text-slate-50'
-                : 'border-slate-700 text-slate-400 hover:border-slate-700'
+                ? 'border-opacity-60 text-[var(--color-on-dark)]'
+                : 'border-[var(--color-hairline-dark)] text-[var(--color-muted)] hover:border-[var(--color-hairline-dark)]'
             }`}
             style={communityFilter === String(c.id) ? { borderColor: c.color, backgroundColor: c.bgColor, color: c.color } : {}}
           >
@@ -604,18 +604,18 @@ export default function NetworkGraph({ activeRole }) {
 
         <div
           ref={containerRef}
-          className="flex-1 h-full bg-slate-900 relative"
+          className="flex-1 h-full bg-[var(--color-canvas-dark)] relative"
           style={{ minHeight: 0 }}
         />
 
         {isLoading && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/90 z-30">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-[var(--color-canvas-dark)]/90 z-30">
             <div className="relative mb-6">
-              <div className="w-16 h-16 rounded-full border-2 border-slate-700 border-t-[#d4a853] animate-spin" />
-              <div className="absolute inset-2 w-12 h-12 rounded-full border-2 border-slate-700 border-b-[#d4a853] animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }} />
+              <div className="w-16 h-16 rounded-full border-2 border-[var(--color-hairline-dark)] border-t-[var(--color-primary)] animate-spin" />
+              <div className="absolute inset-2 w-12 h-12 rounded-full border-2 border-[var(--color-hairline-dark)] border-b-[var(--color-primary)] animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }} />
             </div>
-            <p className="text-sm font-bold text-slate-50">Initialising Graph Engine</p>
-            <p className="text-[10px] text-slate-400 mt-1">Running F-CoSE layout algorithm\u2026</p>
+            <p className="text-sm font-bold text-[var(--color-on-dark)]">Initialising Graph Engine</p>
+            <p className="text-[10px] text-[var(--color-muted)] mt-1">Running F-CoSE layout algorithm\u2026</p>
           </div>
         )}
 
@@ -631,14 +631,14 @@ export default function NetworkGraph({ activeRole }) {
               key={title}
               onClick={action}
               title={title}
-              className={`p-2.5 rounded-xl border transition-all shadow-lg backdrop-blur-sm group relative ${
+              className={`p-2.5 rounded-sm border transition-all shadow-lg backdrop-blur-sm group relative ${
                 active === false
-                  ? 'bg-slate-950/90 border-slate-700 text-slate-400 hover:text-slate-50'
-                  : 'bg-slate-950/90 border-slate-700 text-slate-400 hover:text-slate-50 hover:border-slate-700'
+                  ? 'bg-[var(--color-surface-elevated-dark)] border-[var(--color-hairline-dark)] text-[var(--color-muted)] hover:text-[var(--color-on-dark)]'
+                  : 'bg-[var(--color-surface-elevated-dark)] border-[var(--color-hairline-dark)] text-[var(--color-muted)] hover:text-[var(--color-on-dark)]'
               }`}
             >
               <Icon className={`h-4 w-4 ${spin ? 'animate-spin' : ''}`} />
-              <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 bg-slate-950 text-slate-50 text-[9px] font-semibold px-2 py-1 rounded-md border border-slate-700 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-xl">
+              <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 bg-[var(--color-surface-elevated-dark)] text-[var(--color-on-dark)] text-[9px] font-semibold px-2 py-1 rounded-sm border border-[var(--color-hairline-dark)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-xl">
                 {title}
               </div>
             </button>
@@ -646,10 +646,10 @@ export default function NetworkGraph({ activeRole }) {
         </div>
 
         {showCommunityLegend && (
-          <div className="absolute left-4 bottom-4 bg-slate-900/95 backdrop-blur-sm border border-slate-800 rounded-2xl p-4 z-20 min-w-[200px] shadow-2xl">
+          <div className="absolute left-4 bottom-4 bg-[var(--color-canvas-dark)]/95 backdrop-blur-sm border border-[var(--color-hairline-dark)] rounded-sm p-4 z-20 min-w-[200px] shadow-2xl">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Node Types</span>
-              <button onClick={() => setShowCommunityLegend(false)} className="text-slate-400 hover:text-slate-50 transition-colors">
+              <span className="text-[9px] font-bold text-[var(--color-muted)] uppercase tracking-wider">Node Types</span>
+              <button onClick={() => setShowCommunityLegend(false)} className="text-[var(--color-muted)] hover:text-[var(--color-on-dark)] transition-colors">
                 <X className="h-3 w-3" />
               </button>
             </div>
@@ -657,31 +657,31 @@ export default function NetworkGraph({ activeRole }) {
               <div key={type} className="flex items-center space-x-2.5 mb-2 last:mb-0">
                 <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: color, opacity: 0.8 }} />
                 <Icon className="h-3 w-3 shrink-0" style={{ color }} />
-                <span className="text-[9px] text-slate-400 font-medium">{label}</span>
+                <span className="text-[9px] text-[var(--color-muted)] font-medium">{label}</span>
               </div>
             ))}
-            <div className="border-t border-slate-800 mt-3 pt-3">
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider block mb-2">Communities</span>
+            <div className="border-t border-[var(--color-hairline-dark)] mt-3 pt-3">
+              <span className="text-[9px] font-bold text-[var(--color-muted)] uppercase tracking-wider block mb-2">Communities</span>
               {communities.map(c => (
                 <div key={c.id} className="flex items-center space-x-2 mb-1.5 last:mb-0">
                   <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: c.color }} />
-                  <span className="text-[9px] text-slate-400">{c.name}</span>
+                  <span className="text-[9px] text-[var(--color-muted)]">{c.name}</span>
                 </div>
               ))}
             </div>
 
-            <div className="border-t border-slate-800 mt-3 pt-3">
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider block mb-2">Edge Types</span>
+            <div className="border-t border-[var(--color-hairline-dark)] mt-3 pt-3">
+              <span className="text-[9px] font-bold text-[var(--color-muted)] uppercase tracking-wider block mb-2">Edge Types</span>
               {[
                 { color: '#cc3333', label: 'Committed Crime', style: 'solid' },
-                { color: '#d4a853', label: 'Victimized',       style: 'dashed' },
+                { color: 'var(--color-primary)', label: 'Victimized',       style: 'dashed' },
                 { color: '#2b5f9e', label: 'Investigated By',  style: 'solid' },
-                { color: '#d4a853', label: 'Co-Accused',       style: 'dashed' },
+                { color: 'var(--color-primary)', label: 'Co-Accused',       style: 'dashed' },
                 { color: '#4a8a2a', label: 'Intelligence Link', style: 'dotted' },
               ].map(({ color, label, style }) => (
                 <div key={label} className="flex items-center space-x-2 mb-1.5 last:mb-0">
                   <div className="w-6 h-px shrink-0" style={{ backgroundColor: color, borderTop: style !== 'solid' ? `1px ${style} ${color}` : 'none', background: style === 'solid' ? color : 'none' }} />
-                  <span className="text-[9px] text-slate-400">{label}</span>
+                  <span className="text-[9px] text-[var(--color-muted)]">{label}</span>
                 </div>
               ))}
             </div>
@@ -691,7 +691,7 @@ export default function NetworkGraph({ activeRole }) {
         {!showCommunityLegend && (
           <button
             onClick={() => setShowCommunityLegend(true)}
-            className="absolute left-4 bottom-4 p-2.5 bg-slate-950/90 border border-slate-700 rounded-xl text-slate-400 hover:text-slate-50 transition-all z-20 backdrop-blur-sm"
+            className="absolute left-4 bottom-4 p-2.5 bg-[var(--color-surface-elevated-dark)]/90 border border-[var(--color-hairline-dark)] rounded-sm text-[var(--color-muted)] hover:text-[var(--color-on-dark)] transition-all z-20 backdrop-blur-sm"
             title="Show Legend"
           >
             <Layers className="h-4 w-4" />
@@ -699,20 +699,20 @@ export default function NetworkGraph({ activeRole }) {
         )}
 
         <div
-          className={`absolute right-0 top-0 bottom-0 w-72 bg-slate-900/98 backdrop-blur-xl border-l border-slate-800 flex flex-col transition-transform duration-300 ease-out z-20 shadow-2xl ${
+          className={`absolute right-0 top-0 bottom-0 w-72 bg-[var(--color-canvas-dark)]/98 backdrop-blur-xl border-l border-[var(--color-hairline-dark)] flex flex-col transition-transform duration-300 ease-out z-20 shadow-2xl ${
             selectedNode ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
           {selectedNode && (
             <>
               <div
-                className="p-5 border-b border-slate-800"
+                className="p-5 border-b border-[var(--color-hairline-dark)]"
                 style={{ background: `linear-gradient(135deg, ${communityForNode?.bgColor || 'transparent'} 0%, transparent 100%)` }}
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center space-x-2.5">
                     <div
-                      className="p-2 rounded-xl border"
+                      className="p-2 rounded-sm border"
                       style={{
                         backgroundColor: `${NODE_TYPE_META[selectedNode.type]?.color}15`,
                         borderColor: `${NODE_TYPE_META[selectedNode.type]?.color}40`,
@@ -725,7 +725,7 @@ export default function NetworkGraph({ activeRole }) {
                         {NODE_TYPE_META[selectedNode.type]?.label}
                       </p>
                       {communityForNode && (
-                        <p className="text-[8px] text-slate-400 font-semibold uppercase mt-0.5" style={{ color: communityForNode.color }}>
+                        <p className="text-[8px] text-[var(--color-muted)] font-semibold uppercase mt-0.5" style={{ color: communityForNode.color }}>
                           ◆ {communityForNode.name}
                         </p>
                       )}
@@ -736,30 +736,30 @@ export default function NetworkGraph({ activeRole }) {
                       setSelectedNode(null);
                       cyRef.current?.elements().removeClass('dimmed highlighted');
                     }}
-                    className="p-1.5 text-slate-400 hover:text-slate-50 hover:bg-slate-900/60 rounded-lg transition-all"
+                    className="p-1.5 text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-canvas-dark)]/60 rounded-sm transition-all"
                   >
                     <X className="h-4 w-4" />
                   </button>
                 </div>
-                <h3 className="text-sm font-bold text-slate-50 leading-tight">{selectedNode.label}</h3>
+                <h3 className="text-sm font-bold text-[var(--color-on-dark)] leading-tight">{selectedNode.label}</h3>
                 {selectedNode.id && (
-                  <p className="text-[9px] text-slate-400 font-mono mt-1">{selectedNode.id}</p>
+                  <p className="text-[9px] text-[var(--color-muted)] font-mono mt-1">{selectedNode.id}</p>
                 )}
               </div>
 
               <div className="flex-1 overflow-y-auto p-5 space-y-4">
 
                 {selectedNode.type === 'offender' && selectedNode.riskScore !== undefined && (
-                  <div className={`flex items-center justify-between p-3 rounded-xl border ${getRiskBg(selectedNode.riskScore)}`}>
+                  <div className={`flex items-center justify-between p-3 rounded-sm border ${getRiskBg(selectedNode.riskScore)}`}>
                     <div className="flex items-center space-x-2">
-                      <Activity className="h-4 w-4 text-slate-400" />
-                      <span className="text-[10px] font-semibold text-slate-400">Risk Score</span>
+                      <Activity className="h-4 w-4 text-[var(--color-muted)]" />
+                      <span className="text-[10px] font-semibold text-[var(--color-muted)]">Risk Score</span>
                     </div>
                     <div className="text-right">
                       <span className={`text-2xl font-black ${getRiskColor(selectedNode.riskScore)}`}>
                         {selectedNode.riskScore}
                       </span>
-                      <span className="text-[9px] text-slate-400 ml-1">/100</span>
+                      <span className="text-[9px] text-[var(--color-muted)] ml-1">/100</span>
                     </div>
                   </div>
                 )}
@@ -776,7 +776,7 @@ export default function NetworkGraph({ activeRole }) {
                   {selectedNode.type === 'victim' && (
                     <>
                       {selectedNode.age && <DetailRow label="Age" value={`${selectedNode.age} yrs`} />}
-                      <DetailRow label="Victim Of" value={selectedNode.victimOf} accent="text-blue-400" />
+                      <DetailRow label="Victim Of" value={selectedNode.victimOf} accent="text-[var(--color-primary)]" />
                     </>
                   )}
                   {selectedNode.type === 'policeStation' && (
@@ -785,7 +785,7 @@ export default function NetworkGraph({ activeRole }) {
                       <DetailRow label="Staff Strength" value={selectedNode.staff} />
                       <DetailRow label="Alert Status" value={selectedNode.status} accent={
                         selectedNode.status === 'High Alert' ? 'text-[#cc3333]' :
-                        selectedNode.status === 'Med Alert' ? 'text-blue-400' : 'text-[#2e7d32]'
+                        selectedNode.status === 'Med Alert' ? 'text-[var(--color-primary)]' : 'text-[#2e7d32]'
                       } />
                     </>
                   )}
@@ -794,21 +794,21 @@ export default function NetworkGraph({ activeRole }) {
                       <DetailRow label="Crime Head" value={selectedNode.head} />
                       <DetailRow label="Sub-Head" value={selectedNode.sub} accent="text-[#cc3333]" />
                       <DetailRow label="Registered" value={selectedNode.date} />
-                      <DetailRow label="Gravity" value={selectedNode.gravity === '1' ? '\u25CF Heinous' : '\u25CB Non-Heinous'} accent={selectedNode.gravity === '1' ? 'text-[#cc3333]' : 'text-slate-400'} />
+                      <DetailRow label="Gravity" value={selectedNode.gravity === '1' ? '\u25CF Heinous' : '\u25CB Non-Heinous'} accent={selectedNode.gravity === '1' ? 'text-[#cc3333]' : 'text-[var(--color-muted)]'} />
                       <DetailRow label="Status" value={selectedNode.status} accent={
-                        selectedNode.status === 'Under Investigation' ? 'text-blue-400' :
-                        selectedNode.status === 'Chargesheeted' ? 'text-[#2b5f9e]' : 'text-[#2e7d32]'
+                        selectedNode.status === 'Under Investigation' ? 'text-[var(--color-primary)]' :
+                        selectedNode.status === 'Chargesheeted' ? 'text-[var(--color-primary)]' : 'text-[#2e7d32]'
                       } />
                     </>
                   )}
                 </div>
 
                 {cyRef.current && (
-                  <div className="p-3 bg-slate-900/50 border border-slate-800 rounded-xl">
-                    <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wide mb-2">Connections</p>
+                  <div className="p-3 bg-[var(--color-canvas-dark)]/50 border border-[var(--color-hairline-dark)] rounded-sm">
+                    <p className="text-[9px] font-bold text-[var(--color-muted)] uppercase tracking-wide mb-2">Connections</p>
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] text-slate-400">Direct connections</span>
-                      <span className="text-sm font-bold text-blue-400">
+                      <span className="text-[10px] text-[var(--color-muted)]">Direct connections</span>
+                      <span className="text-sm font-bold text-[var(--color-primary)]">
                         {cyRef.current.getElementById(selectedNode.id)?.neighborhood()?.length ?? 0}
                       </span>
                     </div>
@@ -816,14 +816,14 @@ export default function NetworkGraph({ activeRole }) {
                 )}
               </div>
 
-              <div className="p-4 border-t border-slate-800 space-y-2">
+              <div className="p-4 border-t border-[var(--color-hairline-dark)] space-y-2">
                 {canExpand && (
                   <button
                     onClick={() => expandNode(selectedNode.id)}
-                    className={`w-full flex items-center justify-center space-x-2 py-2.5 px-4 rounded-xl border font-semibold text-xs transition-all ${
+                    className={`w-full flex items-center justify-center space-x-2 py-2.5 px-4 rounded-sm border font-semibold text-xs transition-all ${
                       expandedNodes.has(selectedNode.id)
-                        ? 'bg-blue-900/50 border-blue-500/40 text-blue-400 hover:bg-blue-700/40'
-                        : 'bg-blue-900/50 border-slate-700 text-blue-400 hover:bg-blue-700/40'
+                        ? 'bg-[var(--color-surface-elevated-dark)] border-blue-500/40 text-[var(--color-primary)] hover:bg-blue-700/40'
+                        : 'bg-[var(--color-surface-elevated-dark)] border-[var(--color-hairline-dark)] text-[var(--color-primary)] hover:bg-blue-700/40'
                     }`}
                   >
                     {expandedNodes.has(selectedNode.id) ? (
@@ -838,7 +838,7 @@ export default function NetworkGraph({ activeRole }) {
                     setSelectedNode(null);
                     cyRef.current?.elements().removeClass('dimmed highlighted');
                   }}
-                  className="w-full flex items-center justify-center space-x-2 py-2 px-4 rounded-xl border border-slate-700 text-slate-400 hover:text-slate-50 hover:border-slate-700 font-semibold text-xs transition-all"
+                  className="w-full flex items-center justify-center space-x-2 py-2 px-4 rounded-sm border border-[var(--color-hairline-dark)] text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:border-[var(--color-hairline-dark)] font-semibold text-xs transition-all"
                 >
                   <ChevronRight className="h-3.5 w-3.5" />
                   <span>Clear Selection</span>
@@ -850,21 +850,21 @@ export default function NetworkGraph({ activeRole }) {
 
       </div>
 
-      <div className="flex items-center justify-between px-6 py-2 bg-slate-950 border-t border-slate-800 shrink-0">
+      <div className="flex items-center justify-between px-6 py-2 bg-[var(--color-surface-elevated-dark)] border-t border-[var(--color-hairline-dark)] shrink-0">
         <div className="flex items-center space-x-4">
-          <span className="text-[9px] text-slate-400 font-semibold uppercase tracking-wide">
+          <span className="text-[9px] text-[var(--color-muted)] font-semibold uppercase tracking-wide">
             SCRB Intel — Network Analysis
           </span>
-          <span className="text-[9px] text-slate-400/50">|</span>
-          <span className="text-[9px] text-slate-400">Classification: RESTRICTED</span>
+          <span className="text-[9px] text-[var(--color-muted)]/50">|</span>
+          <span className="text-[9px] text-[var(--color-muted)]">Classification: RESTRICTED</span>
         </div>
         <div className="flex items-center space-x-3">
           {expandedNodes.size > 0 && (
-            <span className="text-[9px] text-blue-400 bg-blue-900/50 border border-slate-700 px-2 py-0.5 rounded-md font-semibold">
+            <span className="text-[9px] text-[var(--color-primary)] bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)] px-2 py-0.5 rounded-md font-semibold">
               {expandedNodes.size} node{expandedNodes.size > 1 ? 's' : ''} expanded
             </span>
           )}
-          <span className="text-[9px] text-slate-400">
+          <span className="text-[9px] text-[var(--color-muted)]">
             Scroll to zoom &middot; Drag to pan &middot; Click nodes to inspect
           </span>
         </div>

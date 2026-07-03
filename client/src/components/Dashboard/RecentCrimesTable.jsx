@@ -13,85 +13,79 @@ export default function RecentCrimesTable({ crimes }) {
     switch (status.toLowerCase()) {
       case 'closed':
       case 'disposed':
-        return 'bg-[#2e7d32]/10 text-[#2e7d32] border-[#2e7d32]/20';
+        return 'text-[var(--color-trading-up)]';
       case 'under investigation':
       case 'pending':
-        return 'bg-blue-900/50 text-blue-400 border-slate-700';
+        return 'text-[var(--color-primary)]';
       case 'chargesheeted':
-        return 'bg-[#2b5f9e]/10 text-[#2b5f9e] border-[#2b5f9e]/20';
+        return 'text-[var(--color-info)]';
       default:
-        return 'bg-[#8a887e]/10 text-slate-400 border-[#8a887e]/20';
+        return 'text-[var(--color-muted)]';
     }
   };
 
   return (
-    <div className="glass-card rounded-2xl border border-slate-800 bg-slate-800/50 p-6 flex flex-col justify-between shadow-lg">
+    <div className="card-dark p-6 flex flex-col justify-between">
       <div>
-        <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-4">
+        <div className="flex items-center justify-between mb-6 pb-4">
           <div>
-            <h3 className="text-sm font-bold tracking-wide text-slate-50">Recent FIR Register</h3>
-            <p className="text-[9px] text-slate-400 font-semibold uppercase tracking-[0.12em] mt-0.5">Live case log</p>
+            <h3 className="text-[20px] font-semibold text-[var(--color-on-dark)]">Recent FIR Register</h3>
+            <p className="text-[14px] text-[var(--color-muted)] font-medium mt-0.5">Live case log</p>
           </div>
-          <span className="text-[9px] font-bold bg-slate-950 border border-slate-700 text-slate-400 px-2.5 py-1 rounded-xl">
+          <span className="text-[12px] font-medium text-[var(--color-muted)]">
             Showing {paginatedItems.length} of {crimes.length} entries
           </span>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full text-left border-collapse markets-table">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 text-[9px] font-black uppercase tracking-[0.12em]">
-                <th className="py-3 px-4">Case / FIR No</th>
-                <th className="py-3 px-4">Registration Date</th>
-                <th className="py-3 px-4">Crime Category</th>
-                <th className="py-3 px-4">Location (PS)</th>
-                <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4 text-right">Action</th>
+              <tr className="border-b border-[var(--color-hairline-dark)] text-[var(--color-muted)] text-[12px] font-medium whitespace-nowrap">
+                <th className="py-3 px-4 font-medium">Case / FIR No</th>
+                <th className="py-3 px-4 font-medium">Registration Date</th>
+                <th className="py-3 px-4 font-medium">Crime Category</th>
+                <th className="py-3 px-4 font-medium">Location (PS)</th>
+                <th className="py-3 px-4 font-medium">Status</th>
+                <th className="py-3 px-4 font-medium text-right">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#d4a853]/5 text-xs">
+            <tbody className="divide-y divide-[var(--color-hairline-dark)]">
               {paginatedItems.length === 0 ? (
                 <tr>
-                  <td colSpan="6" className="py-8 text-center text-slate-400 font-medium">
+                  <td colSpan="6" className="py-8 text-center text-[var(--color-muted)] font-medium">
                     No matching FIR records found. Adjust filters.
                   </td>
                 </tr>
               ) : (
                 paginatedItems.map((crime) => (
-                  <tr key={crime.id} className="hover:bg-slate-900/30 transition-colors group">
-                    <td className="py-3.5 px-4 font-bold text-slate-50">
+                  <tr key={crime.id} className="hover:bg-[var(--color-surface-elevated-dark)] transition-colors group markets-row">
+                    <td className="py-4 px-4 font-medium text-[var(--color-on-dark)] font-plex whitespace-nowrap">
                       {crime.crimeNo}
                       {crime.isAnomaly && (
-                        <span className="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-[8px] font-bold bg-[#8b0000]/10 text-[#cc3333] border border-[#8b0000]/20 uppercase tracking-widest animate-pulse">
+                        <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-[4px] text-[10px] font-bold bg-[var(--color-trading-down)]/10 text-[var(--color-trading-down)] uppercase">
                           Flag
                         </span>
                       )}
                     </td>
-                    <td className="py-3.5 px-4 text-slate-400 font-medium">
-                      <div className="flex items-center space-x-1.5">
-                        <Calendar className="h-3.5 w-3.5 text-slate-400 shrink-0" />
-                        <span>{crime.registrationDate}</span>
-                      </div>
+                    <td className="py-4 px-4 text-[var(--color-muted)] font-plex whitespace-nowrap text-[14px]">
+                      {crime.registrationDate}
                     </td>
-                    <td className="py-3.5 px-4 text-slate-50 font-semibold">
+                    <td className="py-4 px-4 text-[var(--color-on-dark)] font-medium text-[14px]">
                       {crime.crimeHeadName}
-                      <span className="block text-[9px] text-slate-400 font-medium mt-0.5">{crime.crimeSubHeadName}</span>
+                      <span className="block text-[12px] text-[var(--color-muted)] mt-0.5">{crime.crimeSubHeadName}</span>
                     </td>
-                    <td className="py-3.5 px-4 text-slate-400 font-medium">
-                      <div className="flex items-center space-x-1.5">
-                        <MapPin className="h-3.5 w-3.5 text-slate-400 shrink-0" />
-                        <span>{crime.unitName}</span>
-                      </div>
-                      <span className="block text-[9px] text-slate-400 font-semibold uppercase mt-0.5">{crime.districtName}</span>
+                    <td className="py-4 px-4 text-[var(--color-muted)] text-[14px]">
+                      {crime.unitName}
+                      <span className="block text-[12px] text-[var(--color-muted)] font-medium uppercase mt-0.5">{crime.districtName}</span>
                     </td>
-                    <td className="py-3.5 px-4">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-lg border text-[9px] font-bold tracking-wide ${getStatusBadge(crime.caseStatusName)}`}>
+                    <td className="py-4 px-4 text-[14px]">
+                      <span className={`inline-flex items-center font-medium ${getStatusBadge(crime.caseStatusName)}`}>
                         {crime.caseStatusName}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-right">
-                      <button className="p-1.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-400 hover:text-blue-400 hover:border-slate-700 hover:bg-blue-900/40 transition-colors">
-                        <Eye className="h-4 w-4" />
+                    <td className="py-4 px-4 text-right">
+                      <button className="text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-colors">
+                        <Eye className="h-5 w-5" />
                       </button>
                     </td>
                   </tr>
@@ -103,15 +97,15 @@ export default function RecentCrimesTable({ crimes }) {
       </div>
 
       {totalPages > 1 && (
-        <div className="flex items-center justify-between border-t border-slate-800 pt-4 mt-4">
-          <span className="text-[9px] text-slate-400 font-bold uppercase">
+        <div className="flex items-center justify-between pt-6 mt-4 border-t border-[var(--color-hairline-dark)]">
+          <span className="text-[12px] text-[var(--color-muted)] font-medium">
             Page {currentPage} of {totalPages}
           </span>
           <div className="flex space-x-2">
             <button
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className={`p-1.5 rounded-lg border border-slate-700 bg-slate-950 text-slate-400 hover:text-slate-50 transition-colors ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-900'
+              className={`p-2 rounded-sm text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] transition-colors ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
             >
               <ChevronLeft className="h-4 w-4" />
@@ -119,7 +113,7 @@ export default function RecentCrimesTable({ crimes }) {
             <button
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className={`p-1.5 rounded-lg border border-slate-700 bg-slate-950 text-slate-400 hover:text-slate-50 transition-colors ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:bg-slate-900'
+              className={`p-2 rounded-sm text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] transition-colors ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
             >
               <ChevronRight className="h-4 w-4" />

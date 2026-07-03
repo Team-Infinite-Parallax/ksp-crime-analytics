@@ -236,15 +236,15 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
   };
 
   const modalContent = (
-    <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 sm:p-6 transition-all duration-300 ease-in-out">
-      <div className="bg-slate-900/90 backdrop-blur-xl border border-slate-700 rounded-3xl w-[95vw] sm:w-full sm:max-w-md lg:max-w-lg shadow-[0_0_60px_-15px_rgba(59,130,246,0.3)] p-5 sm:p-6 relative max-h-[95vh] flex flex-col overflow-hidden transform scale-100 animate-in fade-in zoom-in-95 duration-200">
-        <div className="absolute -top-24 -left-24 w-48 h-48 bg-blue-600/20 rounded-full blur-[40px] pointer-events-none" />
+    <div className="fixed inset-0 bg-[var(--color-surface-elevated-dark)]/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 sm:p-6 transition-all duration-300 ease-in-out">
+      <div className="bg-[var(--color-canvas-dark)]/90 backdrop-blur-xl border border-[var(--color-hairline-dark)] rounded-3xl w-[95vw] sm:w-full sm:max-w-md lg:max-w-lg shadow-[0_0_60px_-15px_rgba(59,130,246,0.3)] p-5 sm:p-6 relative max-h-[95vh] flex flex-col overflow-hidden transform scale-100 animate-in fade-in zoom-in-95 duration-200">
+        <div className="absolute -top-24 -left-24 w-48 h-48 bg-[var(--color-primary)]/20 rounded-full blur-[40px] pointer-events-none" />
         <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-purple-600/20 rounded-full blur-[40px] pointer-events-none" />
 
-        <div className="relative z-10 flex-shrink-0 flex items-center justify-between pb-3 border-b border-slate-800/60 mb-4">
+        <div className="relative z-10 flex-shrink-0 flex items-center justify-between pb-3 border-b border-[var(--color-hairline-dark)]/60 mb-4">
           <div className="flex items-center space-x-2">
-            <Sparkles className="h-[20px] w-[20px] text-blue-400" />
-            <h3 className="text-base font-bold text-slate-50 tracking-wide">Voice Search AI</h3>
+            <Sparkles className="h-[20px] w-[20px] text-[var(--color-primary)]" />
+            <h3 className="text-base font-bold text-[var(--color-on-dark)] tracking-wide">Voice Search AI</h3>
           </div>
           <button
             onClick={() => {
@@ -253,7 +253,7 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
               }
               setIsOpen(false);
             }}
-            className="text-slate-400 hover:text-slate-50 hover:bg-slate-800/50 rounded-full transition-colors p-1.5"
+            className="text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-slate-800/50 rounded-full transition-colors p-1.5"
           >
             <X className="h-5 w-5" />
           </button>
@@ -262,10 +262,10 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
         <div className="relative z-10 flex-shrink-0 flex justify-center space-x-3 mb-4">
           <button
             onClick={() => setLang('en-US')}
-            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all ${
+            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-sm border text-xs font-bold transition-all ${
               lang === 'en-US'
-                ? 'bg-blue-600/20 text-blue-400 border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]'
-                : 'bg-slate-950/50 text-slate-400 border-slate-800 hover:text-slate-200 hover:bg-slate-800/50'
+                ? 'bg-[var(--color-primary)]/20 text-[var(--color-primary)] border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]'
+                : 'bg-[var(--color-surface-elevated-dark)]/50 text-[var(--color-muted)] border-[var(--color-hairline-dark)] hover:text-slate-200 hover:bg-slate-800/50'
             }`}
           >
             <Globe className="h-3.5 w-3.5" />
@@ -273,10 +273,10 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
           </button>
           <button
             onClick={() => setLang('kn-IN')}
-            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all ${
+            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-sm border text-xs font-bold transition-all ${
               lang === 'kn-IN'
-                ? 'bg-blue-600/20 text-blue-400 border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]'
-                : 'bg-slate-950/50 text-slate-400 border-slate-800 hover:text-slate-200 hover:bg-slate-800/50'
+                ? 'bg-[var(--color-primary)]/20 text-[var(--color-primary)] border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]'
+                : 'bg-[var(--color-surface-elevated-dark)]/50 text-[var(--color-muted)] border-[var(--color-hairline-dark)] hover:text-slate-200 hover:bg-slate-800/50'
             }`}
           >
             <Globe className="h-3.5 w-3.5" />
@@ -291,7 +291,7 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
               className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center border transition-all duration-300 ${
                 isListening
                   ? 'bg-red-900/20 border-red-500/50 text-red-500 scale-105 shadow-[0_0_30px_rgba(239,68,68,0.3)]'
-                  : 'bg-blue-900/30 border-blue-700/30 text-blue-400 hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] shadow-lg shadow-[#d4a853]/5'
+                  : 'bg-blue-900/30 border-blue-700/30 text-[var(--color-primary)] hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] shadow-lg shadow-[var(--color-primary)]/5'
               }`}
             >
               {isListening && (
@@ -304,7 +304,7 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
             </button>
 
             <div className="text-center w-full px-2">
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+              <p className="text-[10px] font-bold text-[var(--color-muted)] uppercase tracking-widest mb-2">
                 {isListening ? 'Listening...' : processing ? 'Analyzing...' : 'Click mic to begin dictation'}
               </p>
 
@@ -319,12 +319,12 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
               )}
 
               {processing && (
-                <div className="flex justify-center my-2 text-blue-400">
+                <div className="flex justify-center my-2 text-[var(--color-primary)]">
                   <RefreshCw className="h-5 w-5 animate-spin" />
                 </div>
               )}
 
-              <div className="relative min-h-[4rem] flex items-center justify-center rounded-2xl bg-slate-950/60 border border-slate-800/80 shadow-inner group">
+              <div className="relative min-h-[4rem] flex items-center justify-center rounded-sm bg-[var(--color-surface-elevated-dark)]/60 border border-[var(--color-hairline-dark)]/80 shadow-inner group">
                 <textarea
                   value={transcript}
                   onChange={(e) => {
@@ -339,7 +339,7 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
                     }
                   }}
                   placeholder={lang === 'kn-IN' ? 'Shivajinagar PS ನಲ್ಲಿ ಆಸ್ತಿ ಅಪರಾಧ...' : 'Show active cases in Bengaluru Urban...'}
-                  className="w-full bg-transparent text-sm italic font-medium leading-relaxed text-slate-100 placeholder-slate-500 focus:outline-none resize-none p-3 pb-8 text-center"
+                  className="w-full bg-transparent text-sm italic font-medium leading-relaxed text-[var(--color-on-dark)] placeholder-slate-500 focus:outline-none resize-none p-3 pb-8 text-center"
                   rows={2}
                 />
                 <button 
@@ -348,7 +348,7 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
                     autoSubmitRef.current = false;
                   }}
                   disabled={!transcript.trim() || processing}
-                  className="absolute bottom-2 right-2 p-1.5 bg-blue-600/20 text-blue-400 hover:bg-blue-600/40 rounded-lg transition-colors disabled:opacity-50"
+                  className="absolute bottom-2 right-2 p-1.5 bg-[var(--color-primary)]/20 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/40 rounded-sm transition-colors disabled:opacity-50"
                   title="Submit Query"
                 >
                   <Sparkles className="h-4 w-4" />
@@ -360,14 +360,14 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
 
         <div className="relative z-10 flex-shrink-0">
           {error && (
-            <div className="mt-3 bg-red-900/20 border border-red-500/30 text-red-400 p-2.5 rounded-xl flex items-start space-x-2 text-xs font-medium">
+            <div className="mt-3 bg-red-900/20 border border-red-500/30 text-red-400 p-2.5 rounded-sm flex items-start space-x-2 text-xs font-medium">
               <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
               <span>{error}</span>
             </div>
           )}
 
-          <div className="border-t border-slate-800/60 mt-4 pt-4 text-[10px] text-slate-400 font-semibold space-y-1.5 bg-slate-900/30 -mx-5 -mb-5 sm:-mx-6 sm:-mb-6 px-5 pb-5 sm:px-6 sm:pb-6 rounded-b-3xl">
-            <p className="uppercase text-slate-300 tracking-wider mb-1.5">Example commands:</p>
+          <div className="border-t border-[var(--color-hairline-dark)]/60 mt-4 pt-4 text-[10px] text-[var(--color-muted)] font-semibold space-y-1.5 bg-[var(--color-canvas-dark)]/30 -mx-5 -mb-5 sm:-mx-6 sm:-mb-6 px-5 pb-5 sm:px-6 sm:pb-6 rounded-b-3xl">
+            <p className="uppercase text-[var(--color-muted)] tracking-wider mb-1.5">Example commands:</p>
             <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-blue-500/50 mr-2"></span> "Show me cyber crimes in Mysore" / "ಮೈಸೂರಿನಲ್ಲಿ ಸೈಬರ್ ಅಪರಾಧ"</p>
             <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-blue-500/50 mr-2"></span> "Show heinous crimes in Bengaluru" / "ಬೆಂಗಳೂರಿನಲ್ಲಿ ಘೋರ ಅಪರಾಧಗಳು"</p>
             <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-blue-500/50 mr-2"></span> "Find cases about Rajesh Choudhary" / "ರಾಜೇಶ್ ಚೌಧರಿ ಪ್ರಕರಣಗಳು"</p>
@@ -381,7 +381,7 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="p-2 bg-slate-950 border border-slate-700 rounded-xl text-slate-400 hover:text-blue-400 hover:bg-slate-900 transition-all hover:scale-105 duration-150 flex items-center justify-center cursor-pointer shadow-md shrink-0"
+        className="p-2 bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)] rounded-sm text-[var(--color-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-canvas-dark)] transition-all hover:scale-105 duration-150 flex items-center justify-center cursor-pointer shadow-md shrink-0"
         title="Voice Search AI"
       >
         <Mic className="h-[18px] w-[18px] shrink-0" />

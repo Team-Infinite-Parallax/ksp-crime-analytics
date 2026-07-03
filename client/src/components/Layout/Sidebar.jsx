@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 const emblemSvg = (
-  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-blue-400">
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--color-primary)]">
     <circle cx="12" cy="12" r="10" />
     <circle cx="12" cy="12" r="6" />
     <path d="M12 2v20M2 12h20" strokeWidth="1" opacity="0.3" />
@@ -37,31 +37,31 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout }) {
 
   return (
     <div
-      className={`h-screen bg-slate-900 border-r border-slate-800 transition-all duration-300 ease-in-out flex flex-col justify-between ${isCollapsed ? 'w-20' : 'w-64'
+      className={`h-screen bg-[#0a192f] border-r border-blue-900/30 shadow-2xl relative z-50 transition-all duration-300 ease-in-out flex flex-col justify-between ${isCollapsed ? 'w-20' : 'w-64'
         }`}
     >
       <div>
-        <div className="p-4 flex items-center justify-between border-b border-slate-800 bg-slate-950">
+        <div className="p-4 flex items-center justify-between border-b border-[var(--color-hairline-dark)]">
           {!isCollapsed && (
             <div className="flex items-center space-x-3">
-              <div className="bg-blue-900/50 p-2 rounded-lg border border-slate-700">
+              <div className="bg-[var(--color-surface-elevated-dark)] p-2 rounded-lg">
                 {emblemSvg}
               </div>
               <div>
-                <p className="text-[9px] text-blue-400/60 font-semibold uppercase tracking-[0.15em]">Government of Karnataka</p>
-                <h1 className="text-sm font-bold tracking-wider text-slate-50 uppercase">KSP — CIP</h1>
-                <p className="text-[9px] text-slate-400 font-medium">Intelligence Portal</p>
+                <p className="text-[10px] text-[var(--color-primary)] font-semibold uppercase tracking-[0.15em]">Government of Karnataka</p>
+                <h1 className="text-[14px] font-bold tracking-wider text-[var(--color-on-dark)] uppercase">KSP — CIP</h1>
+                <p className="text-[11px] text-[var(--color-muted)] font-medium">Intelligence Portal</p>
               </div>
             </div>
           )}
           {isCollapsed && (
-            <div className="mx-auto bg-blue-900/50 p-2 rounded-lg border border-slate-700">
+            <div className="mx-auto bg-[var(--color-surface-elevated-dark)] p-2 rounded-lg">
               {emblemSvg}
             </div>
           )}
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="text-slate-400 hover:text-slate-50 p-1.5 rounded-lg hover:bg-slate-900 transition-colors"
+            className="text-[var(--color-muted)] hover:text-[var(--color-on-dark)] p-1.5 rounded-lg hover:bg-[var(--color-surface-elevated-dark)] transition-colors"
           >
             {isCollapsed ? <Menu className="h-5 w-5" /> : <ChevronLeft className="h-5 w-5" />}
           </button>
@@ -76,14 +76,14 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout }) {
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
                 className={`w-full flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 group relative ${isActive
-                    ? 'bg-blue-900/50 text-blue-400 border-l-2 border-blue-500'
-                    : 'text-slate-400 hover:text-slate-50 hover:bg-slate-900 border-l-2 border-transparent'
+                    ? 'bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)] border-l-2 border-[var(--color-primary)]'
+                    : 'text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] border-l-2 border-transparent'
                   }`}
               >
-                <Icon className={`h-5 w-5 transition-transform duration-200 group-hover:scale-110 ${isActive ? 'text-blue-400' : 'text-slate-400 group-hover:text-slate-50'}`} />
-                {!isCollapsed && <span className="text-sm tracking-wide font-medium">{item.label}</span>}
+                <Icon className={`h-5 w-5 transition-transform duration-200 group-hover:scale-110 ${isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-muted)] group-hover:text-[var(--color-on-dark)]'}`} />
+                {!isCollapsed && <span className="text-[14px] tracking-wide font-medium">{item.label}</span>}
                 {isCollapsed && (
-                  <div className="absolute left-16 bg-slate-950 text-slate-50 text-xs px-2.5 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 border border-slate-700 shadow-xl">
+                  <div className="absolute left-16 bg-[var(--color-surface-elevated-dark)] text-[var(--color-on-dark)] text-[12px] px-2.5 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 border border-[var(--color-hairline-dark)] shadow-xl">
                     {item.label}
                   </div>
                 )}
@@ -93,23 +93,23 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout }) {
         </nav>
       </div>
 
-      <div className="p-4 border-t border-slate-800 bg-slate-950/30 space-y-3">
+      <div className="p-4 border-t border-[var(--color-hairline-dark)] bg-transparent space-y-3">
         {!isCollapsed && (
-          <div className="bg-[#8b0000]/10 border border-[#8b0000]/30 rounded-xl p-3 flex items-start space-x-2">
-            <Shield className="h-4 w-4 text-[#8b0000] shrink-0 mt-0.5" />
+          <div className="bg-[var(--color-surface-elevated-dark)] rounded-xl p-3 flex items-start space-x-2">
+            <Shield className="h-4 w-4 text-[var(--color-trading-down)] shrink-0 mt-0.5" />
             <div className="text-[10px]">
-              <p className="font-bold text-[#cc3333] uppercase tracking-wider">Classified</p>
-              <p className="text-slate-400 mt-0.5">Unauthorised access is punishable under law.</p>
+              <p className="font-bold text-[var(--color-trading-down)] uppercase tracking-wider">Classified</p>
+              <p className="text-[var(--color-muted)] mt-0.5">Unauthorised access is punishable under law.</p>
             </div>
           </div>
         )}
 
         <button 
           onClick={onLogout}
-          className="w-full flex items-center space-x-3 p-2.5 text-slate-400 hover:text-[#cc3333] rounded-lg hover:bg-[#8b0000]/5 transition-colors group"
+          className="w-full flex items-center space-x-3 p-2.5 text-[var(--color-muted)] hover:text-[var(--color-trading-down)] rounded-lg hover:bg-[var(--color-surface-elevated-dark)] transition-colors group"
         >
           <LogOut className="h-5 w-5 shrink-0" />
-          {!isCollapsed && <span className="text-sm font-medium">Logout</span>}
+          {!isCollapsed && <span className="text-[14px] font-medium">Logout</span>}
         </button>
       </div>
     </div>

@@ -27,20 +27,20 @@ import {
 } from 'lucide-react';
 
 const emblemSvg = (
-  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#d4a853]">
-    <circle cx="12" cy="12" r="10" stroke="#d4a853" strokeWidth="1.2" />
-    <circle cx="12" cy="12" r="7" stroke="#d4a853" strokeWidth="0.8" />
-    <circle cx="12" cy="12" r="4" stroke="#d4a853" strokeWidth="1" />
-    <path d="M12 2v20M2 12h20" stroke="#d4a853" strokeWidth="0.6" opacity="0.3" />
-    <path d="M12 5a7 7 0 0 0-7 7" fill="none" stroke="#d4a853" strokeWidth="1.2" />
-    <path d="M12 19a7 7 0 0 0 7-7" fill="none" stroke="#d4a853" strokeWidth="1.2" />
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--color-primary)]">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.2" />
+    <circle cx="12" cy="12" r="7" stroke="currentColor" strokeWidth="0.8" />
+    <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1" />
+    <path d="M12 2v20M2 12h20" stroke="currentColor" strokeWidth="0.6" opacity="0.3" />
+    <path d="M12 5a7 7 0 0 0-7 7" fill="none" stroke="currentColor" strokeWidth="1.2" />
+    <path d="M12 19a7 7 0 0 0 7-7" fill="none" stroke="currentColor" strokeWidth="1.2" />
     {[0,1,2,3].map(i => {
       const angle = i * 22.5 * Math.PI / 180;
       const x1 = 12 + 3 * Math.sin(angle);
       const y1 = 12 - 3 * Math.cos(angle);
       const x2 = 12 + 6 * Math.sin(angle);
       const y2 = 12 - 6 * Math.cos(angle);
-      return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#d4a853" strokeWidth="0.5" opacity="0.4" />;
+      return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" strokeWidth="0.5" opacity="0.4" />;
     })}
   </svg>
 );
@@ -258,10 +258,10 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-slate-950 text-slate-50">
+    <div className="flex h-screen w-screen overflow-hidden bg-[var(--color-canvas-dark)] text-[var(--color-body)] font-nova">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} onLogout={handleLogout} />
 
-      <main className="flex-1 flex flex-col overflow-y-auto relative">
+      <main className="flex-1 flex flex-col overflow-hidden relative">
         <Navbar
           activeRole={activeRole}
           setActiveRole={setActiveRole}
@@ -274,23 +274,23 @@ export default function App() {
         />
 
         {activeTab === 'dashboard' && (
-          <div className="p-8 space-y-6">
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center justify-between shadow-md">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-6">
+            <div className="card-dark p-6 flex items-center justify-between shadow-md">
               <div className="flex items-center space-x-3">
-                <div className="p-2.5 rounded-xl bg-blue-900/50 text-blue-400 border border-slate-700">
+                <div className="p-2.5 rounded-xl bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)]">
                   <Shield className="h-5 w-5" />
                 </div>
                 <div>
                   <div className="flex items-center space-x-2">
                     {emblemSvg}
-                    <h3 className="text-xs font-bold tracking-wide text-slate-50">Karnataka State Police — Intelligence Feed</h3>
+                    <h3 className="text-[20px] font-bold tracking-wide text-[var(--color-on-dark)]">Karnataka State Police — Intelligence Feed</h3>
                   </div>
-                  <p className="text-[9px] text-slate-400 font-semibold uppercase tracking-[0.12em] mt-0.5">
+                  <p className="text-[14px] text-[var(--color-muted)] font-medium mt-0.5">
                     Authorised Personnel Only &bull; {userDetails.designation} &bull; {userDetails.districtName}
                   </p>
                 </div>
               </div>
-              <span className="text-[8px] bg-blue-900/50 text-blue-400 border border-slate-700 px-2 py-0.5 rounded-md font-bold uppercase tracking-wider">
+              <span className="text-[12px] bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)] px-3 py-1 rounded-[4px] font-bold uppercase tracking-wider">
                 Classified
               </span>
             </div>
@@ -347,28 +347,28 @@ export default function App() {
               <div className="lg:col-span-2">
                 <CrimeTrendsChart title="Crime Volume Registrations (Year-on-Year)" data={trendData} />
               </div>
-              <div className="glass-panel p-6 rounded-2xl border border-slate-800 bg-slate-800/50 h-[340px] flex flex-col justify-between">
+              <div className="card-dark p-6 h-[340px] flex flex-col justify-between">
                 <div>
-                  <h3 className="text-sm font-bold tracking-wide text-slate-50">Jurisdictional Status</h3>
-                  <p className="text-[9px] text-slate-400 font-semibold uppercase tracking-[0.12em] mt-0.5">Active Station Performance</p>
+                  <h3 className="text-[20px] font-semibold text-[var(--color-on-dark)]">Jurisdictional Status</h3>
+                  <p className="text-[14px] text-[var(--color-muted)] font-medium mt-0.5">Active Station Performance</p>
                 </div>
                 <div className="space-y-4 my-auto">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-slate-400">Patrol Vehicles Active</span>
-                    <span className="text-xs font-bold text-slate-50">14 / 16 (87.5%)</span>
+                    <span className="text-[14px] text-[var(--color-muted)]">Patrol Vehicles Active</span>
+                    <span className="text-[16px] font-plex text-[var(--color-on-dark)]">14 / 16 (87.5%)</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-slate-400">Response Efficiency</span>
-                    <span className="text-xs font-bold text-[#2b5f9e]">11.4 mins average</span>
+                    <span className="text-[14px] text-[var(--color-muted)]">Response Efficiency</span>
+                    <span className="text-[16px] font-plex text-[var(--color-info)]">11.4 mins average</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-slate-400">Chargesheet Disposal Rate</span>
-                    <span className="text-xs font-bold text-[#2e7d32]">76.3% Efficiency</span>
+                    <span className="text-[14px] text-[var(--color-muted)]">Chargesheet Disposal Rate</span>
+                    <span className="text-[16px] font-plex text-[var(--color-trading-up)]">76.3% Efficiency</span>
                   </div>
                 </div>
-                <div className="p-3 bg-[#2b5f9e]/10 border border-[#2b5f9e]/15 rounded-xl flex items-center space-x-2.5">
-                  <TrendingUp className="h-[18px] w-[18px] text-[#2b5f9e]" />
-                  <span className="text-[9px] text-slate-400 leading-normal">
+                <div className="p-3 bg-[var(--color-surface-elevated-dark)] rounded-xl flex items-center space-x-2.5">
+                  <TrendingUp className="h-[18px] w-[18px] text-[var(--color-primary)]" />
+                  <span className="text-[13px] text-[var(--color-muted)] leading-normal">
                     Operational stats correspond dynamically to your role's administrative level.
                   </span>
                 </div>
@@ -378,17 +378,17 @@ export default function App() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-md font-bold tracking-wide text-slate-50">Repeat Offender Profiles</h3>
-                  <p className="text-[9px] text-slate-400 font-semibold uppercase tracking-[0.12em] mt-0.5">High-Risk Crime Syndicate Suspects</p>
+                  <h3 className="text-[24px] font-semibold text-[var(--color-on-dark)]">Repeat Offender Profiles</h3>
+                  <p className="text-[14px] text-[var(--color-muted)] font-medium mt-0.5">High-Risk Crime Syndicate Suspects</p>
                 </div>
-                <span className="flex items-center text-xs font-bold text-blue-400 bg-blue-900/30 px-2.5 py-1.5 border border-slate-800 rounded-xl">
-                  <Fingerprint className="h-[18px] w-[18px] mr-1" />
+                <span className="flex items-center text-[14px] font-bold text-[var(--color-info)] bg-[var(--color-surface-card-dark)] px-4 py-2 rounded-lg">
+                  <Fingerprint className="h-[18px] w-[18px] mr-2" />
                   Pattern Matching Active
                 </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredOffenders.length === 0 ? (
-                  <div className="col-span-full bg-slate-900/50 border border-slate-800 p-8 rounded-2xl text-center text-slate-400 font-medium">
+                  <div className="col-span-full card-dark p-8 text-center text-[var(--color-muted)] font-medium">
                     No high-risk profiles found within this administrative jurisdiction.
                   </div>
                 ) : (
@@ -410,43 +410,49 @@ export default function App() {
         )}
 
         {activeTab === 'network' && (
-          <div className="grow flex flex-col overflow-hidden" style={{ minHeight: 0 }}>
+          <div className="flex-1 flex flex-col overflow-hidden min-h-0 relative">
             <NetworkGraph activeRole={activeRole} />
           </div>
         )}
 
         {activeTab === 'risk' && (
-          <RiskProfiling
-            offenders={filteredOffenders}
-            crimes={filteredCrimes}
-            activeRole={activeRole}
-          />
+          <div className="flex-1 overflow-y-auto relative">
+            <RiskProfiling
+              offenders={filteredOffenders}
+              crimes={filteredCrimes}
+              activeRole={activeRole}
+            />
+          </div>
         )}
 
         {activeTab === 'wanted' && (
-          <WantedMissing activeRole={activeRole} />
+          <div className="flex-1 overflow-y-auto relative">
+            <WantedMissing activeRole={activeRole} />
+          </div>
         )}
 
         {activeTab === 'reports' && (
-          <ReportsAnalytics
-            crimes={filteredCrimes}
-            offenders={filteredOffenders}
-            activeRole={activeRole}
-          />
+          <div className="flex-1 overflow-y-auto relative">
+            <ReportsAnalytics
+              crimes={filteredCrimes}
+              offenders={filteredOffenders}
+              activeRole={activeRole}
+            />
+          </div>
         )}
 
         {activeTab !== 'dashboard' && activeTab !== 'hotspots' && activeTab !== 'network' && activeTab !== 'risk' && activeTab !== 'wanted' && activeTab !== 'reports' && (
-          <div className="p-8 grow flex flex-col items-center justify-center text-center">
-            <div className="p-4 bg-[#0a1628] border border-[#d4a853]/15 rounded-3xl text-slate-400 mb-4">
-              <Users className="h-10 w-10 text-[#d4a853]" />
+          <div className="flex-1 overflow-y-auto p-8 flex flex-col items-center justify-center text-center">
+            <div className="p-4 bg-[var(--color-surface-card-dark)] rounded-full text-[var(--color-primary)] mb-4">
+              <Users className="h-10 w-10" />
             </div>
-            <h2 className="text-lg font-bold text-slate-50 capitalize">{activeTab} Analytics Module</h2>
-            <p className="text-xs text-slate-400 max-w-sm mt-1">
+            <h2 className="text-[24px] font-bold text-[var(--color-on-dark)] capitalize">{activeTab} Analytics Module</h2>
+            <p className="text-[14px] text-[var(--color-muted)] max-w-sm mt-1">
               This module is secure and active. Backend systems are protected under role-based policies requiring {activeRole}.
             </p>
             <button
               onClick={() => setActiveTab('dashboard')}
-              className="mt-6 px-4 py-2 bg-[#d4a853]/20 hover:bg-[#d4a853]/30 text-[#d4a853] font-bold rounded-xl text-xs transition-colors border border-[#d4a853]/30"
+              className="btn-primary mt-6"
             >
               Return to Dashboard
             </button>
@@ -454,8 +460,8 @@ export default function App() {
         )}
 
         {activeTab === 'hotspots' && (
-          <div className="p-8 grow flex flex-col">
-            <HotspotMap activeRole={activeRole} />
+          <div className="flex-1 flex flex-col overflow-hidden min-h-0 relative p-4 sm:p-6 lg:p-8">
+            <HotspotMap activeRole={activeRole} isDarkMode={isDarkMode} />
           </div>
         )}
       </main>

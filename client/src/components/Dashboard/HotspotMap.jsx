@@ -30,7 +30,7 @@ import {
 const stationIcon = L.divIcon({
   className: 'custom-station-marker',
   html: `
-    <div class="flex items-center justify-center w-7 h-7 rounded-full bg-slate-900/90 border border-blue-500/60 shadow-lg shadow-[#d4a853]/20 text-blue-400 hover:scale-110 hover:border-blue-500 transition-all duration-200">
+    <div class="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-canvas-dark)]/90 border border-blue-500/60 shadow-lg shadow-[var(--color-primary)]/20 text-[var(--color-primary)] hover:scale-110 hover:border-blue-500 transition-all duration-200">
       <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2A1 1 0 0 1 20 6z"/></svg>
     </div>
   `,
@@ -101,7 +101,7 @@ const TIMELINE_STEPS = [
   { label: 'Jul 2026', datePrefix: '2026-07' }
 ];
 
-export default function HotspotMap({ activeRole }) {
+export default function HotspotMap({ activeRole, isDarkMode }) {
   const [activeLayers, setActiveLayers] = useState({
     heatmap: true,
     stations: true,
@@ -219,7 +219,7 @@ export default function HotspotMap({ activeRole }) {
   };
 
   return (
-    <div className="flex flex-col grow rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 relative h-[calc(100vh-10rem)] min-h-[500px]">
+    <div className="flex flex-col grow rounded-sm overflow-hidden border border-[var(--color-hairline-dark)] bg-[var(--color-canvas-dark)] relative h-[calc(100vh-10rem)] min-h-[500px]">
 
       <div className="flex-1 relative">
         <MapContainer
@@ -230,14 +230,14 @@ export default function HotspotMap({ activeRole }) {
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            url={`https://{s}.basemaps.cartocdn.com/${isDarkMode === false ? 'light_all' : 'dark_all'}/{z}/{x}/{y}{r}.png`}
           />
 
           <MapController flyTo={flyToTarget} activeRole={activeRole} />
 
           {activeLayers.heatmap && filteredCrimes.map((crime) => {
             const isHeinous = crime.gravity === '1';
-            const color = isHeinous ? '#cc3333' : '#d4a853';
+            const color = isHeinous ? '#cc3333' : 'var(--color-primary)';
             const radius = isHeinous ? 180 : 120;
             return (
               <Circle
@@ -265,7 +265,7 @@ export default function HotspotMap({ activeRole }) {
               >
                 <Popup className="tactical-popup">
                   <div className="p-1 space-y-2">
-                    <div className="flex items-center justify-between border-b border-slate-800 pb-1.5">
+                    <div className="flex items-center justify-between border-b border-[var(--color-hairline-dark)] pb-1.5">
                       <span className="text-[10px] font-bold text-[#cc3333] uppercase tracking-wider flex items-center space-x-1">
                         <ShieldAlert className="h-3 w-3 mr-1" />
                         Hotspot Alert
@@ -276,23 +276,23 @@ export default function HotspotMap({ activeRole }) {
                     </div>
 
                     <div className="space-y-1">
-                      <p className="text-xs font-bold text-slate-50">{crime.crimeSubHeadName}</p>
-                      <p className="text-[10px] text-slate-400 font-semibold">{crime.unitName} &bull; {crime.districtName}</p>
+                      <p className="text-xs font-bold text-[var(--color-on-dark)]">{crime.crimeSubHeadName}</p>
+                      <p className="text-[10px] text-[var(--color-muted)] font-semibold">{crime.unitName} &bull; {crime.districtName}</p>
                     </div>
 
-                    <div className="bg-slate-950 p-1.5 rounded-lg border border-slate-800 space-y-1 text-[9px] text-slate-50">
+                    <div className="bg-[var(--color-surface-elevated-dark)] p-1.5 rounded-sm border border-[var(--color-hairline-dark)] space-y-1 text-[9px] text-[var(--color-on-dark)]">
                       <div className="flex justify-between">
-                        <span className="text-slate-400 font-medium">FIR No:</span>
+                        <span className="text-[var(--color-muted)] font-medium">FIR No:</span>
                         <span className="font-bold">{crime.crimeNo}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-slate-400 font-medium">Occurred:</span>
+                        <span className="text-[var(--color-muted)] font-medium">Occurred:</span>
                         <span className="font-semibold">{crime.registrationDate} @ {crime.time}</span>
                       </div>
                       {crime.moPhrase && (
-                        <div className="border-t border-slate-800 pt-1 mt-1">
-                          <span className="text-blue-400 font-semibold block uppercase text-[8px] tracking-wide">MO Pattern:</span>
-                          <span className="italic text-slate-400 leading-normal block">{crime.moPhrase}</span>
+                        <div className="border-t border-[var(--color-hairline-dark)] pt-1 mt-1">
+                          <span className="text-[var(--color-primary)] font-semibold block uppercase text-[8px] tracking-wide">MO Pattern:</span>
+                          <span className="italic text-[var(--color-muted)] leading-normal block">{crime.moPhrase}</span>
                         </div>
                       )}
                     </div>
@@ -313,14 +313,14 @@ export default function HotspotMap({ activeRole }) {
               >
                 <Popup className="station-popup">
                   <div className="w-56 space-y-2.5 p-0.5">
-                    <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <div className="flex items-center justify-between border-b border-[var(--color-hairline-dark)] pb-2">
                       <div>
-                        <h4 className="text-xs font-bold text-slate-50">{station.name}</h4>
-                        <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">{station.alertLevel}</span>
+                        <h4 className="text-xs font-bold text-[var(--color-on-dark)]">{station.name}</h4>
+                        <span className="text-[9px] text-[var(--color-muted)] font-bold uppercase tracking-wider">{station.alertLevel}</span>
                       </div>
                       <span className={`text-[8px] px-1.5 py-0.5 rounded font-bold uppercase ${
                         station.alertLevel === 'High Alert' ? 'bg-[#8b0000]/10 text-[#cc3333] border border-[#8b0000]/20' :
-                        station.alertLevel === 'Medium Alert' ? 'bg-blue-900/50 text-blue-400 border border-slate-700' :
+                        station.alertLevel === 'Medium Alert' ? 'bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)] border border-[var(--color-hairline-dark)]' :
                         'bg-[#2e7d32]/10 text-[#2e7d32] border border-[#2e7d32]/20'
                       }`}>
                         Unit {station.id}
@@ -328,28 +328,28 @@ export default function HotspotMap({ activeRole }) {
                     </div>
 
                     <div className="grid grid-cols-2 gap-1.5 text-center">
-                      <div className="bg-slate-950 p-1.5 rounded-lg border border-slate-800">
-                        <span className="text-[16px] font-extrabold text-[#2b5f9e] block leading-tight">{station.totalCrimes}</span>
-                        <span className="text-[8px] text-slate-400 font-semibold uppercase tracking-wider block">Crimes Logged</span>
+                      <div className="bg-[var(--color-surface-elevated-dark)] p-1.5 rounded-sm border border-[var(--color-hairline-dark)]">
+                        <span className="text-[16px] font-extrabold text-[var(--color-primary)] block leading-tight">{station.totalCrimes}</span>
+                        <span className="text-[8px] text-[var(--color-muted)] font-semibold uppercase tracking-wider block">Crimes Logged</span>
                       </div>
-                      <div className="bg-slate-950 p-1.5 rounded-lg border border-slate-800">
+                      <div className="bg-[var(--color-surface-elevated-dark)] p-1.5 rounded-sm border border-[var(--color-hairline-dark)]">
                         <span className="text-[16px] font-extrabold text-[#2e7d32] block leading-tight">{station.clearanceRate}%</span>
-                        <span className="text-[8px] text-slate-400 font-semibold uppercase tracking-wider block">Clearance Rate</span>
+                        <span className="text-[8px] text-[var(--color-muted)] font-semibold uppercase tracking-wider block">Clearance Rate</span>
                       </div>
                     </div>
 
-                    <div className="space-y-1 bg-slate-900/50 p-2 rounded-lg border border-blue-500/5 text-[9px] text-slate-400 leading-normal">
+                    <div className="space-y-1 bg-[var(--color-canvas-dark)]/50 p-2 rounded-sm border border-blue-500/5 text-[9px] text-[var(--color-muted)] leading-normal">
                       <div className="flex justify-between">
                         <span>Jurisdiction Personnel:</span>
-                        <span className="font-bold text-slate-50">{station.staff} Officers</span>
+                        <span className="font-bold text-[var(--color-on-dark)]">{station.staff} Officers</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Active Patrol Interceptors:</span>
-                        <span className="font-bold text-slate-50">{station.vehicles} Vehicles</span>
+                        <span className="font-bold text-[var(--color-on-dark)]">{station.vehicles} Vehicles</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Heinous Offences:</span>
-                        <span className={`font-bold ${station.heinousCrimes > 0 ? 'text-[#cc3333]' : 'text-slate-400'}`}>{station.heinousCrimes} cases</span>
+                        <span className={`font-bold ${station.heinousCrimes > 0 ? 'text-[#cc3333]' : 'text-[var(--color-muted)]'}`}>{station.heinousCrimes} cases</span>
                       </div>
                     </div>
                   </div>
@@ -370,22 +370,22 @@ export default function HotspotMap({ activeRole }) {
           activeRole={activeRole}
         />
 
-        <div className="absolute top-4 right-4 z-[1000] bg-slate-900/90 backdrop-blur border border-slate-800 rounded-2xl shadow-2xl p-4 w-60 text-slate-50 pointer-events-auto flex flex-col space-y-3">
+        <div className="absolute top-4 right-4 z-[1000] bg-[var(--color-canvas-dark)]/90 backdrop-blur border border-[var(--color-hairline-dark)] rounded-sm shadow-2xl p-4 w-60 text-[var(--color-on-dark)] pointer-events-auto flex flex-col space-y-3">
           <div>
-            <span className="text-[8px] text-slate-400 font-bold uppercase tracking-wider block">Intelligence Summary</span>
-            <h4 className="text-xs font-bold text-slate-50">Filtered Incident Registry</h4>
+            <span className="text-[8px] text-[var(--color-muted)] font-bold uppercase tracking-wider block">Intelligence Summary</span>
+            <h4 className="text-xs font-bold text-[var(--color-on-dark)]">Filtered Incident Registry</h4>
           </div>
 
           <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs border-b border-slate-800 pb-1.5">
-              <span className="flex items-center text-slate-400">
-                <Activity className="h-3.5 w-3.5 mr-1.5 text-[#2b5f9e]" />
+            <div className="flex items-center justify-between text-xs border-b border-[var(--color-hairline-dark)] pb-1.5">
+              <span className="flex items-center text-[var(--color-muted)]">
+                <Activity className="h-3.5 w-3.5 mr-1.5 text-[var(--color-primary)]" />
                 Active Crimes Count
               </span>
-              <span className="font-extrabold text-[#2b5f9e]">{filteredCrimes.length}</span>
+              <span className="font-extrabold text-[var(--color-primary)]">{filteredCrimes.length}</span>
             </div>
-            <div className="flex items-center justify-between text-xs border-b border-slate-800 pb-1.5">
-              <span className="flex items-center text-slate-400">
+            <div className="flex items-center justify-between text-xs border-b border-[var(--color-hairline-dark)] pb-1.5">
+              <span className="flex items-center text-[var(--color-muted)]">
                 <ShieldAlert className="h-3.5 w-3.5 mr-1.5 text-[#cc3333]" />
                 Heinous Offences
               </span>
@@ -394,11 +394,11 @@ export default function HotspotMap({ activeRole }) {
               </span>
             </div>
             <div className="flex items-center justify-between text-xs">
-              <span className="flex items-center text-slate-400">
-                <Clock className="h-3.5 w-3.5 mr-1.5 text-blue-400" />
+              <span className="flex items-center text-[var(--color-muted)]">
+                <Clock className="h-3.5 w-3.5 mr-1.5 text-[var(--color-primary)]" />
                 Planted Anomalies
               </span>
-              <span className="font-extrabold text-blue-400">
+              <span className="font-extrabold text-[var(--color-primary)]">
                 {filteredCrimes.filter(c => c.isAnomaly).length}
               </span>
             </div>
@@ -406,23 +406,23 @@ export default function HotspotMap({ activeRole }) {
         </div>
       </div>
 
-      <div className="bg-slate-950 border-t border-slate-800 p-4 px-6 flex flex-col md:flex-row items-center gap-4 select-none">
+      <div className="bg-[var(--color-surface-elevated-dark)] border-t border-[var(--color-hairline-dark)] p-4 px-6 flex flex-col md:flex-row items-center gap-4 select-none">
         <div className="flex items-center space-x-3 shrink-0">
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className={`p-2.5 rounded-xl transition-all border ${
+            className={`p-2.5 rounded-sm transition-all border ${
               isPlaying
-                ? 'bg-blue-900/50 text-blue-400 border-slate-700 hover:bg-blue-700/40'
-                : 'bg-[#2b5f9e]/20 hover:bg-[#2b5f9e]/30 text-[#2b5f9e] border-[#2b5f9e]/30'
+                ? 'bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)] border-[var(--color-hairline-dark)] hover:bg-blue-700/40'
+                : 'bg-[var(--color-primary)]/20 hover:bg-[var(--color-primary)]/30 text-[var(--color-primary)] border-[var(--color-primary)]/30'
             }`}
           >
             {isPlaying ? <Pause className="h-[18px] w-[18px]" fill="currentColor" /> : <Play className="h-[18px] w-[18px]" fill="currentColor" />}
           </button>
 
           <div className="text-xs">
-            <span className="text-[8px] text-slate-400 font-bold uppercase tracking-wider block">TIMELINE</span>
-            <span className="font-bold text-slate-50 flex items-center">
-              <Calendar className="h-3.5 w-3.5 mr-1.5 text-blue-400" />
+            <span className="text-[8px] text-[var(--color-muted)] font-bold uppercase tracking-wider block">TIMELINE</span>
+            <span className="font-bold text-[var(--color-on-dark)] flex items-center">
+              <Calendar className="h-3.5 w-3.5 mr-1.5 text-[var(--color-primary)]" />
               {TIMELINE_STEPS[timelineIndex].label}
             </span>
           </div>
@@ -438,10 +438,10 @@ export default function HotspotMap({ activeRole }) {
               setTimelineIndex(Number(e.target.value));
               setIsPlaying(false);
             }}
-            className="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer focus:outline-none accent-[#d4a853]"
+            className="w-full h-1.5 bg-[var(--color-surface-elevated-dark)] rounded-sm appearance-none cursor-pointer focus:outline-none accent-[var(--color-primary)]"
           />
 
-          <div className="flex justify-between text-[7px] font-bold text-slate-400 mt-2 px-1 uppercase tracking-wide">
+          <div className="flex justify-between text-[7px] font-bold text-[var(--color-muted)] mt-2 px-1 uppercase tracking-wide">
             {TIMELINE_STEPS.map((step, idx) => (
               <span
                 key={step.label}
@@ -449,7 +449,7 @@ export default function HotspotMap({ activeRole }) {
                   setTimelineIndex(idx);
                   setIsPlaying(false);
                 }}
-                className={`cursor-pointer transition-colors ${idx === timelineIndex ? 'text-blue-400 scale-105' : 'hover:text-slate-50'}`}
+                className={`cursor-pointer transition-colors ${idx === timelineIndex ? 'text-[var(--color-primary)] scale-105' : 'hover:text-[var(--color-on-dark)]'}`}
               >
                 {step.label}
               </span>
@@ -457,23 +457,23 @@ export default function HotspotMap({ activeRole }) {
           </div>
         </div>
 
-        <div className="flex items-center bg-slate-950 p-0.5 rounded-xl border border-slate-800 text-[10px] shrink-0 font-bold">
+        <div className="flex items-center bg-[var(--color-surface-elevated-dark)] p-0.5 rounded-sm border border-[var(--color-hairline-dark)] text-[10px] shrink-0 font-bold">
           <button
             onClick={() => setIsCumulative(true)}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
+            className={`px-3 py-1.5 rounded-sm transition-all ${
               isCumulative
-                ? 'bg-blue-600 text-[#0a0f1a] shadow-sm'
-                : 'text-slate-400 hover:text-slate-50'
+                ? 'bg-[var(--color-primary)] text-[#0a0f1a] shadow-sm'
+                : 'text-[var(--color-muted)] hover:text-[var(--color-on-dark)]'
             }`}
           >
             Cumulative
           </button>
           <button
             onClick={() => setIsCumulative(false)}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
+            className={`px-3 py-1.5 rounded-sm transition-all ${
               !isCumulative
-                ? 'bg-blue-600 text-[#0a0f1a] shadow-sm'
-                : 'text-slate-400 hover:text-slate-50'
+                ? 'bg-[var(--color-primary)] text-[#0a0f1a] shadow-sm'
+                : 'text-[var(--color-muted)] hover:text-[var(--color-on-dark)]'
             }`}
           >
             Monthly

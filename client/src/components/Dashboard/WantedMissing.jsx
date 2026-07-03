@@ -14,7 +14,7 @@ const wantedData = [
 
 const statusColors = {
   wanted: { text: 'text-[#cc3333]', bg: 'bg-[#8b0000]/10', border: 'border-[#8b0000]/30', label: 'Wanted' },
-  missing: { text: 'text-[#d4a853]', bg: 'bg-[#d4a853]/10', border: 'border-[#d4a853]/20', label: 'Missing' },
+  missing: { text: 'text-[var(--color-primary)]', bg: 'bg-[var(--color-primary)]/10', border: 'border-[var(--color-primary)]/20', label: 'Missing' },
 };
 
 export default function WantedMissing({ activeRole }) {
@@ -30,69 +30,69 @@ export default function WantedMissing({ activeRole }) {
 
   return (
     <div className="p-8 space-y-6">
-      <div className="bg-[#0a1628] border border-[#d4a853]/15 rounded-2xl p-5">
+      <div className="bg-[var(--color-surface-card-dark)] border border-[var(--color-primary)]/15 rounded-sm p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="p-2.5 rounded-xl bg-[#d4a853]/10 border border-[#d4a853]/20">
-              <UserCheck className="h-5 w-5 text-[#d4a853]" />
+            <div className="p-2.5 rounded-sm bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20">
+              <UserCheck className="h-5 w-5 text-[var(--color-primary)]" />
             </div>
             <div>
-              <h2 className="text-sm font-bold text-slate-50">Wanted / Missing Persons</h2>
-              <p className="text-[9px] text-slate-400 font-semibold uppercase tracking-[0.12em] mt-0.5">
+              <h2 className="text-sm font-bold text-[var(--color-on-dark)]">Wanted / Missing Persons</h2>
+              <p className="text-[9px] text-[var(--color-muted)] font-semibold uppercase tracking-[0.12em] mt-0.5">
                 Statewide Tracking & Investigation
               </p>
             </div>
           </div>
-          <span className="text-[8px] bg-[#d4a853]/10 text-[#d4a853] border border-[#d4a853]/20 px-2 py-0.5 rounded-md font-bold uppercase tracking-wider">
+          <span className="text-[8px] bg-[var(--color-primary)]/10 text-[var(--color-primary)] border border-[var(--color-primary)]/20 px-2 py-0.5 rounded-md font-bold uppercase tracking-wider">
             {wantedData.length} Records
           </span>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="glass-card p-4 rounded-2xl border border-[#d4a853]/10 bg-[#0a1628]/80">
+        <div className="card-dark p-5">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-slate-400">Total Cases</span>
-            <AlertCircle className="h-4 w-4 text-[#d4a853]" />
+            <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--color-muted)]">Total Cases</span>
+            <AlertCircle className="h-4 w-4 text-[var(--color-primary)]" />
           </div>
-          <p className="text-2xl font-black text-slate-50 mt-2">{wantedData.length}</p>
-          <span className="text-[9px] text-slate-400">Active records</span>
+          <p className="text-2xl font-black text-[var(--color-on-dark)] mt-2">{wantedData.length}</p>
+          <span className="text-[9px] text-[var(--color-muted)]">Active records</span>
         </div>
-        <div className="glass-card p-4 rounded-2xl border border-[#8b0000]/20 bg-[#0a1628]/80">
+        <div className="card-dark p-4 rounded-sm border border-[#8b0000]/20 bg-[var(--color-surface-card-dark)]/80">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-slate-400">Wanted</span>
+            <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--color-muted)]">Wanted</span>
             <UserCheck className="h-4 w-4 text-[#cc3333]" />
           </div>
           <p className="text-2xl font-black text-[#cc3333] mt-2">{wantedData.filter(p => p.status === 'wanted').length}</p>
-          <span className="text-[9px] text-slate-400">Absconding offenders</span>
+          <span className="text-[9px] text-[var(--color-muted)]">Absconding offenders</span>
         </div>
-        <div className="glass-card p-4 rounded-2xl border border-[#d4a853]/20 bg-[#0a1628]/80">
+        <div className="card-dark p-4 rounded-sm border border-[var(--color-primary)]/20 bg-[var(--color-surface-card-dark)]/80">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-slate-400">Missing</span>
-            <User className="h-4 w-4 text-[#d4a853]" />
+            <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--color-muted)]">Missing</span>
+            <User className="h-4 w-4 text-[var(--color-primary)]" />
           </div>
-          <p className="text-2xl font-black text-[#d4a853] mt-2">{wantedData.filter(p => p.status === 'missing').length}</p>
-          <span className="text-[9px] text-slate-400">Unlocated persons</span>
+          <p className="text-2xl font-black text-[var(--color-primary)] mt-2">{wantedData.filter(p => p.status === 'missing').length}</p>
+          <span className="text-[9px] text-[var(--color-muted)]">Unlocated persons</span>
         </div>
-        <div className="glass-card p-4 rounded-2xl border border-[#d4a853]/10 bg-[#0a1628]/80">
+        <div className="card-dark p-5">
           <div className="flex items-center justify-between">
-            <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-slate-400">Districts</span>
-            <MapPin className="h-4 w-4 text-[#d4a853]" />
+            <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--color-muted)]">Districts</span>
+            <MapPin className="h-4 w-4 text-[var(--color-primary)]" />
           </div>
-          <p className="text-2xl font-black text-slate-50 mt-2">{new Set(wantedData.map(p => p.district)).size}</p>
-          <span className="text-[9px] text-slate-400">Affected districts</span>
+          <p className="text-2xl font-black text-[var(--color-on-dark)] mt-2">{new Set(wantedData.map(p => p.district)).size}</p>
+          <span className="text-[9px] text-[var(--color-muted)]">Affected districts</span>
         </div>
       </div>
 
-      <div className="glass-card p-5 rounded-2xl border border-[#d4a853]/10 bg-[#0a1628]/80">
+      <div className="card-dark p-5">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xs font-bold text-slate-50 flex items-center">
-            <Filter className="h-4 w-4 text-[#d4a853] mr-2" />
+          <h3 className="text-xs font-bold text-[var(--color-on-dark)] flex items-center">
+            <Filter className="h-4 w-4 text-[var(--color-primary)] mr-2" />
             Person Records
           </h3>
           <div className="flex items-center space-x-2">
             <div className="relative">
-              <span className="absolute inset-y-0 left-2 flex items-center pointer-events-none text-slate-400">
+              <span className="absolute inset-y-0 left-2 flex items-center pointer-events-none text-[var(--color-muted)]">
                 <Search className="h-3 w-3" />
               </span>
               <input
@@ -100,13 +100,13 @@ export default function WantedMissing({ activeRole }) {
                 placeholder="Search name, alias, district..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-44 bg-[#060e1f] border border-[#1a2a4a] text-slate-50 text-[9px] rounded-lg py-1.5 pl-6 pr-2 focus:outline-none focus:border-[#d4a853] placeholder-slate-500"
+                className="w-44 bg-[var(--color-canvas-dark)] border border-[var(--color-hairline-dark)] text-[var(--color-on-dark)] text-[9px] rounded-sm py-1.5 pl-6 pr-2 focus:outline-none focus:border-[var(--color-primary)] placeholder-slate-500"
               />
             </div>
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="bg-[#060e1f] border border-[#1a2a4a] text-slate-50 text-[9px] rounded-lg py-1.5 px-2 focus:outline-none focus:border-[#d4a853]"
+              className="bg-[var(--color-canvas-dark)] border border-[var(--color-hairline-dark)] text-[var(--color-on-dark)] text-[9px] rounded-sm py-1.5 px-2 focus:outline-none focus:border-[var(--color-primary)]"
             >
               <option value="all">All Status</option>
               <option value="wanted">Wanted</option>
@@ -116,7 +116,7 @@ export default function WantedMissing({ activeRole }) {
         </div>
         <div className="space-y-2 max-h-[500px] overflow-y-auto pr-1">
           {filteredData.length === 0 ? (
-            <div className="text-center py-6 text-slate-400 text-[10px]">No records match current filters.</div>
+            <div className="text-center py-6 text-[var(--color-muted)] text-[10px]">No records match current filters.</div>
           ) : (
             filteredData.map(person => {
               const theme = statusColors[person.status];
@@ -124,57 +124,57 @@ export default function WantedMissing({ activeRole }) {
               return (
                 <div
                   key={person.id}
-                  className={`p-3 rounded-xl border transition-all cursor-pointer ${
+                  className={`p-3 rounded-sm border transition-all cursor-pointer ${
                     isSelected
-                      ? 'bg-[#0a1628] border-[#d4a853]/40'
-                      : 'bg-[#060e1f] border-[#1a2a4a] hover:border-[#d4a853]/20'
+                      ? 'bg-[var(--color-surface-card-dark)] border-[var(--color-primary)]/40'
+                      : 'bg-[var(--color-canvas-dark)] border-[var(--color-hairline-dark)] hover:border-[var(--color-primary)]/20'
                   }`}
                   onClick={() => setSelectedPerson(isSelected ? null : person)}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2 flex-1 min-w-0">
                       <div className={`w-1.5 h-1.5 rounded-full ${theme.text.replace('text-', 'bg-')} shrink-0`} />
-                      <span className="text-xs font-bold text-slate-50 truncate">{person.name}</span>
+                      <span className="text-xs font-bold text-[var(--color-on-dark)] truncate">{person.name}</span>
                       {person.alias !== '—' && (
-                        <span className="text-[8px] text-slate-400 italic">aka {person.alias}</span>
+                        <span className="text-[8px] text-[var(--color-muted)] italic">aka {person.alias}</span>
                       )}
                       <span className={`text-[8px] font-black px-1.5 py-0.5 rounded ${theme.bg} ${theme.text} shrink-0`}>
                         {theme.label}
                       </span>
                     </div>
-                    <ChevronRight className={`h-3.5 w-3.5 text-slate-400 transition-transform ${isSelected ? 'rotate-90' : ''}`} />
+                    <ChevronRight className={`h-3.5 w-3.5 text-[var(--color-muted)] transition-transform ${isSelected ? 'rotate-90' : ''}`} />
                   </div>
                   {isSelected && (
-                    <div className="mt-3 pt-3 border-t border-[#d4a853]/10 space-y-2 text-[10px]">
+                    <div className="mt-3 pt-3 border-t border-[var(--color-primary)]/10 space-y-2 text-[10px]">
                       <div className="grid grid-cols-2 gap-2">
                         <div>
-                          <span className="text-slate-400 block">Age / Gender</span>
-                          <span className="text-slate-50 font-medium">{person.age} yrs / {person.gender}</span>
+                          <span className="text-[var(--color-muted)] block">Age / Gender</span>
+                          <span className="text-[var(--color-on-dark)] font-medium">{person.age} yrs / {person.gender}</span>
                         </div>
                         <div>
-                          <span className="text-slate-400 block">Last Seen</span>
-                          <span className="text-slate-50 font-medium flex items-center">
-                            <Calendar className="h-3 w-3 mr-1 text-[#d4a853]" />
+                          <span className="text-[var(--color-muted)] block">Last Seen</span>
+                          <span className="text-[var(--color-on-dark)] font-medium flex items-center">
+                            <Calendar className="h-3 w-3 mr-1 text-[var(--color-primary)]" />
                             {person.lastSeen}
                           </span>
                         </div>
                         <div>
-                          <span className="text-slate-400 block">Primary Crime</span>
-                          <span className="text-slate-50 font-medium">{person.crime}</span>
+                          <span className="text-[var(--color-muted)] block">Primary Crime</span>
+                          <span className="text-[var(--color-on-dark)] font-medium">{person.crime}</span>
                         </div>
                         <div>
-                          <span className="text-slate-400 block">District</span>
-                          <span className="text-slate-50 font-medium flex items-center">
-                            <MapPin className="h-3 w-3 mr-1 text-[#d4a853]" />
+                          <span className="text-[var(--color-muted)] block">District</span>
+                          <span className="text-[var(--color-on-dark)] font-medium flex items-center">
+                            <MapPin className="h-3 w-3 mr-1 text-[var(--color-primary)]" />
                             {person.district}
                           </span>
                         </div>
                       </div>
                       <div>
-                        <span className="text-slate-400 block">Charges / Sections</span>
+                        <span className="text-[var(--color-muted)] block">Charges / Sections</span>
                         <div className="flex flex-wrap gap-1 mt-1">
                           {person.charges.map((charge, i) => (
-                            <span key={i} className="text-[8px] bg-[#d4a853]/10 text-[#d4a853] border border-[#d4a853]/20 px-1.5 py-0.5 rounded font-medium">
+                            <span key={i} className="text-[8px] bg-[var(--color-primary)]/10 text-[var(--color-primary)] border border-[var(--color-primary)]/20 px-1.5 py-0.5 rounded font-medium">
                               {charge}
                             </span>
                           ))}

@@ -126,9 +126,9 @@ export default function CopBot({ activeRole }) {
 
     const chatRows = messages.map((msg, i) => `
       <tr>
-        <td style="padding:6px 10px;border-bottom:1px solid #d4a85333;vertical-align:top;width:60px;font-size:10px;color:#666;font-family:'Courier New',monospace;">${String(i + 1).padStart(2, '0')}</td>
-        <td style="padding:6px 10px;border-bottom:1px solid #d4a85333;vertical-align:top;width:80px;font-size:10px;color:#1a237e;font-weight:700;font-family:'Courier New',monospace;">${msg.from === 'user' ? 'OFFICER' : 'COP BOT'}</td>
-        <td style="padding:6px 10px;border-bottom:1px solid #d4a85333;vertical-align:top;font-size:10px;color:#333;line-height:1.5;font-family:'Courier New',monospace;white-space:pre-wrap;">${msg.text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>')}</td>
+        <td style="padding:6px 10px;border-bottom:1px solid var(--color-primary)33;vertical-align:top;width:60px;font-size:10px;color:#666;font-family:'Courier New',monospace;">${String(i + 1).padStart(2, '0')}</td>
+        <td style="padding:6px 10px;border-bottom:1px solid var(--color-primary)33;vertical-align:top;width:80px;font-size:10px;color:#1a237e;font-weight:700;font-family:'Courier New',monospace;">${msg.from === 'user' ? 'OFFICER' : 'COP BOT'}</td>
+        <td style="padding:6px 10px;border-bottom:1px solid var(--color-primary)33;vertical-align:top;font-size:10px;color:#333;line-height:1.5;font-family:'Courier New',monospace;white-space:pre-wrap;">${msg.text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>')}</td>
       </tr>
     `).join('');
 
@@ -138,12 +138,12 @@ export default function CopBot({ activeRole }) {
         <div style="height:3px;background:linear-gradient(90deg,#FF9933 0%,#FF9933 33.33%,#FFFFFF 33.33%,#FFFFFF 66.66%,#138808 66.66%,#138808 100%);"></div>
         <div style="padding:20px 30px 15px;text-align:center;border-bottom:2px solid #1a237e;">
           <div style="font-size:22px;font-weight:bold;color:#1a237e;letter-spacing:1px;">KARNATAKA STATE POLICE</div>
-          <div style="font-size:13px;color:#d4a853;margin-top:3px;font-weight:600;letter-spacing:3px;text-transform:uppercase;">Crime Intelligence Portal</div>
+          <div style="font-size:13px;color:var(--color-primary);margin-top:3px;font-weight:600;letter-spacing:3px;text-transform:uppercase;">Crime Intelligence Portal</div>
           <div style="font-size:10px;color:#666;margin-top:3px;">भारत सरकार &bull; Government of Karnataka</div>
-          <div style="width:80px;height:1.5px;background:#d4a853;margin:8px auto;"></div>
+          <div style="width:80px;height:1.5px;background:var(--color-primary);margin:8px auto;"></div>
           <div style="font-size:11px;color:#1a237e;font-weight:bold;margin-top:4px;border:1px solid #1a237e;display:inline-block;padding:3px 16px;">OFFICIAL CHAT TRANSCRIPT</div>
         </div>
-        <div style="padding:12px 30px;background:#faf8f4;border-bottom:1px solid #d4a85333;font-size:10px;color:#333;">
+        <div style="padding:12px 30px;background:#faf8f4;border-bottom:1px solid var(--color-primary)33;font-size:10px;color:#333;">
           <table style="width:100%;border-collapse:collapse;">
             <tr><td style="padding:2px 0;color:#666;width:120px;">Conversation Ref No.</td><td style="font-weight:bold;color:#1a237e;font-family:'Courier New',monospace;">${refNo}</td></tr>
             <tr><td style="padding:2px 0;color:#666;">Date of Transcript</td><td style="font-weight:bold;">${dateStr}</td></tr>
@@ -198,11 +198,11 @@ export default function CopBot({ activeRole }) {
     .tricolor { height:3px; background:linear-gradient(90deg,#FF9933 0%,#FF9933 33.33%,#FFFFFF 33.33%,#FFFFFF 66.66%,#138808 66.66%,#138808 100%); }
     .header { text-align:center; padding:25px 40px 15px; border-bottom:2px solid #1a237e; }
     .header .title { font-size:24px; font-weight:bold; color:#1a237e; letter-spacing:1px; }
-    .header .sub { font-size:14px; color:#d4a853; font-weight:600; letter-spacing:3px; text-transform:uppercase; margin-top:3px; }
+    .header .sub { font-size:14px; color:var(--color-primary); font-weight:600; letter-spacing:3px; text-transform:uppercase; margin-top:3px; }
     .header .govt { font-size:11px; color:#666; margin-top:3px; }
-    .header .gold-line { width:80px; height:1.5px; background:#d4a853; margin:8px auto; }
+    .header .gold-line { width:80px; height:1.5px; background:var(--color-primary); margin:8px auto; }
     .header .seal { font-size:12px; color:#1a237e; font-weight:bold; margin-top:4px; border:1px solid #1a237e; display:inline-block; padding:3px 20px; }
-    .meta { padding:12px 40px; background:#faf8f4; border-bottom:1px solid #d4a85333; font-size:11px; }
+    .meta { padding:12px 40px; background:#faf8f4; border-bottom:1px solid var(--color-primary)33; font-size:11px; }
     .meta table { width:100%; border-collapse:collapse; }
     .meta td { padding:2px 0; }
     .meta .label { color:#666; width:140px; }
@@ -213,7 +213,7 @@ export default function CopBot({ activeRole }) {
     table.log { width:100%; border-collapse:collapse; font-size:10px; }
     table.log thead tr { background:#1a237e; color:#fff; font-size:9px; text-transform:uppercase; letter-spacing:1px; }
     table.log th { padding:6px 10px; text-align:left; }
-    table.log td { padding:6px 10px; border-bottom:1px solid #d4a85333; vertical-align:top; }
+    table.log td { padding:6px 10px; border-bottom:1px solid var(--color-primary)33; vertical-align:top; }
     table.log td.num { width:50px; color:#666; font-family:'Courier New',monospace; }
     table.log td.src { width:80px; color:#1a237e; font-weight:700; font-family:'Courier New',monospace; }
     table.log td.msg { color:#000; line-height:1.5; font-family:'Courier New',monospace; white-space:pre-wrap; word-break:break-word; }
@@ -296,7 +296,7 @@ export default function CopBot({ activeRole }) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 p-3.5 rounded-2xl bg-[#d4a853] text-[#060e1f] shadow-2xl shadow-[#d4a853]/30 hover:bg-[#c49a3a] transition-all hover:scale-105 duration-200 border border-[#d4a853]/50"
+          className="fixed bottom-6 right-6 z-50 p-3.5 rounded-sm bg-[var(--color-primary)] text-[var(--color-canvas-dark)] hover:bg-[var(--color-primary-hover)] transition-all duration-200"
           title="KSP CopBot"
         >
           <MessageCircle className="h-6 w-6" />
@@ -304,49 +304,49 @@ export default function CopBot({ activeRole }) {
       )}
 
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[380px] h-[560px] bg-[#0a1628] border border-[#d4a853]/20 rounded-2xl shadow-2xl shadow-black/50 flex flex-col overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-[#d4a853]/15 bg-[#060e1f] shrink-0">
+        <div className="fixed bottom-6 right-6 z-50 w-[380px] h-[560px] card-dark flex flex-col overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-hairline-dark)] bg-[var(--color-surface-elevated-dark)] shrink-0">
             <div className="flex items-center space-x-2">
-              <div className="p-1.5 rounded-lg bg-[#d4a853]/10">
-                <Bot className="h-4 w-4 text-[#d4a853]" />
+              <div className="p-1.5 rounded-sm bg-[var(--color-primary)]/10">
+                <Bot className="h-4 w-4 text-[var(--color-primary)]" />
               </div>
               <div>
-                <h3 className="text-xs font-bold text-slate-50">KSP CopBot</h3>
-                <p className="text-[8px] text-slate-400 uppercase tracking-wider">AI Intelligence Assistant</p>
+                <h3 className="text-[14px] font-bold text-[var(--color-on-dark)]">KSP CopBot</h3>
+                <p className="text-[10px] text-[var(--color-muted)] uppercase tracking-wider">AI Intelligence Assistant</p>
               </div>
             </div>
             <div className="flex items-center space-x-1">
               <button
                 onClick={exportChat}
-                className="p-1.5 rounded-lg hover:bg-[#0a1628] text-slate-400 hover:text-[#d4a853] transition-colors"
+                className="p-1.5 rounded-sm hover:bg-[var(--color-surface-card-dark)] text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-colors"
                 title="Export Chat as PDF"
               >
                 <Download className="h-4 w-4" />
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-lg hover:bg-[#0a1628] text-slate-400 hover:text-slate-50 transition-colors"
+                className="p-1.5 rounded-sm hover:bg-[var(--color-surface-card-dark)] text-[var(--color-muted)] hover:text-[var(--color-on-dark)] transition-colors"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
           </div>
 
-          <div ref={chatRef} className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-thin">
+          <div ref={chatRef} className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-thin bg-[var(--color-canvas-dark)]">
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`flex items-start space-x-2 max-w-[85%] ${msg.from === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                  <div className={`p-1.5 rounded-lg shrink-0 ${msg.from === 'user' ? 'bg-[#d4a853]/20' : 'bg-[#060e1f] border border-[#d4a853]/10'}`}>
-                    {msg.from === 'user' ? <User className="h-3.5 w-3.5 text-[#d4a853]" /> : <Bot className="h-3.5 w-3.5 text-[#d4a853]" />}
+                  <div className={`p-1.5 rounded-sm shrink-0 ${msg.from === 'user' ? 'bg-[var(--color-primary)]/20' : 'bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)]'}`}>
+                    {msg.from === 'user' ? <User className="h-3.5 w-3.5 text-[var(--color-primary)]" /> : <Bot className="h-3.5 w-3.5 text-[var(--color-primary)]" />}
                   </div>
-                  <div className={`px-3 py-2 rounded-xl text-[11px] leading-relaxed whitespace-pre-line ${
+                  <div className={`px-3 py-2 rounded-sm text-[12px] leading-relaxed whitespace-pre-line ${
                     msg.from === 'user'
-                      ? 'bg-[#d4a853]/15 text-slate-50 border border-[#d4a853]/20'
-                      : 'bg-[#060e1f] text-slate-300 border border-[#1a2a4a]'
+                      ? 'bg-[var(--color-primary)]/15 text-[var(--color-on-dark)] border border-[var(--color-primary)]/20'
+                      : 'bg-[var(--color-surface-elevated-dark)] text-[var(--color-muted)] border border-[var(--color-hairline-dark)]'
                   }`}>
                     {msg.text.split(/(\*\*.*?\*\*)/).map((part, i) =>
                       part.startsWith('**') && part.endsWith('**')
-                        ? <strong key={i} className="text-[#d4a853]">{part.slice(2, -2)}</strong>
+                        ? <strong key={i} className="text-[var(--color-primary)]">{part.slice(2, -2)}</strong>
                         : part
                     )}
                   </div>
@@ -356,14 +356,14 @@ export default function CopBot({ activeRole }) {
             {loading && (
               <div className="flex justify-start">
                 <div className="flex items-center space-x-2 max-w-[85%]">
-                  <div className="p-1.5 rounded-lg bg-[#060e1f] border border-[#d4a853]/10">
-                    <Bot className="h-3.5 w-3.5 text-[#d4a853]" />
+                  <div className="p-1.5 rounded-sm bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)]">
+                    <Bot className="h-3.5 w-3.5 text-[var(--color-primary)]" />
                   </div>
-                  <div className="px-3 py-2 rounded-xl bg-[#060e1f] border border-[#1a2a4a]">
+                  <div className="px-3 py-2 rounded-sm bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)]">
                     <div className="flex space-x-1">
-                      <span className="w-1.5 h-1.5 bg-[#d4a853] rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
-                      <span className="w-1.5 h-1.5 bg-[#d4a853] rounded-full animate-bounce" style={{ animationDelay: '0.15s' }} />
-                      <span className="w-1.5 h-1.5 bg-[#d4a853] rounded-full animate-bounce" style={{ animationDelay: '0.3s' }} />
+                      <span className="w-1.5 h-1.5 bg-[var(--color-primary)] rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
+                      <span className="w-1.5 h-1.5 bg-[var(--color-primary)] rounded-full animate-bounce" style={{ animationDelay: '0.15s' }} />
+                      <span className="w-1.5 h-1.5 bg-[var(--color-primary)] rounded-full animate-bounce" style={{ animationDelay: '0.3s' }} />
                     </div>
                   </div>
                 </div>
@@ -371,13 +371,13 @@ export default function CopBot({ activeRole }) {
             )}
           </div>
 
-          <div className="shrink-0 p-3 border-t border-[#d4a853]/15 bg-[#060e1f]">
+          <div className="shrink-0 p-3 border-t border-[var(--color-hairline-dark)] bg-[var(--color-surface-elevated-dark)]">
             <div className="flex flex-wrap gap-1.5 mb-2">
               {suggestions.slice(0, 3).map((s, i) => (
                 <button
                   key={i}
                   onClick={() => handleSend(s)}
-                  className="text-[8px] px-2 py-1 rounded-lg bg-[#0a1628] border border-[#1a2a4a] text-slate-400 hover:text-[#d4a853] hover:border-[#d4a853]/30 transition-colors"
+                  className="text-[10px] px-2 py-1 rounded-sm bg-[var(--color-canvas-dark)] border border-[var(--color-hairline-dark)] text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-colors"
                 >
                   {s}
                 </button>
@@ -391,12 +391,12 @@ export default function CopBot({ activeRole }) {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="Ask about crimes, offenders..."
-                className="flex-1 bg-[#0a1628] border border-[#1a2a4a] text-slate-50 text-xs rounded-xl py-2 px-3 focus:outline-none focus:border-[#d4a853] placeholder-slate-500"
+                className="flex-1 bg-[var(--color-canvas-dark)] border border-[var(--color-hairline-dark)] text-[var(--color-on-dark)] text-[12px] rounded-sm py-2 px-3 focus:outline-none focus:border-[var(--color-primary)] placeholder-[var(--color-muted)]"
               />
               <button
                 onClick={() => handleSend()}
                 disabled={!input.trim() || loading}
-                className="p-2 rounded-xl bg-[#d4a853] text-[#060e1f] hover:bg-[#c49a3a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="p-2 rounded-sm bg-[var(--color-primary)] text-[var(--color-canvas-dark)] hover:bg-[var(--color-primary-hover)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="h-4 w-4" />
               </button>
