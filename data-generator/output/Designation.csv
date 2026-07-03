@@ -1,0 +1,16 @@
+DesignationID,DesignationName,RankID
+1,Director General of Police,1
+2,Additional DGP (Crime),2
+3,Inspector General of Police,3
+4,Deputy Inspector General,4
+5,Superintendent of Police,5
+6,Additional Superintendent,6
+7,Deputy Superintendent,7
+8,Inspector of Police,8
+9,Station House Officer,8
+10,Sub Inspector,9
+11,Assistant Sub Inspector,10
+12,Head Constable,11
+13,Police Constable,12
+14,Driver PC,13
+15,Women Police Constable,12

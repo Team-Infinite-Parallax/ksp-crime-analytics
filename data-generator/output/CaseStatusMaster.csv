@@ -1,0 +1,8 @@
+CaseStatusID,CaseStatusName
+1,Under Investigation
+2,Chargesheeted
+3,Referred to Court
+4,Closed - Undetected
+5,Closed - False Case
+6,Pending CS Filing
+7,Stayed by Court

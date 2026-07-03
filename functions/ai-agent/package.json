@@ -1,0 +1,14 @@
+{
+  "name": "ai-agent",
+  "version": "1.0.0",
+  "description": "AI Crime Intelligence Agent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "zcatalyst-sdk-node": "^3.1.2",
+    "ejs": "^3.1.10"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "deployed_at": "20260702_220617",
+  "models": [
+    "hotspot_predictor.pkl",
+    "district_risk_scorer.pkl",
+    "trend_forecaster.pkl",
+    "anomaly_detector.pkl",
+    "case_outcome_predictor.pkl"
+  ],
+  "cache_files": [
+    "hotspot_grid.json",
+    "district_risk.json",
+    "anomaly_summary.json",
+    "trend_forecasts.json"
+  ],
+  "catalyst_function": "risk",
+  "quickml_datasets": [
+    "hotspot_prediction",
+    "district_risk",
+    "trend_forecasting",
+    "anomaly_detection",
+    "case_outcome"
+  ]
+}

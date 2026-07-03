@@ -1,0 +1,44 @@
+SectionID,ActID,SectionNo,SectionDescription
+1,1,302,Murder
+2,1,304,Culpable homicide not amounting to murder
+3,1,304A,Causing death by negligence
+4,1,307,Attempt to commit murder
+5,1,323,Voluntarily causing hurt
+6,1,324,Voluntarily causing hurt by dangerous weapons
+7,1,325,Voluntarily causing grievous hurt
+8,1,354,Assault or criminal force to outrage modesty
+9,1,354A,Sexual harassment
+10,1,376,Rape
+11,1,379,Theft
+12,1,380,Theft in dwelling house
+13,1,392,Robbery
+14,1,393,Attempt to commit robbery
+15,1,395,Dacoity
+16,1,420,Cheating and dishonest inducement
+17,1,427,Mischief causing damage
+18,1,436,Mischief by fire or explosive
+19,1,457,Lurking house-trespass by night
+20,1,458,Lurking house-trespass with assault
+21,1,465,Forgery
+22,1,468,Forgery for cheating
+23,1,471,Using forged document as genuine
+24,1,498A,Cruelty by husband or relatives
+25,1,506,Criminal intimidation
+26,1,509,Word or gesture to insult modesty of a woman
+27,2,103,Murder (BNS 2023)
+28,2,109,Abetment of suicide (BNS)
+29,2,115,Voluntarily causing hurt (BNS)
+30,3,43,Damage to computer systems
+31,3,66C,Identity theft
+32,3,66D,Cheating by personation using computer resource
+33,3,67,Publishing obscene material electronically
+34,4,20,Cannabis possession / production
+35,4,21,Opium possession / production
+36,4,22,Psychotropic substances possession
+37,5,4,Penetrative sexual assault on child
+38,5,6,Aggravated penetrative sexual assault
+39,5,7,Sexual assault on child
+40,6,32,Possession of liquor without permit
+41,6,38,Illicit distillation of liquor
+42,7,184,Driving dangerously
+43,7,185,Driving under influence of alcohol

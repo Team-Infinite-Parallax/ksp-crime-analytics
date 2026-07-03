@@ -1,0 +1,5 @@
+CaseCategoryID,CategoryCode,CategoryShort,CategoryName
+1,1,FIR,First Information Report
+2,2,UDR,Unnatural Death Report
+3,3,PAR,Petition and Representation
+4,4,ZFIR,Zero FIR

@@ -1,0 +1,9 @@
+{
+	"name": "datathon_function",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "himanshu003388@gmail.com",
+	"dependencies": {
+		"zcatalyst-sdk-node": "latest"
+	}
+}

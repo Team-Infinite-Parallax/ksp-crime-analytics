@@ -1,0 +1,35 @@
+# Karnataka Police AI Prediction System — Python Dependencies
+# ============================================================
+# Core ML
+scikit-learn>=1.3.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Gradient Boosting (primary algorithm)
+xgboost>=1.7.0
+
+# Time-series forecasting
+prophet>=1.1.4
+# Note: prophet requires pystan - install with:
+#   pip install prophet (automatically installs pystan)
+
+# SHAP explainability
+shap>=0.42.0
+
+# Data serialization
+pyarrow>=12.0.0     # parquet support
+
+# Catalyst SDK (Python)
+# zcatalyst-sdk-python>=1.0.0  # uncomment when available on PyPI
+# OR use the Node.js SDK in Catalyst Functions (recommended)
+
+# Optional: faster SHAP for tree models
+# lightgbm>=4.0.0
+
+# Utilities
+joblib>=1.3.0
+scipy>=1.11.0
+
+# Development / evaluation only
+matplotlib>=3.7.0
+seaborn>=0.12.0

@@ -1,0 +1,11 @@
+CrimeHeadID,CrimeHeadName,GravityOffenceID
+1,Crimes Against Body,1
+2,Crimes Against Property,2
+3,Crimes Against Women,1
+4,Crimes Against Children,1
+5,Economic Offences,2
+6,Cyber Crimes,2
+7,Drug Offences,1
+8,Burglary,1
+9,Road Accidents,2
+10,Excise Offences,2

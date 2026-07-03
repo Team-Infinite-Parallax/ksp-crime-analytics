@@ -1,0 +1,28 @@
+CrimeSubHeadID,CrimeHeadID,CrimeSubHeadName
+1,1,Murder
+2,1,Attempt to Murder
+3,1,Culpable Homicide
+4,1,Grievous Hurt
+5,1,Simple Hurt
+6,2,Vehicle Theft
+7,2,Theft (Other)
+8,2,Robbery
+9,2,Dacoity
+10,2,Mischief
+11,3,Rape
+12,3,Sexual Harassment
+13,3,Domestic Violence/Cruelty
+14,4,POCSO - Penetrative
+15,4,POCSO - Non-Penetrative
+16,5,Cheating
+17,5,Forgery
+18,6,Online Financial Fraud
+19,6,Online Obscenity
+20,7,Cannabis/Ganja
+21,7,Opium/Heroin
+22,7,Psychotropic Substances
+23,8,Burglary by Night
+24,8,Attempt to Burglary
+25,9,Drunken Driving
+26,10,Illicit Liquor
+27,10,Liquor Possession

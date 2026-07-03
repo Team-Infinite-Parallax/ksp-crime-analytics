@@ -1,0 +1,422 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@layer base {
+  body {
+    margin: 0;
+    background-color: #020617;
+    color: #f8fafc;
+    font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.glass-panel {
+  background: rgba(10, 15, 30, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 168, 83, 0.15);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(12, 18, 34, 0.8) 0%, rgba(20, 28, 48, 0.6) 100%);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 168, 83, 0.1);
+}
+
+@keyframes gold-pulse {
+
+  0%,
+  100% {
+    text-shadow: 0 0 8px rgba(212, 168, 83, 0.2);
+  }
+
+  50% {
+    text-shadow: 0 0 16px rgba(212, 168, 83, 0.5);
+  }
+}
+
+.ksp-gold-glow {
+  animation: gold-pulse 3s infinite ease-in-out;
+}
+
+.leaflet-container {
+  background-color: #020617 !important;
+  font-family: inherit;
+  border-radius: 1rem;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(148, 163, 184, 0.15) !important;
+  border-radius: 1rem !important;
+  padding: 4px !important;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05) !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px !important;
+  font-size: 0.75rem !important;
+  line-height: 1.4 !important;
+}
+
+.leaflet-popup-tip {
+  background: #0f172a !important;
+  border-left: 1px solid rgba(148, 163, 184, 0.15) !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15) !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+  padding: 8px 12px 0 0 !important;
+  font-size: 16px !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: #f8fafc !important;
+}
+
+.leaflet-bar {
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3) !important;
+}
+
+.leaflet-bar a {
+  background-color: #0f172a !important;
+  color: #94a3b8 !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2) !important;
+  transition: all 0.2s ease;
+}
+
+.leaflet-bar a:hover {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+.custom-hotspot-marker {
+  background: transparent;
+  border: none;
+}
+
+.hotspot-pulse {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #c91a1a;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(201, 26, 26, 0.4);
+  animation: pulse-red 2s infinite;
+}
+
+.hotspot-pulse.yellow {
+  background: #d4a853;
+  box-shadow: 0 0 0 rgba(212, 168, 83, 0.4);
+  animation: pulse-gold 2s infinite;
+}
+
+.hotspot-pulse.blue {
+  background: #2b5f9e;
+  box-shadow: 0 0 0 rgba(43, 95, 158, 0.4);
+  animation: pulse-blue 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(201, 26, 26, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(201, 26, 26, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(201, 26, 26, 0);
+  }
+}
+
+@keyframes pulse-gold {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(212, 168, 83, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(212, 168, 83, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(212, 168, 83, 0);
+  }
+}
+
+@keyframes pulse-blue {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(43, 95, 158, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(43, 95, 158, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(43, 95, 158, 0);
+  }
+}
+
+.hotspot-pulse-double {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(201, 26, 26, 0.2);
+  border: 1px solid rgba(201, 26, 26, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hotspot-pulse-double::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c91a1a;
+  box-shadow: 0 0 8px #c91a1a;
+  animation: pulse-double-inner 1.5s infinite alternate;
+}
+
+@keyframes pulse-double-inner {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.cy-container {
+  position: absolute;
+  inset: 0;
+  background: #0f172a;
+}
+
+.cy-container canvas {
+  outline: none !important;
+}
+
+@keyframes cy-selection-ring {
+  0% {
+    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(15, 23, 42, 0.05);
+  }
+
+  100% {
+    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.2);
+  }
+}
+
+@keyframes panel-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes network-spin-a {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes network-spin-b {
+  0% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes high-risk-glow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgba(201, 26, 26, 0.4));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 12px rgba(201, 26, 26, 0.8));
+  }
+}
+
+@keyframes neighbor-reveal {
+  0% {
+    transform: scale(0) translateY(10px);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.1) translateY(-2px);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes tool-flash {
+
+  0%,
+  100% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: rgba(59, 130, 246, 0.15);
+  }
+}
+
+@keyframes intel-link-pulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes status-blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.status-live {
+  animation: status-blink 2s ease-in-out infinite;
+}
+
+.gov-underline {
+  background: linear-gradient(90deg, transparent 0%, #3b82f6 20%, #3b82f6 80%, transparent 100%);
+  height: 1px;
+}
+
+.gov-emblem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:root.light-mode {
+  --color-slate-950: #f8fafc;
+  --color-slate-900: #f1f5f9;
+  --color-slate-800: #e2e8f0;
+  --color-slate-700: #cbd5e1;
+  --color-slate-500: #94a3b8;
+  --color-slate-400: #475569;
+  --color-slate-50: #020617;
+}
+
+:root.light-mode body {
+  background-color: #f8fafc;
+  color: #020617;
+}
+
+:root.light-mode ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+:root.light-mode ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+:root.light-mode ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+:root.light-mode .glass-panel {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:root.light-mode .glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(241, 245, 249, 0.8) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:root.light-mode .leaflet-container {
+  background-color: #f8fafc !important;
+}
+
+:root.light-mode .leaflet-popup-content-wrapper,
+:root.light-mode .leaflet-popup-tip {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+:root.light-mode .leaflet-bar a {
+  background-color: #ffffff !important;
+  color: #475569 !important;
+}
+
+:root.light-mode .leaflet-bar a:hover {
+  color: #0f172a !important;
+}
+
+:root.light-mode .cy-container {
+  background: #f8fafc;
+}
