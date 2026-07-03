@@ -9,7 +9,7 @@
 An AI-powered Crime Intelligence Agent designed for the Karnataka State Police. The platform leverages Zoho Catalyst's serverless ecosystem to process First Information Reports (FIRs) in real-time, generate automated intelligence on crime hotspots, and proactively send alerts to commanding officers, significantly improving response times and law enforcement strategy.
 
 ---
-##adbhut
+
 ## 🏗️ Architecture
 
 The system follows a highly scalable, serverless microservices architecture deployed on Zoho Catalyst:
