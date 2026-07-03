@@ -176,4 +176,4 @@ Deploying the application to Zoho Catalyst is fully automated via the Catalyst C
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
