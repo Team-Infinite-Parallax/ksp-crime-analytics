@@ -5,8 +5,9 @@ const { requireAuth } = require('./middleware');
 const catalyst = require('zcatalyst-sdk-node');
 
 module.exports = async (req, res) => {
-  const parsedUrl = url.parse(req.url, true);
-  const pathname = parsedUrl.pathname;
+  try {
+    const parsedUrl = url.parse(req.url, true);
+    const pathname = parsedUrl.pathname;
 
   // Normalise path (strip trailing slashes, keep lowercase)
   const route = pathname.replace(/\/$/, '').toLowerCase();
@@ -73,4 +74,14 @@ module.exports = async (req, res) => {
     error: 'Not Found',
     message: `Endpoint ${req.url} does not exist on Auth Service.`
   }));
+  } catch (err) {
+    console.error('Unhandled Auth Error:', err);
+    if (!res.headersSent) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        error: 'Internal Server Error',
+        message: 'An unexpected error occurred in the Auth Service.'
+      }));
+    }
+  }
 };

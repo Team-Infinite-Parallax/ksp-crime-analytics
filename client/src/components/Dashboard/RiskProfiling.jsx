@@ -7,16 +7,10 @@ const RISK_COLORS = {
   low: { text: 'text-[#2e7d32]', bg: 'bg-[#2e7d32]/10', border: 'border-[#2e7d32]/30', bar: 'bg-[#2e7d32]', label: 'Monitor' }
 };
 
-const CATEGORY_MO_MAP = {
-  'Property Offences': ['Burglary by Night', 'Vehicle Theft', 'Theft (Other)'],
-  'Cyber Crimes': ['Online Financial Fraud', 'Online Obscenity'],
-  'Crimes Against Body': ['Murder for Gain'],
-  'Narcotics NDPS': ['Cannabis/Ganja Possession']
-};
 
 const DISTRICTS = ['Bengaluru Urban', 'Mysuru', 'Belagavi', 'Dakshina Kannada', 'Kalaburagi'];
 
-export default function RiskProfiling({ offenders, crimes, activeRole }) {
+export default function RiskProfiling({ offenders }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedOffender, setSelectedOffender] = useState(null);
   const [selectedLevel, setSelectedLevel] = useState('all');

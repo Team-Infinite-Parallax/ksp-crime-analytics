@@ -4,8 +4,8 @@ import fcose from 'cytoscape-fcose';
 import {
   Search, ZoomIn, ZoomOut, Maximize2, RotateCcw, Tag, Users,
   Shield, AlertTriangle, ChevronRight, X, Layers, Radio,
-  Network, Eye, EyeOff, Download, Info, Activity, MapPin, User,
-  Wallet, Smartphone, MoreVertical, Crosshair, Bot, Calendar, Zap
+  Network, Eye, EyeOff, Download, Info, Activity, User,
+  Wallet, Smartphone, Crosshair, Bot, Calendar, Zap
 } from 'lucide-react';
 import {
   initialElements, communities,
@@ -323,7 +323,6 @@ const NODE_TYPE_META = {
   phone:         { label: 'Telecom',          color: '#a855f7', Icon: Smartphone },
 };
 
-const COMMUNITY_COLORS = communities.map(c => c.color);
 
 function DetailRow({ label, value, accent }) {
   return (
@@ -334,10 +333,10 @@ function DetailRow({ label, value, accent }) {
   );
 }
 
-export default function NetworkGraph({ activeRole }) {
+export default function NetworkGraph() {
   const cyRef = useRef(null);
   const containerRef = useRef(null);
-  const [cyInstance, setCyInstance] = useState(null);
+
   const [selectedNode, setSelectedNode] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -568,7 +567,7 @@ export default function NetworkGraph({ activeRole }) {
         const aStar = cy.elements().aStar({
           root: root,
           goal: goal,
-          weight: (edge) => 1,
+          weight: () => 1,
           directed: false
         });
         

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot, User, Shield, Download } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, User, Download } from 'lucide-react';
 
 
 const suggestions = [
@@ -31,7 +31,7 @@ const crimeData = {
   ]
 };
 
-function generateResponse(query, role) {
+function generateResponse(query) {
   const q = query.toLowerCase();
 
   if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
