@@ -2,7 +2,7 @@
   "name": "crime-intelligence-agent",
   "version": "1.0.0",
   "scripts": {
-    "build": "npm install --prefix client && npm run build --prefix client && node -e \"const fs = require('fs'); fs.rmSync('dist', { recursive: true, force: true }); fs.cpSync('client/dist', 'dist', { recursive: true }); fs.rmSync('functions/dist', { recursive: true, force: true }); fs.cpSync('functions', 'functions/dist', { recursive: true, filter: (src) => !src.includes('node_modules') })\""
+    "build": "npm install --prefix client && npm run build --prefix client && node -e \"const fs = require('fs'); fs.rmSync('dist', { recursive: true, force: true }); fs.cpSync('client/dist', 'dist', { recursive: true })\""
   },
   "dependencies": {
     "zcatalyst-sdk-node": "^3.4.0"
