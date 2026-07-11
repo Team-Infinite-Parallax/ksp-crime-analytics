@@ -1,0 +1,9 @@
+{
+  "name": "clustering",
+  "version": "1.0.0",
+  "description": "Behavioral clustering for offender profiling",
+  "main": "index.js",
+  "dependencies": {
+    "zcatalyst-sdk-node": "^1.0.0"
+  }
+}

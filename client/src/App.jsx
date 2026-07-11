@@ -15,6 +15,10 @@ import HotspotMap from './components/Dashboard/HotspotMap';
 import NetworkGraph from './components/Dashboard/NetworkGraph';
 import CaseOutcomePredictions from './components/Dashboard/CaseOutcomePredictions';
 import TrendForecasts from './components/Dashboard/TrendForecasts';
+import AlertBadge from './components/Dashboard/AlertBadge';
+import AlertCenter from './components/Dashboard/AlertCenter';
+import BehavioralProfiles from './components/Dashboard/BehavioralProfiles';
+import CorrelationHeatmap from './components/Dashboard/CorrelationHeatmap';
 import {
   Shield,
   Users,
@@ -52,6 +56,7 @@ export default function App() {
   const [activeRole, setActiveRole] = useState('SCRB_ADMIN');
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [alertsOpen, setAlertsOpen] = useState(false);
   const [filters, setFilters] = useState({
     districtId: 'all',
     unitId: 'all',
@@ -201,6 +206,8 @@ export default function App() {
           onVoiceFilters={handleVoiceFilters}
           isDarkMode={isDarkMode}
           toggleDarkMode={() => setIsDarkMode(!isDarkMode)}
+          alertsOpen={alertsOpen}
+          setAlertsOpen={setAlertsOpen}
         />
 
         {activeTab === 'dashboard' && (
@@ -359,6 +366,15 @@ export default function App() {
               </div>
             </div>
 
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2">
+                <BehavioralProfiles filters={filters} />
+              </div>
+              <div>
+                <CorrelationHeatmap filters={filters} />
+              </div>
+            </div>
+
             <RecentCrimesTable crimes={filteredCrimes} />
           </div>
         )}
@@ -419,6 +435,10 @@ export default function App() {
           </div>
         )}
       </main>
+
+      {/* Alert Center Modal */}
+      {alertsOpen && <AlertCenter isOpen={alertsOpen} onClose={() => setAlertsOpen(false)} filters={filters} />}
+
       <CopBot activeRole={activeRole} />
     </div>
   );

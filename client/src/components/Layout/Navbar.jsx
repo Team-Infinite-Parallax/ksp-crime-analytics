@@ -10,8 +10,9 @@ import {
   Moon
 } from 'lucide-react';
 import VoiceSearch from '../Dashboard/VoiceSearch';
+import AlertBadge from '../Dashboard/AlertBadge';
 
-export default function Navbar({ activeRole, setActiveRole, searchTerm, setSearchTerm, userDetails, onVoiceFilters, isDarkMode, toggleDarkMode }) {
+export default function Navbar({ activeRole, setActiveRole, searchTerm, setSearchTerm, userDetails, onVoiceFilters, isDarkMode, toggleDarkMode, alertsOpen, setAlertsOpen }) {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 
@@ -74,6 +75,9 @@ export default function Navbar({ activeRole, setActiveRole, searchTerm, setSearc
           >
             {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
+
+          {/* Alert Badge Component - Real-time alerts */}
+          <AlertBadge onClick={() => setAlertsOpen(!alertsOpen)} />
 
           <div className="relative">
             <button

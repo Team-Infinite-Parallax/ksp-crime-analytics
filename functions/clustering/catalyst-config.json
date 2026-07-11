@@ -1,0 +1,6 @@
+{
+  "type": "function",
+  "runtime": "nodejs18",
+  "handler": "index.js",
+  "timeout": 30
+}
