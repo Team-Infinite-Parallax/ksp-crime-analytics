@@ -39,6 +39,9 @@
     --color-trading-up: #2e8540;
     --color-trading-down: #cd2026;
     --color-info: #00bde3;
+    --color-surface-sidebar: #0b1c33;
+    --color-surface-navbar: #0b1c33;
+    --color-glass-bg: rgba(0, 34, 51, 0.7);
   }
 
   .light-mode {
@@ -61,6 +64,9 @@
     --color-surface-strong-light: #e4e2e0;
     --color-on-primary: #ffffff;
     --color-on-dark: #1b1b1b;
+    --color-surface-sidebar: #f0f6f9;
+    --color-surface-navbar: #f0f6f9;
+    --color-glass-bg: rgba(37, 99, 235, 0.1);
   }
 
   body {
@@ -143,7 +149,7 @@
 }
 
 .glass-panel {
-  background: rgba(0, 34, 51, 0.7);
+  background: var(--color-glass-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-hairline-dark);

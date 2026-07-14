@@ -19,7 +19,7 @@ export default function Navbar({ activeRole, setActiveRole, searchTerm, setSearc
   ];
 
   return (
-    <header className="h-16 border-b border-[var(--color-hairline-dark)] bg-blue-950 flex items-center justify-between px-4 sm:px-6 lg:px-8 z-40 relative">
+    <header className="h-16 border-b border-[var(--color-hairline-dark)] bg-[var(--color-surface-navbar)] flex items-center justify-between px-4 sm:px-6 lg:px-8 z-40 relative">
       <div className="flex items-center space-x-2 md:space-x-3 flex-grow max-w-[240px] sm:max-w-sm md:max-w-md lg:max-w-lg mr-2">
         <div className="relative w-full group">
           <label htmlFor="global-search" className="sr-only">Search</label>

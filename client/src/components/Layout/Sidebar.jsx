@@ -37,7 +37,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout }) {
 
   return (
     <div
-      className={`h-screen bg-blue-950 border-r border-[var(--color-hairline-dark)] relative z-50 transition-all duration-300 ease-in-out flex flex-col justify-between ${isCollapsed ? 'w-20' : 'w-64'
+      className={`h-screen bg-[var(--color-surface-sidebar)] border-r border-[var(--color-hairline-dark)] relative z-50 transition-all duration-300 ease-in-out flex flex-col justify-between ${isCollapsed ? 'w-20' : 'w-64'
         }`}
     >
       <div>

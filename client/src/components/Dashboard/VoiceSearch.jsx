@@ -253,7 +253,7 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
               }
               setIsOpen(false);
             }}
-            className="text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-slate-800/50 rounded-full transition-colors p-1.5"
+            className="text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] rounded-full transition-colors p-1.5"
           >
             <X className="h-5 w-5" />
           </button>
@@ -264,8 +264,8 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
             onClick={() => setLang('en-US')}
             className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-sm border text-xs font-bold transition-all ${
               lang === 'en-US'
-                ? 'bg-[var(--color-primary)]/20 text-[var(--color-primary)] border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]'
-                : 'bg-[var(--color-surface-elevated-dark)]/50 text-[var(--color-muted)] border-[var(--color-hairline-dark)] hover:text-slate-200 hover:bg-slate-800/50'
+                ? 'bg-[var(--color-primary)]/20 text-[var(--color-primary)] border-[var(--color-primary)]/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]'
+                : 'bg-[var(--color-surface-elevated-dark)]/50 text-[var(--color-muted)] border-[var(--color-hairline-dark)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)]'
             }`}
           >
             <Globe className="h-3.5 w-3.5" />
@@ -275,8 +275,8 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
             onClick={() => setLang('kn-IN')}
             className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-sm border text-xs font-bold transition-all ${
               lang === 'kn-IN'
-                ? 'bg-[var(--color-primary)]/20 text-[var(--color-primary)] border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]'
-                : 'bg-[var(--color-surface-elevated-dark)]/50 text-[var(--color-muted)] border-[var(--color-hairline-dark)] hover:text-slate-200 hover:bg-slate-800/50'
+                ? 'bg-[var(--color-primary)]/20 text-[var(--color-primary)] border-[var(--color-primary)]/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]'
+                : 'bg-[var(--color-surface-elevated-dark)]/50 text-[var(--color-muted)] border-[var(--color-hairline-dark)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)]'
             }`}
           >
             <Globe className="h-3.5 w-3.5" />
@@ -291,7 +291,7 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
               className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center border transition-all duration-300 ${
                 isListening
                   ? 'bg-red-900/20 border-red-500/50 text-red-500 scale-105 shadow-[0_0_30px_rgba(239,68,68,0.3)]'
-                  : 'bg-blue-900/30 border-blue-700/30 text-[var(--color-primary)] hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] shadow-lg shadow-[var(--color-primary)]/5'
+                  : 'bg-[var(--color-surface-elevated-dark)]/50 border-[var(--color-hairline-dark)] text-[var(--color-primary)] hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] shadow-lg shadow-[var(--color-primary)]/5'
               }`}
             >
               {isListening && (
@@ -310,11 +310,11 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
 
               {isListening && (
                 <div className="flex justify-center items-end space-x-1.5 h-6 my-2">
-                  <span className="w-1 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s', height: '12px' }} />
-                  <span className="w-1 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s', height: '24px' }} />
-                  <span className="w-1 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s', height: '18px' }} />
-                  <span className="w-1 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s', height: '22px' }} />
-                  <span className="w-1 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.5s', height: '10px' }} />
+                  <span className="w-1 bg-[var(--color-primary)] rounded-full animate-bounce" style={{ animationDelay: '0.1s', height: '12px' }} />
+                  <span className="w-1 bg-[var(--color-primary)] rounded-full animate-bounce" style={{ animationDelay: '0.2s', height: '24px' }} />
+                  <span className="w-1 bg-[var(--color-primary)] rounded-full animate-bounce" style={{ animationDelay: '0.3s', height: '18px' }} />
+                  <span className="w-1 bg-[var(--color-primary)] rounded-full animate-bounce" style={{ animationDelay: '0.4s', height: '22px' }} />
+                  <span className="w-1 bg-[var(--color-primary)] rounded-full animate-bounce" style={{ animationDelay: '0.5s', height: '10px' }} />
                 </div>
               )}
 
@@ -368,9 +368,9 @@ export default function VoiceSearch({ onVoiceFilters, activeRole }) {
 
           <div className="border-t border-[var(--color-hairline-dark)]/60 mt-4 pt-4 text-[10px] text-[var(--color-muted)] font-semibold space-y-1.5 bg-[var(--color-canvas-dark)]/30 -mx-5 -mb-5 sm:-mx-6 sm:-mb-6 px-5 pb-5 sm:px-6 sm:pb-6 rounded-b-3xl">
             <p className="uppercase text-[var(--color-muted)] tracking-wider mb-1.5">Example commands:</p>
-            <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-blue-500/50 mr-2"></span> "Show me cyber crimes in Mysore" / "ಮೈಸೂರಿನಲ್ಲಿ ಸೈಬರ್ ಅಪರಾಧ"</p>
-            <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-blue-500/50 mr-2"></span> "Show heinous crimes in Bengaluru" / "ಬೆಂಗಳೂರಿನಲ್ಲಿ ಘೋರ ಅಪರಾಧಗಳು"</p>
-            <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-blue-500/50 mr-2"></span> "Find cases about Rajesh Choudhary" / "ರಾಜೇಶ್ ಚೌಧರಿ ಪ್ರಕರಣಗಳು"</p>
+            <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-[var(--color-primary)]/50 mr-2"></span> "Show me cyber crimes in Mysore" / "ಮೈಸೂರಿನಲ್ಲಿ ಸೈಬರ್ ಅಪರಾಧ"</p>
+            <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-[var(--color-primary)]/50 mr-2"></span> "Show heinous crimes in Bengaluru" / "ಬೆಂಗಳೂರಿನಲ್ಲಿ ಘೋರ ಅಪರಾಧಗಳು"</p>
+            <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-[var(--color-primary)]/50 mr-2"></span> "Find cases about Rajesh Choudhary" / "ರಾಜೇಶ್ ಚೌಧರಿ ಪ್ರಕರಣಗಳು"</p>
           </div>
         </div>
       </div>

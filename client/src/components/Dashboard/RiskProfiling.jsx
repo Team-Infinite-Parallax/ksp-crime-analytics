@@ -227,7 +227,7 @@ export default function RiskProfiling({ offenders }) {
                 <div key={pattern} className="p-2.5 rounded-sm bg-[var(--color-canvas-dark)] border border-[var(--color-primary)]/10">
                   <div className="flex items-center justify-between">
                     <span className="text-[9px] font-bold text-[var(--color-primary)] uppercase tracking-wider">&ldquo;{pattern}&rdquo;</span>
-                    <span className="text-[8px] font-black text-[var(--color-muted)] bg-slate-800 px-1.5 py-0.5 rounded">{count}x</span>
+                    <span className="text-[8px] font-black text-[var(--color-muted)] bg-[var(--color-surface-elevated-dark)] px-1.5 py-0.5 rounded">{count}x</span>
                   </div>
                   <p className="text-[9px] text-[var(--color-muted)] mt-1">
                     {patOffenders.map(o => o.name).join(', ')}

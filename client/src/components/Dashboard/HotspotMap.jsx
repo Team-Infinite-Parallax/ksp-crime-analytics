@@ -412,7 +412,7 @@ export default function HotspotMap({ activeRole, isDarkMode }) {
             onClick={() => setIsPlaying(!isPlaying)}
             className={`p-2.5 rounded-sm transition-all border ${
               isPlaying
-                ? 'bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)] border-[var(--color-hairline-dark)] hover:bg-blue-700/40'
+                ? 'bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)] border-[var(--color-hairline-dark)] hover:bg-[var(--color-primary)]/20'
                 : 'bg-[var(--color-primary)]/20 hover:bg-[var(--color-primary)]/30 text-[var(--color-primary)] border-[var(--color-primary)]/30'
             }`}
           >

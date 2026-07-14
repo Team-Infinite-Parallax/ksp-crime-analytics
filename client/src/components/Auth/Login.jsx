@@ -124,7 +124,7 @@ export default function Login({ onLogin }) {
       <div className="relative z-10 max-w-4xl w-full grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-stretch max-h-full">
         
         {/* Left Side: Info Briefing Panel */}
-        <div className="lg:col-span-5 flex flex-col justify-between p-6 bg-blue-950 border border-[var(--color-hairline-dark)] rounded-2xl shadow-2xl text-[var(--color-on-dark)] relative overflow-hidden">
+        <div className="lg:col-span-5 flex flex-col justify-between p-6 bg-[var(--color-surface-sidebar)] border border-[var(--color-hairline-dark)] rounded-2xl shadow-2xl text-[var(--color-on-dark)] relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent pointer-events-none" />
           
           <div className="space-y-4">
@@ -155,7 +155,7 @@ export default function Login({ onLogin }) {
               <AlertTriangle className="h-5 w-5 text-[#cc3333] shrink-0 mt-0.5" />
               <div className="text-[11px] leading-relaxed">
                 <p className="font-extrabold text-[#cc3333] uppercase tracking-wider">Security Warning</p>
-                <p className="text-slate-400 mt-1 font-medium">
+                  <p className="text-[var(--color-muted)] mt-1 font-medium">
                   Unauthorized entry, attempt, or sharing of intelligence from this database constitutes a federal offense and is punishable under Section 66 of the IT Act & IPC laws.
                 </p>
               </div>
@@ -195,9 +195,9 @@ export default function Login({ onLogin }) {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Badge ID / Email Address</label>
+                <label className="text-[10px] font-bold text-[var(--color-muted)] uppercase tracking-widest block mb-2">Badge ID / Email Address</label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-3 flex items-center text-slate-500">
+                  <span className="absolute inset-y-0 left-3 flex items-center text-[var(--color-muted)]">
                     <User className="h-4 w-4" />
                   </span>
                   <input
@@ -212,9 +212,9 @@ export default function Login({ onLogin }) {
               </div>
 
               <div>
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2 font-sans">Security Passcode</label>
+                <label className="text-[10px] font-bold text-[var(--color-muted)] uppercase tracking-widest block mb-2 font-sans">Security Passcode</label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-3 flex items-center text-slate-500">
+                  <span className="absolute inset-y-0 left-3 flex items-center text-[var(--color-muted)]">
                     <KeyRound className="h-4 w-4" />
                   </span>
                   <input
@@ -228,7 +228,7 @@ export default function Login({ onLogin }) {
                   <button
                     type="button"
                     onClick={() => setShowPasscode(!showPasscode)}
-                    className="absolute inset-y-0 right-3 flex items-center text-slate-400 hover:text-slate-100"
+                    className="absolute inset-y-0 right-3 flex items-center text-[var(--color-muted)] hover:text-[var(--color-on-dark)]"
                     disabled={loading || success}
                   >
                     {showPasscode ? <EyeOff className="h-4.5 w-4.5" /> : <Eye className="h-4.5 w-4.5" />}
@@ -288,9 +288,9 @@ export default function Login({ onLogin }) {
                           {user.badgeId}
                         </span>
                       </div>
-                      <p className="text-[9px] text-slate-400 mt-0.5 font-medium">{user.designation}</p>
+                      <p className="text-[9px] text-[var(--color-muted)] mt-0.5 font-medium">{user.designation}</p>
                     </div>
-                    {isActive && <CheckCircle2 className="h-4 w-4 text-blue-400 shrink-0" />}
+                    {isActive && <CheckCircle2 className="h-4 w-4 text-[var(--color-primary)] shrink-0" />}
                   </button>
                 );
               })}
