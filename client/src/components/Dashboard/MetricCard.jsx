@@ -18,7 +18,7 @@ export default function MetricCard({ title, value, trend, isPositive, icon: Icon
   const areaPath = `${linePath} L ${width},${height} L 0,${height} Z`;
 
   return (
-    <div className="card-dark p-6 flex flex-col justify-between h-full min-h-[160px] hover:-translate-y-1 transition-transform duration-300 cursor-default group relative overflow-hidden">
+    <div className="card-dark p-4 sm:p-6 flex flex-col justify-between h-full min-h-[140px] sm:min-h-[160px] hover:-translate-y-1 transition-transform duration-300 cursor-default group relative overflow-hidden">
       {/* Subtle background glow effect on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)] to-transparent opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300 pointer-events-none" />
       
@@ -27,7 +27,7 @@ export default function MetricCard({ title, value, trend, isPositive, icon: Icon
           <span className="text-[14px] font-medium text-[var(--color-muted)] block">
             {title}
           </span>
-          <h2 className="text-[40px] font-bold font-plex text-[var(--color-on-dark)] tracking-tighter leading-none">{value}</h2>
+          <h2 className="text-[28px] sm:text-[32px] lg:text-[40px] font-bold font-plex text-[var(--color-on-dark)] tracking-tighter leading-none">{value}</h2>
         </div>
         <div className="p-2 bg-[var(--color-surface-elevated-dark)] rounded-lg border border-[var(--color-hairline-dark)] group-hover:border-[var(--color-primary)] transition-colors">
           <Icon className="h-5 w-5 text-[var(--color-primary)]" />

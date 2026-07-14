@@ -19,7 +19,7 @@ export default function ResourceDeployment() {
   const highCount = filtered.filter(r => r.riskLevel === 'high').length;
 
   return (
-    <div className="card-dark p-5 h-full flex flex-col">
+    <div className="card-dark p-4 sm:p-5 h-full flex flex-col">
       <div className="flex items-center justify-between mb-4 shrink-0">
         <div>
           <h3 className="text-sm font-bold text-[var(--color-on-dark)]">Smart Resource Deployment</h3>

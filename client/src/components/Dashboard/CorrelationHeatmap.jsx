@@ -80,7 +80,7 @@ export default function CorrelationHeatmap() {
   });
 
   return (
-    <div className="card-dark p-6 h-full flex flex-col">
+    <div className="card-dark p-4 sm:p-6 h-full flex flex-col">
       <div className="mb-6 shrink-0">
         <h3 className="text-sm font-bold text-[var(--color-on-dark)]">Feature Importance & Crime Correlations</h3>
         <p className="text-[9px] text-[var(--color-muted)] font-semibold uppercase tracking-[0.12em] mt-0.5">

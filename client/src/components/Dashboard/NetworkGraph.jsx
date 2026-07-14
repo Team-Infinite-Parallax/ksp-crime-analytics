@@ -92,11 +92,6 @@ const CYTO_STYLE = [
       'background-color': '#7a1515',
       'width': 44,
       'height': 44,
-      'shadow-blur': 12,
-      'shadow-color': '#cc3333',
-      'shadow-opacity': 0.6,
-      'shadow-offset-x': 0,
-      'shadow-offset-y': 0,
     }
   },
   {
@@ -104,7 +99,7 @@ const CYTO_STYLE = [
     style: {
       'shape': 'ellipse',
       'background-color': '#3a1a08',
-      'border-color': 'var(--color-primary)',
+      'border-color': '#2563eb',
       'border-width': 2,
       'color': '#e6d4a4',
       'width': 30,
@@ -171,26 +166,16 @@ const CYTO_STYLE = [
   {
     selector: 'node:selected',
     style: {
-      'border-color': 'var(--color-primary)',
+      'border-color': '#2563eb',
       'border-width': 3,
       'color': '#e6e2d8',
-      'shadow-blur': 16,
-      'shadow-color': 'var(--color-primary)',
-      'shadow-opacity': 0.3,
-      'shadow-offset-x': 0,
-      'shadow-offset-y': 0,
     }
   },
   {
     selector: 'node.highlighted',
     style: {
-      'border-color': 'var(--color-primary)',
+      'border-color': '#2563eb',
       'border-width': 3,
-      'shadow-blur': 20,
-      'shadow-color': 'var(--color-primary)',
-      'shadow-opacity': 0.5,
-      'shadow-offset-x': 0,
-      'shadow-offset-y': 0,
       'color': '#e6e2d8',
     }
   },
@@ -203,13 +188,8 @@ const CYTO_STYLE = [
   {
     selector: 'node.neighbor-revealed',
     style: {
-      'border-color': 'var(--color-primary)',
+      'border-color': '#2563eb',
       'border-width': 2.5,
-      'shadow-blur': 12,
-      'shadow-color': 'var(--color-primary)',
-      'shadow-opacity': 0.5,
-      'shadow-offset-x': 0,
-      'shadow-offset-y': 0,
     }
   },
   {
@@ -238,7 +218,7 @@ const CYTO_STYLE = [
     selector: 'edge[type="victimized"]',
     style: {
       'line-color': '#3a1a08',
-      'target-arrow-color': 'var(--color-primary)',
+      'target-arrow-color': '#2563eb',
       'width': 1,
       'line-style': 'dashed',
       'line-dash-pattern': [4, 3],
@@ -257,7 +237,7 @@ const CYTO_STYLE = [
     selector: 'edge[type="coAccused"]',
     style: {
       'line-color': '#5c3a1a',
-      'target-arrow-color': 'var(--color-primary)',
+      'target-arrow-color': '#2563eb',
       'target-arrow-shape': 'none',
       'width': 2,
       'line-style': 'dashed',
@@ -306,9 +286,6 @@ const CYTO_STYLE = [
     style: {
       'border-color': '#f59e0b',
       'border-width': 4,
-      'shadow-blur': 25,
-      'shadow-color': '#f59e0b',
-      'shadow-opacity': 0.8,
     }
   },
   {
@@ -405,7 +382,6 @@ export default function NetworkGraph() {
       userPanningEnabled: true,
       boxSelectionEnabled: false,
       autounselectify: false,
-      wheelSensitivity: 0.3,
     });
 
     cyRef.current = cy;
@@ -588,7 +564,7 @@ export default function NetworkGraph() {
     
     if (!pathfinderMode) {
       cy.elements().removeClass('dimmed highlighted path-highlight');
-      setPathNodes({ start: null, end: null });
+      setPathNodes(prev => (prev.start === null && prev.end === null) ? prev : { start: null, end: null });
       return;
     }
 
@@ -683,8 +659,8 @@ export default function NetworkGraph() {
   return (
     <div className="flex flex-col flex-1 h-full w-full gap-0 relative bg-[var(--color-surface-card-dark)] border border-[var(--color-hairline-dark)] rounded-xl">
 
-      <div className="flex items-center justify-between px-6 py-3 border-b border-[var(--color-hairline-dark)] bg-[var(--color-surface-card-dark)] shrink-0 z-20 relative">
-        <div className="flex items-center space-x-3">
+      <div className="flex items-center justify-between px-3 sm:px-6 py-3 border-b border-[var(--color-hairline-dark)] bg-[var(--color-surface-card-dark)] shrink-0 z-20 relative">
+        <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
           <div className="p-2 rounded-sm bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)]">
             <Network className="h-4 w-4 text-[var(--color-primary)]" />
           </div>
@@ -696,7 +672,7 @@ export default function NetworkGraph() {
           </div>
         </div>
 
-        <div className="relative flex-1 max-w-xs mx-6">
+        <div className="relative flex-1 max-w-[160px] sm:max-w-xs mx-3 sm:mx-6">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[var(--color-muted)] pointer-events-none" />
           <input
             type="text"
@@ -736,7 +712,7 @@ export default function NetworkGraph() {
       </div>
     </div>
 
-      <div className="flex items-center space-x-2 px-6 py-2.5 bg-[var(--color-surface-card-dark)] border-b border-[var(--color-hairline-dark)] shrink-0 z-10 overflow-x-auto">
+      <div className="flex items-center space-x-2 px-3 sm:px-6 py-2.5 bg-[var(--color-surface-card-dark)] border-b border-[var(--color-hairline-dark)] shrink-0 z-10 overflow-x-auto">
         <span className="text-[9px] text-[var(--color-muted)] font-semibold uppercase shrink-0">Node Type:</span>
         {['all', 'offender', 'victim', 'policeStation', 'crime', 'bankAccount', 'phone'].map(f => (
           <button
@@ -907,7 +883,7 @@ export default function NetworkGraph() {
         )}
 
         <div
-          className={`absolute right-0 top-0 bottom-0 w-72 bg-[var(--color-surface-card-dark)] border-l border-[var(--color-hairline-dark)] flex flex-col transition-transform duration-300 ease-out z-20 ${
+          className={`absolute right-0 top-0 bottom-0 w-72 sm:w-80 bg-[var(--color-surface-card-dark)] border-l border-[var(--color-hairline-dark)] flex flex-col transition-transform duration-300 ease-out z-20 ${
             selectedNode ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
@@ -1067,7 +1043,7 @@ export default function NetworkGraph() {
 
       </div>
 
-      <div className="flex items-center justify-between px-6 py-2 bg-[var(--color-surface-elevated-dark)] border-t border-[var(--color-hairline-dark)] shrink-0">
+      <div className="flex items-center justify-between px-3 sm:px-6 py-2 bg-[var(--color-surface-elevated-dark)] border-t border-[var(--color-hairline-dark)] shrink-0">
         <div className="flex items-center space-x-4">
           <span className="text-[9px] text-[var(--color-muted)] font-semibold uppercase tracking-wide">
             SCRB Intel — Network Analysis

@@ -25,7 +25,7 @@ export default function RecentCrimesTable({ crimes }) {
   };
 
   return (
-    <div className="card-dark p-6 flex flex-col justify-between">
+    <div className="card-dark p-4 sm:p-6 flex flex-col justify-between">
       <div>
         <div className="flex items-center justify-between mb-6 pb-4">
           <div>

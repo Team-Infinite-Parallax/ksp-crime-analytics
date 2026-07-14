@@ -32,7 +32,7 @@ export default function WantedMissing() {
   });
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6">
       <div className="bg-[var(--color-surface-card-dark)] border border-[var(--color-primary)]/15 rounded-sm p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">

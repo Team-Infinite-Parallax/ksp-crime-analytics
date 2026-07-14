@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import Sidebar from './components/Layout/Sidebar';
 import Navbar from './components/Layout/Navbar';
 import Login from './components/Auth/Login';
@@ -101,6 +101,11 @@ function AppContent({ activeTab, setActiveTab }) {
     onLogout
   } = useFilters();
 
+  /* Mobile sidebar drawer state */
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const toggleMobileSidebar = useCallback(() => setIsMobileSidebarOpen(prev => !prev), []);
+  const closeMobileSidebar = useCallback(() => setIsMobileSidebarOpen(false), []);
+
   const filteredCrimes = useMemo(() => {
     return rawCrimesLog.filter(c => {
       if (activeRole === 'DISTRICT_OFFICER' && c.districtId !== 1) return false;
@@ -168,17 +173,17 @@ function AppContent({ activeTab, setActiveTab }) {
         Skip to main content
       </a>
 
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} onLogout={onLogout} />
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} onLogout={onLogout} isMobileOpen={isMobileSidebarOpen} onMobileClose={closeMobileSidebar} />
 
-      <main id="main-content" className="flex-1 flex flex-col overflow-hidden relative">
-        <Navbar />
+      <main id="main-content" className="flex-1 flex flex-col overflow-hidden relative min-w-0">
+        <Navbar onMenuToggle={toggleMobileSidebar} />
 
         {activeTab === 'dashboard' && (
           <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-10 space-y-8 animate-[fadeIn_0.4s_ease-out_forwards]">
             
             {/* Structural Header */}
             <div className="flex flex-col space-y-4">
-              <div className="flex items-center space-x-4 border-b border-[var(--color-hairline-dark)] pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 border-b border-[var(--color-hairline-dark)] pb-4">
                 <span className="text-[10px] font-plex tracking-[0.2em] text-[var(--color-primary)] uppercase">
                   Section 01 //
                 </span>
@@ -187,22 +192,22 @@ function AppContent({ activeTab, setActiveTab }) {
                 </h2>
               </div>
 
-              <div className="glass-panel p-6 flex items-center justify-between shadow-2xl rounded-2xl">
-                <div className="flex items-center space-x-4">
-                  <div className="p-3 rounded-xl bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)] text-[var(--color-primary)] shadow-inner">
+              <div className="glass-panel p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between shadow-2xl rounded-2xl gap-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                  <div className="p-3 rounded-xl bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)] text-[var(--color-primary)] shadow-inner shrink-0">
                     <Shield className="h-6 w-6" />
                   </div>
                   <div>
-                    <div className="flex items-center space-x-2">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
                       {emblemSvg}
-                      <h3 className="text-[22px] font-bold tracking-wide text-[var(--color-on-dark)]">Karnataka State Police</h3>
+                      <h3 className="text-[18px] sm:text-[22px] font-bold tracking-wide text-[var(--color-on-dark)]">Karnataka State Police</h3>
                     </div>
                     <p className="text-[14px] text-[var(--color-muted)] font-medium mt-1">
                       Authorised Personnel Only &bull; <span className="text-[var(--color-body)]">{userDetails.designation}</span> &bull; {userDetails.districtName}
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col items-end space-y-2">
+                <div className="flex flex-col sm:flex-row items-start sm:items-end space-y-2 sm:space-y-0 sm:space-y-2">
                   <span className="text-[11px] bg-[rgba(246,70,93,0.1)] text-[var(--color-trading-down)] border border-[rgba(246,70,93,0.2)] px-3 py-1.5 rounded-md font-bold uppercase tracking-widest flex items-center">
                     <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-trading-down)] animate-pulse mr-2"></span>
                     Classified
@@ -259,10 +264,10 @@ function AppContent({ activeTab, setActiveTab }) {
               <div className="lg:col-span-2">
                 <CrimeTrendsChart title="Crime Volume Registrations (Year-on-Year)" data={trendData} showAnomalies={true} />
               </div>
-              <div className="card-dark p-6 h-full min-h-[340px] flex flex-col justify-between">
+              <div className="card-dark p-4 sm:p-6 h-full min-h-[280px] sm:min-h-[340px] flex flex-col justify-between">
                 <div>
-                  <h3 className="text-[20px] font-semibold text-[var(--color-on-dark)]">Jurisdictional Status</h3>
-                  <p className="text-[14px] text-[var(--color-muted)] font-medium mt-0.5">Active Station Performance</p>
+                  <h3 className="text-[16px] sm:text-[20px] font-semibold text-[var(--color-on-dark)]">Jurisdictional Status</h3>
+                  <p className="text-[12px] sm:text-[14px] text-[var(--color-muted)] font-medium mt-0.5">Active Station Performance</p>
                 </div>
                 <div className="space-y-4 my-auto">
                   <div className="flex items-center justify-between">
@@ -295,12 +300,12 @@ function AppContent({ activeTab, setActiveTab }) {
             </div>
 
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div>
-                  <h3 className="text-[24px] font-semibold text-[var(--color-on-dark)]">Repeat Offender Profiles</h3>
+                  <h3 className="text-[18px] sm:text-[24px] font-semibold text-[var(--color-on-dark)]">Repeat Offender Profiles</h3>
                   <p className="text-[14px] text-[var(--color-muted)] font-medium mt-0.5">High-Risk Crime Syndicate Suspects</p>
                 </div>
-                <span className="flex items-center text-[14px] font-bold text-[var(--color-info)] bg-[var(--color-surface-card-dark)] px-4 py-2 rounded-lg">
+                <span className="hidden sm:flex items-center text-[14px] font-bold text-[var(--color-info)] bg-[var(--color-surface-card-dark)] px-4 py-2 rounded-lg">
                   <Fingerprint className="h-[18px] w-[18px] mr-2" />
                   Pattern Matching Active
                 </span>
@@ -375,17 +380,17 @@ function AppContent({ activeTab, setActiveTab }) {
         )}
 
         {activeTab !== 'dashboard' && activeTab !== 'hotspots' && activeTab !== 'network' && activeTab !== 'risk' && activeTab !== 'wanted' && activeTab !== 'reports' && (
-          <div className="flex-1 overflow-y-auto p-8 flex flex-col items-center justify-center text-center">
-            <div className="p-4 bg-[var(--color-surface-card-dark)] rounded-full text-[var(--color-primary)] mb-4">
-              <Users className="h-10 w-10" />
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 flex flex-col items-center justify-center text-center">
+            <div className="p-3 sm:p-4 bg-[var(--color-surface-card-dark)] rounded-full text-[var(--color-primary)] mb-3 sm:mb-4">
+              <Users className="h-8 w-8 sm:h-10 sm:w-10" />
             </div>
-            <h2 className="text-[24px] font-bold text-[var(--color-on-dark)] capitalize">{activeTab} Analytics Module</h2>
-            <p className="text-[14px] text-[var(--color-muted)] max-w-sm mt-1">
+            <h2 className="text-[18px] sm:text-[22px] lg:text-[24px] font-bold text-[var(--color-on-dark)] capitalize">{activeTab} Analytics Module</h2>
+            <p className="text-[12px] sm:text-[14px] text-[var(--color-muted)] max-w-sm mt-1 px-4">
               This module is secure and active. Backend systems are protected under role-based policies requiring {activeRole}.
             </p>
             <button
               onClick={() => setActiveTab('dashboard')}
-              className="btn-primary mt-6"
+              className="btn-primary mt-4 sm:mt-6"
             >
               Return to Dashboard
             </button>

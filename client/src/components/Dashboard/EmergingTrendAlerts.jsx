@@ -58,7 +58,7 @@ export default function EmergingTrendAlerts() {
   const maxSpike = Math.max(...categoryStats.map(c => c.spikeRatio), 1);
 
   return (
-    <div className="card-dark p-5">
+    <div className="card-dark p-4 sm:p-5">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="text-sm font-bold text-[var(--color-on-dark)]">Emerging Crime Trend Alerts</h3>

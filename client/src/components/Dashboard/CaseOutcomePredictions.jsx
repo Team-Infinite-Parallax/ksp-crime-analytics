@@ -23,13 +23,6 @@ export default function CaseOutcomePredictions() {
           queryParams.append('districtId', filters.districtId);
         }
 
-        const response = await fetch(`/predictions?${queryParams}`, {
-          headers: {
-            'x-employee-role': localStorage.getItem('userRole') || 'SCRB_ADMIN',
-            'x-employee-email': localStorage.getItem('userEmail') || 'test@ksp.in'
-          }
-        });
-
         const result = await fetchWithFallback(`/predictions?${queryParams}`);
         setPredictions(result?.caseOutcomes || MOCK_OUTCOMES);
       } catch (err) {
@@ -58,7 +51,7 @@ export default function CaseOutcomePredictions() {
   };
 
   return (
-    <div className="card-dark p-6 h-full flex flex-col">
+    <div className="card-dark p-4 sm:p-6 h-full flex flex-col">
       <div className="flex items-center justify-between mb-6 shrink-0">
         <div className="flex items-center space-x-3">
           <div className="p-2.5 rounded-sm bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20">

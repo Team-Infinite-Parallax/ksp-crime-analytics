@@ -373,9 +373,9 @@ export default function VoiceSearch() {
 
           <div className="border-t border-[var(--color-hairline-dark)]/60 mt-4 pt-4 text-[10px] text-[var(--color-muted)] font-semibold space-y-1.5 bg-[var(--color-canvas-dark)]/30 -mx-5 -mb-5 sm:-mx-6 sm:-mb-6 px-5 pb-5 sm:px-6 sm:pb-6 rounded-b-3xl">
             <p className="uppercase text-[var(--color-muted)] tracking-wider mb-1.5">Example commands:</p>
-            <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-[var(--color-primary)]/50 mr-2"></span> "Show me cyber crimes in Mysore" / "ಮೈಸೂರಿನಲ್ಲಿ ಸೈಬರ್ ಅಪರಾಧ"</p>
-            <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-[var(--color-primary)]/50 mr-2"></span> "Show heinous crimes in Bengaluru" / "ಬೆಂಗಳೂರಿನಲ್ಲಿ ಘೋರ ಅಪರಾಧಗಳು"</p>
-            <p className="flex items-center"><span className="w-1 h-1 rounded-full bg-[var(--color-primary)]/50 mr-2"></span> "Find cases about Rajesh Choudhary" / "ರಾಜೇಶ್ ಚೌಧರಿ ಪ್ರಕರಣಗಳು"</p>
+            <p className="flex items-start break-words"><span className="w-1 h-1 rounded-full bg-[var(--color-primary)]/50 mr-2 mt-1.5 shrink-0"></span> "Show me cyber crimes in Mysore" / "ಮೈಸೂರಿನಲ್ಲಿ ಸೈಬರ್ ಅಪರಾಧ"</p>
+            <p className="flex items-start break-words"><span className="w-1 h-1 rounded-full bg-[var(--color-primary)]/50 mr-2 mt-1.5 shrink-0"></span> "Show heinous crimes in Bengaluru" / "ಬೆಂಗಳೂರಿನಲ್ಲಿ ಘೋರ ಅಪರಾಧಗಳು"</p>
+            <p className="flex items-start break-words"><span className="w-1 h-1 rounded-full bg-[var(--color-primary)]/50 mr-2 mt-1.5 shrink-0"></span> "Find cases about Rajesh Choudhary" / "ರಾಜೇಶ್ ಚೌಧರಿ ಪ್ರಕರಣಗಳು"</p>
           </div>
         </div>
       </div>

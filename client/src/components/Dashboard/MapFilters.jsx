@@ -8,7 +8,8 @@ import {
   Info,
   MapPin,
   Flame,
-  AlertTriangle
+  AlertTriangle,
+  X
 } from 'lucide-react';
 
 export default function MapFilters({
@@ -19,7 +20,8 @@ export default function MapFilters({
   severity,
   setSeverity,
   onFlyToHotspot,
-  activeRole
+  activeRole,
+  onClose
 }) {
   const categories = [
     'Property Offences',
@@ -47,15 +49,26 @@ export default function MapFilters({
   };
 
   return (
-    <div className="absolute top-4 left-4 z-[1000] w-72 bg-[var(--color-canvas-dark)]/95 backdrop-blur-md border border-[var(--color-hairline-dark)] rounded-sm shadow-2xl p-4 text-[var(--color-on-dark)] overflow-y-auto max-h-[calc(100%-2rem)] flex flex-col space-y-4 select-none">
+    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-[1000] w-60 sm:w-72 max-w-[calc(100vw-1rem)] bg-[var(--color-canvas-dark)]/95 backdrop-blur-md border border-[var(--color-hairline-dark)] rounded-sm shadow-2xl p-3 sm:p-4 text-[var(--color-on-dark)] overflow-y-auto max-h-[calc(100%-1rem)] sm:max-h-[calc(100%-2rem)] flex flex-col space-y-3 sm:space-y-4 select-none">
       <div className="flex items-center justify-between border-b border-[var(--color-hairline-dark)] pb-3">
         <div className="flex items-center space-x-2">
           <Sliders className="h-[18px] w-[18px] text-[var(--color-primary)]" />
           <h3 className="text-sm font-bold tracking-wide uppercase">Map Controls</h3>
         </div>
-        <span className="text-[8px] bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)] border border-[var(--color-hairline-dark)] px-2 py-0.5 rounded font-bold uppercase tracking-wider">
-          LIVE
-        </span>
+        <div className="flex items-center space-x-2">
+          <span className="text-[8px] bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)] border border-[var(--color-hairline-dark)] px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+            LIVE
+          </span>
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="p-1 rounded-sm text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] transition-colors"
+              aria-label="Close map controls"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="bg-[var(--color-canvas-dark)] border border-[var(--color-hairline-dark)] rounded-sm p-2.5 flex items-center space-x-2.5">

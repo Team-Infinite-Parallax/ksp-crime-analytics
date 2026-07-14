@@ -1,0 +1,144 @@
+
+> crime-intelligence-agent@1.0.0 dev
+> npm run sync-middleware && concurrently "npm run dev:server" "npm run dev:client"
+
+
+> crime-intelligence-agent@1.0.0 sync-middleware
+> node scripts/sync-middleware.js
+
+--- STARTING MIDDLEWARE SYNCHRONIZATION ---
+Successfully synced: -> functions/alerts/authMiddleware.js
+Successfully synced: -> functions/clustering/authMiddleware.js
+Successfully synced: -> functions/crimelist/authMiddleware.js
+Successfully synced: -> functions/dashboard/authMiddleware.js
+Successfully synced: -> functions/hotspots/authMiddleware.js
+Successfully synced: -> functions/network/authMiddleware.js
+Successfully synced: -> functions/predictions/authMiddleware.js
+Successfully synced: -> functions/risk/authMiddleware.js
+--- MIDDLEWARE SYNCHRONIZATION COMPLETE ---
+
+[0] 
+[0] > crime-intelligence-agent@1.0.0 dev:server
+[0] > node functions/dev-server.js
+[0] 
+[1] 
+[1] > crime-intelligence-agent@1.0.0 dev:client
+[1] > npm run dev --prefix client
+[1] 
+[0] [dev-server] Mock API running on http://localhost:3001
+[0] [dev-server] Endpoints: /predictions, /alerts, /clustering
+[1] 
+[1] > client@0.0.0 dev
+[1] > vite
+[1] 
+[1] 
+[1]   [32m[1mVITE[22m v8.1.3[39m  [2mready in [0m[1m527[22m[2m[0m ms[22m
+[1] 
+[1]   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+[1] [2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+[1] [2m9:33:47 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:33:49 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:34:09 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:34:11 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:34:12 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:34:21 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:34:22 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:34:23 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:34:51 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:36:24 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css[22m
+[1] [2m9:37:27 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Layout/Sidebar.jsx, /src/index.css[22m
+[1] [2m9:38:11 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Layout/Navbar.jsx, /src/index.css[22m
+[1] [2m9:38:37 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:38:52 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:39:06 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:39:40 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/CopBot.jsx, /src/index.css[22m
+[1] [2m9:39:42 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/AlertCenter.jsx, /src/index.css[22m
+[1] [2m9:39:45 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Dashboard/MapFilters.jsx[22m
+[1] [2m9:40:02 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/HotspotMap.jsx, /src/index.css[22m
+[1] [2m9:40:05 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:40:06 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/ReportsAnalytics.jsx, /src/index.css[22m
+[1] [2m9:40:10 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/RiskProfiling.jsx, /src/index.css[22m
+[1] [2m9:40:11 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/WantedMissing.jsx, /src/index.css[22m
+[1] [2m9:40:25 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/MetricCard.jsx, /src/index.css[22m
+[1] [2m9:40:27 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/MetricCard.jsx, /src/index.css[22m
+[1] [2m9:40:29 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/Filters.jsx, /src/index.css[22m
+[1] [2m9:40:32 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/Filters.jsx, /src/index.css[22m
+[1] [2m9:40:33 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/RecentCrimesTable.jsx, /src/index.css[22m
+[1] [2m9:40:49 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:40:51 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:40:52 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:40:56 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/NetworkGraph.jsx, /src/index.css[22m
+[1] [2m9:41:12 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:41:13 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:41:15 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:41:20 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:41:21 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:41:38 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:41:40 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:41:41 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:41:47 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:44:07 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/CrimeTrendsChart.jsx, /src/index.css[22m
+[1] [2m9:44:10 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/RiskCard.jsx, /src/index.css[22m
+[1] [2m9:44:11 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/EmergingTrendAlerts.jsx, /src/index.css[22m
+[1] [2m9:44:12 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/SocioEconomicOverlay.jsx, /src/index.css[22m
+[1] [2m9:44:12 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/ResourceDeployment.jsx, /src/index.css[22m
+[1] [2m9:44:13 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/BehavioralProfiles.jsx, /src/index.css[22m
+[1] [2m9:44:14 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/CorrelationHeatmap.jsx, /src/index.css[22m
+[1] [2m9:44:15 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/CaseOutcomePredictions.jsx, /src/index.css[22m
+[1] [2m9:44:16 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/TrendForecasts.jsx, /src/index.css[22m
+[1] [2m9:45:11 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Dashboard/VoiceSearch.jsx[22m
+[1] [2m9:45:39 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:45:43 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[1] [2m9:54:09 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/HotspotMap.jsx, /src/index.css[22m
+[1] [2m9:54:15 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/HotspotMap.jsx, /src/index.css[22m
+[1] [2m9:54:21 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Dashboard/MapFilters.jsx[22m
+[1] [2m9:54:29 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Dashboard/MapFilters.jsx[22m
+[1] [2m9:54:38 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/HotspotMap.jsx, /src/index.css[22m
+[1] [2m9:54:47 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/HotspotMap.jsx, /src/index.css[22m
+[1] [2m9:54:47 pm[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 1 error:
+[1] 
+[1] [31m[PARSE_ERROR] [0mAdjacent JSX elements must be wrapped in an enclosing tag.
+[1]      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/components/Dashboard/HotspotMap.jsx:449:7 [38;5;246m][0m
+[1]      [38;5;246m│[0m
+[1]  [38;5;246m449 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m<[38;5;249m/[0m[38;5;249md[0m[38;5;249mi[0m[38;5;249mv[0m[38;5;249m>[0m
+[1]  [38;5;240m    │[0m       ┬  
+[1]  [38;5;240m    │[0m       ╰── 
+[1]  [38;5;240m    │[0m 
+[1]  [38;5;240m    │[0m [38;5;115mHelp[0m: Did you want a JSX fragment `<>...</>`?
+[1] [38;5;246m─────╯[0m
+[1] [39m
+[1]   Plugin: [35mvite:oxc[39m
+[1]   File: [36mD:/infinite parallax/web/datathon/client/src/components/Dashboard/HotspotMap.jsx[39m
+[1]       at transformWithOxc (file:///D:/infinite%20parallax/web/datathon/client/node_modules/vite/dist/node/chunks/node.js:3661:19)
+[1]       at TransformPluginContext.transform (file:///D:/infinite%20parallax/web/datathon/client/node_modules/vite/dist/node/chunks/node.js:3732:26)
+[1]       at EnvironmentPluginContainer.transform (file:///D:/infinite%20parallax/web/datathon/client/node_modules/vite/dist/node/chunks/node.js:29745:51)
+[1]       at async loadAndTransform (file:///D:/infinite%20parallax/web/datathon/client/node_modules/vite/dist/node/chunks/node.js:19729:26)
+[1]       at async viteTransformMiddleware (file:///D:/infinite%20parallax/web/datathon/client/node_modules/vite/dist/node/chunks/node.js:24160:20)
+[1] [2m9:54:47 pm[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 1 error:
+[1] 
+[1] [31m[PARSE_ERROR] [0mAdjacent JSX elements must be wrapped in an enclosing tag.
+[1]      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/components/Dashboard/HotspotMap.jsx:449:7 [38;5;246m][0m
+[1]      [38;5;246m│[0m
+[1]  [38;5;246m449 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m<[38;5;249m/[0m[38;5;249md[0m[38;5;249mi[0m[38;5;249mv[0m[38;5;249m>[0m
+[1]  [38;5;240m    │[0m       ┬  
+[1]  [38;5;240m    │[0m       ╰── 
+[1]  [38;5;240m    │[0m 
+[1]  [38;5;240m    │[0m [38;5;115mHelp[0m: Did you want a JSX fragment `<>...</>`?
+[1] [38;5;246m─────╯[0m
+[1] [39m
+[1]   Plugin: [35mvite:oxc[39m
+[1]   File: [36mD:/infinite parallax/web/datathon/client/src/components/Dashboard/HotspotMap.jsx[39m
+[1]       at transformWithOxc (file:///D:/infinite%20parallax/web/datathon/client/node_modules/vite/dist/node/chunks/node.js:3661:19)
+[1]       at TransformPluginContext.transform (file:///D:/infinite%20parallax/web/datathon/client/node_modules/vite/dist/node/chunks/node.js:3732:26)
+[1]       at EnvironmentPluginContainer.transform (file:///D:/infinite%20parallax/web/datathon/client/node_modules/vite/dist/node/chunks/node.js:29745:51)
+[1]       at async loadAndTransform (file:///D:/infinite%20parallax/web/datathon/client/node_modules/vite/dist/node/chunks/node.js:19729:26)
+[1]       at async viteTransformMiddleware (file:///D:/infinite%20parallax/web/datathon/client/node_modules/vite/dist/node/chunks/node.js:24160:20)
+[1] [2m9:55:02 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/HotspotMap.jsx, /src/index.css[22m
+[1] [2m9:55:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Dashboard/HotspotMap.jsx, /src/index.css[22m
+[1] ^CTerminate batch job (Y/N)? 
+[0] ^C
+[1] ^CTerminate batch job (Y/N)? 
+[0] ^CTerminate batch job (Y/N)? 
+[1] npm run dev:client exited with code 3221225786
+[0] npm run dev:server exited with code 3221225786
+^C

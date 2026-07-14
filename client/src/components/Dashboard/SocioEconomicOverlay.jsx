@@ -44,7 +44,7 @@ export default function SocioEconomicOverlay() {
   const selectedMeta = FACTOR_META[selectedFactor];
 
   return (
-    <div className="card-dark p-5 h-full flex flex-col">
+    <div className="card-dark p-4 sm:p-5 h-full flex flex-col">
       <div className="flex items-center justify-between mb-4 shrink-0">
         <div>
           <h3 className="text-sm font-bold text-[var(--color-on-dark)]">Socio-Economic Crime Correlation</h3>
