@@ -42,8 +42,8 @@ export default function SocioEconomicOverlay({ activeRole, filters = {} }) {
   const selectedMeta = FACTOR_META[selectedFactor];
 
   return (
-    <div className="card-dark p-5">
-      <div className="flex items-center justify-between mb-4">
+    <div className="card-dark p-5 h-full flex flex-col">
+      <div className="flex items-center justify-between mb-4 shrink-0">
         <div>
           <h3 className="text-sm font-bold text-[var(--color-on-dark)]">Socio-Economic Crime Correlation</h3>
           <p className="text-[9px] text-[var(--color-muted)] font-semibold uppercase tracking-[0.12em] mt-0.5">
@@ -52,7 +52,7 @@ export default function SocioEconomicOverlay({ activeRole, filters = {} }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-1.5 mb-5">
+      <div className="flex flex-wrap gap-1.5 mb-5 shrink-0">
         {FACTOR_ORDER.map(key => {
           const meta = FACTOR_META[key];
           const Icon = meta.icon;
@@ -74,7 +74,7 @@ export default function SocioEconomicOverlay({ activeRole, filters = {} }) {
         })}
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-3 flex-1 overflow-y-auto min-h-0 pr-1">
         {correlations.sort((a, b) => b.factorValue - a.factorValue).map(d => {
           const factorPct = (d.factorValue / maxFactor) * 100;
           const crimePct = (d.crimeCount / maxCrime) * 100;
@@ -126,7 +126,7 @@ export default function SocioEconomicOverlay({ activeRole, filters = {} }) {
         })}
       </div>
 
-      <div className="mt-4 p-3 bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30 rounded-sm">
+      <div className="mt-4 p-3 bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30 rounded-sm shrink-0">
         <p className="text-[9px] text-[var(--color-muted)]">
           <span className="font-bold">Insight:</span> Districts with higher {selectedMeta.label.toLowerCase()} show{' '}
           {correlations.some(d => {

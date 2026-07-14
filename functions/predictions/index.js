@@ -181,7 +181,6 @@ module.exports = async (req, res) => {
             FROM CaseMaster cm
             LEFT JOIN District d ON cm.DistrictID = d.DistrictID
             LEFT JOIN Unit u ON cm.UnitID = u.UnitID
-            WHERE cm.RegistrationDate >= DATE_ADD(CURDATE(), INTERVAL -90 DAY)
             ${filterClause ? filterClause + ' AND' : 'WHERE'} cm.RegistrationDate >= DATE_ADD(CURDATE(), INTERVAL -90 DAY)
             GROUP BY cm.DistrictID, d.DistrictName, cm.UnitID, u.UnitName, caseDate
             ORDER BY caseDate DESC

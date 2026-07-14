@@ -84,8 +84,8 @@ export default function WantedMissing({ activeRole }) {
         </div>
       </div>
 
-      <div className="card-dark p-5">
-        <div className="flex items-center justify-between mb-4">
+      <div className="card-dark p-5 flex flex-col">
+        <div className="flex items-center justify-between mb-4 shrink-0">
           <h3 className="text-xs font-bold text-[var(--color-on-dark)] flex items-center">
             <Filter className="h-4 w-4 text-[var(--color-primary)] mr-2" />
             Person Records
@@ -114,7 +114,7 @@ export default function WantedMissing({ activeRole }) {
             </select>
           </div>
         </div>
-        <div className="space-y-2 max-h-[500px] overflow-y-auto pr-1">
+        <div className="space-y-2 flex-1 overflow-y-auto min-h-[300px] pr-1">
           {filteredData.length === 0 ? (
             <div className="text-center py-6 text-[var(--color-muted)] text-[10px]">No records match current filters.</div>
           ) : (

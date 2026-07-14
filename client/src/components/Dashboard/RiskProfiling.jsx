@@ -136,12 +136,12 @@ export default function RiskProfiling({ offenders }) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 card-dark p-5">
-          <h3 className="text-xs font-bold text-[var(--color-on-dark)] mb-4 flex items-center">
+        <div className="lg:col-span-2 card-dark p-5 h-full flex flex-col">
+          <h3 className="text-xs font-bold text-[var(--color-on-dark)] mb-4 flex items-center shrink-0">
             <TrendingUp className="h-4 w-4 text-[var(--color-primary)] mr-2" />
             Risk Score Distribution
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-3 flex-1 flex flex-col justify-center">
             {[
               { level: 'Critical (80-100)', count: riskDistribution.high, color: RISK_COLORS.high, pct: riskDistribution.total ? (riskDistribution.high / riskDistribution.total) * 100 : 0 },
               { level: 'Elevated (50-79)', count: riskDistribution.medium, color: RISK_COLORS.medium, pct: riskDistribution.total ? (riskDistribution.medium / riskDistribution.total) * 100 : 0 },
@@ -160,12 +160,12 @@ export default function RiskProfiling({ offenders }) {
           </div>
         </div>
 
-        <div className="card-dark p-5">
-          <h3 className="text-xs font-bold text-[var(--color-on-dark)] mb-4 flex items-center">
+        <div className="card-dark p-5 h-full flex flex-col">
+          <h3 className="text-xs font-bold text-[var(--color-on-dark)] mb-4 flex items-center shrink-0">
             <Map className="h-4 w-4 text-[var(--color-primary)] mr-2" />
             District Case Footprint
           </h3>
-          <div className="space-y-2.5">
+          <div className="space-y-2.5 flex-1 overflow-y-auto min-h-0 pr-1">
             {districtHeat.map(([district, cases]) => (
               <div key={district}>
                 <div className="flex items-center justify-between mb-1">
@@ -217,12 +217,12 @@ export default function RiskProfiling({ offenders }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {moPatterns.length > 0 && (
-          <div className="card-dark p-5">
-            <h3 className="text-xs font-bold text-[var(--color-on-dark)] mb-3 flex items-center">
+          <div className="card-dark p-5 h-full flex flex-col">
+            <h3 className="text-xs font-bold text-[var(--color-on-dark)] mb-3 flex items-center shrink-0">
               <Fingerprint className="h-4 w-4 text-[var(--color-primary)] mr-2" />
               Pattern Matching Insights
             </h3>
-            <div className="space-y-2">
+            <div className="space-y-2 flex-1 overflow-y-auto min-h-0 pr-1">
               {moPatterns.map(({ pattern, count, offenders: patOffenders }) => (
                 <div key={pattern} className="p-2.5 rounded-sm bg-[var(--color-canvas-dark)] border border-[var(--color-primary)]/10">
                   <div className="flex items-center justify-between">
@@ -238,8 +238,8 @@ export default function RiskProfiling({ offenders }) {
           </div>
         )}
 
-        <div className="lg:col-span-2 card-dark p-5">
-          <div className="flex items-center justify-between mb-4">
+        <div className="lg:col-span-2 card-dark p-5 h-full flex flex-col">
+          <div className="flex items-center justify-between mb-4 shrink-0">
             <h3 className="text-xs font-bold text-[var(--color-on-dark)] flex items-center">
               <UserX className="h-4 w-4 text-[var(--color-primary)] mr-2" />
               Offender Watchlist
@@ -269,7 +269,7 @@ export default function RiskProfiling({ offenders }) {
               </select>
             </div>
           </div>
-          <div className="space-y-2 max-h-[400px] overflow-y-auto pr-1">
+          <div className="space-y-2 flex-1 overflow-y-auto min-h-0 pr-1">
             {filteredOffenders.length === 0 ? (
               <div className="text-center py-6 text-[var(--color-muted)] text-[10px]">No offenders match current filters.</div>
             ) : (

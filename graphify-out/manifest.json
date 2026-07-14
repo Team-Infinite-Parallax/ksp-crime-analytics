@@ -25,12 +25,12 @@
     "semantic_hash": ""
   },
   "client/src/App.jsx": {
-    "mtime": 1783798075.8391628,
-    "ast_hash": "d01629b8287c07351ba2b275079da0bc",
+    "mtime": 1784028259.9340346,
+    "ast_hash": "4aa4cd51002af57ac2ad2c3b6b251a3b",
     "semantic_hash": ""
   },
   "client/src/components/Auth/Login.jsx": {
-    "mtime": 1783791864.5442784,
+    "mtime": 1784028259.885189,
     "ast_hash": "5a987227bd89fa8e7f8a92beea8da6f0",
     "semantic_hash": ""
   },
@@ -40,18 +40,18 @@
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/AlertCenter.jsx": {
-    "mtime": 1783794002.9901717,
-    "ast_hash": "2ee0e5a2dec179689fb4a7bf4cd097e0",
+    "mtime": 1784026958.6978917,
+    "ast_hash": "01e163e457f235a1846dcb65893ebd40",
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/BehavioralProfiles.jsx": {
-    "mtime": 1783794003.0412183,
-    "ast_hash": "d3d38a1595776f58574c7524c214885c",
+    "mtime": 1784027769.8620756,
+    "ast_hash": "cba705e1e4ac062982706a5c75e1c6a0",
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/CaseOutcomePredictions.jsx": {
-    "mtime": 1783793540.878765,
-    "ast_hash": "acfbe48f2026938e418ee3e45a41c75c",
+    "mtime": 1784027724.493558,
+    "ast_hash": "04432696a47fa6657d833a36d61723bf",
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/CopBot.jsx": {
@@ -60,13 +60,13 @@
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/CorrelationHeatmap.jsx": {
-    "mtime": 1783794003.0412183,
-    "ast_hash": "27daf029bd8a3516051a35ddba02505c",
+    "mtime": 1784027777.0693173,
+    "ast_hash": "75db2b421c2c80364b30eb442a0e5ac5",
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/CrimeTrendsChart.jsx": {
-    "mtime": 1783793540.9725196,
-    "ast_hash": "0abe40f391197f0de5ceb5705cdf73d9",
+    "mtime": 1784028363.422863,
+    "ast_hash": "73248a3557a72fc328d4c10fe3cd9dde",
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/EmergingTrendAlerts.jsx": {
@@ -95,8 +95,8 @@
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/NetworkGraph.jsx": {
-    "mtime": 1783791864.5545979,
-    "ast_hash": "e290cb8d16de2f423224a0da4ee7c49f",
+    "mtime": 1784028358.5818093,
+    "ast_hash": "6ff86848b50fcf58f7cbf3a19fee78f2",
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/RecentCrimesTable.jsx": {
@@ -105,13 +105,13 @@
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/ReportsAnalytics.jsx": {
-    "mtime": 1783791864.557538,
-    "ast_hash": "e9fc748d061fd5e573d46af4b09058e1",
+    "mtime": 1784027812.1832502,
+    "ast_hash": "66fb02d7ad45fad937714d5bb8383431",
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/ResourceDeployment.jsx": {
-    "mtime": 1783797987.4922183,
-    "ast_hash": "4d4edb7ff65593ea9e083681ec5018e1",
+    "mtime": 1784027758.1226046,
+    "ast_hash": "8477b39b813df34aa9f71636137c1394",
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/RiskCard.jsx": {
@@ -120,18 +120,18 @@
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/RiskProfiling.jsx": {
-    "mtime": 1783791864.5598657,
-    "ast_hash": "3b8f9fd41acb66adf85770b8ca46c05f",
+    "mtime": 1784027801.2510426,
+    "ast_hash": "68f467914039f7719f296ce9cd942de2",
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/SocioEconomicOverlay.jsx": {
-    "mtime": 1783798018.528439,
-    "ast_hash": "5f6554061822426c2833ede74a39d23f",
+    "mtime": 1784027746.3737962,
+    "ast_hash": "4c127bd55567244b2d4f9a07d6b64c6a",
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/TrendForecasts.jsx": {
-    "mtime": 1783793540.878765,
-    "ast_hash": "11b3224ac46870cf7fced26c4900c371",
+    "mtime": 1784027734.5599854,
+    "ast_hash": "4467f0393a75f5b720dc66b7e83647da",
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/VoiceSearch.jsx": {
@@ -140,18 +140,18 @@
     "semantic_hash": ""
   },
   "client/src/components/Dashboard/WantedMissing.jsx": {
-    "mtime": 1783791864.5618675,
-    "ast_hash": "92a734276591a92b80a1b884e4e48f54",
+    "mtime": 1784027825.323845,
+    "ast_hash": "96e1e434a6cab81afbc75278a93b70a5",
     "semantic_hash": ""
   },
   "client/src/components/Layout/Navbar.jsx": {
-    "mtime": 1783794719.5486946,
-    "ast_hash": "11993c686026707e27955b1f123e95e0",
+    "mtime": 1784021283.3506236,
+    "ast_hash": "c10c31b910395d7ffcb9374f1a941745",
     "semantic_hash": ""
   },
   "client/src/components/Layout/Sidebar.jsx": {
-    "mtime": 1783791864.5643828,
-    "ast_hash": "def1be2f80c2992dabbcb15f5dc50509",
+    "mtime": 1784027367.4900212,
+    "ast_hash": "d5ad547f34af8a2161e00d1b18f5abda",
     "semantic_hash": ""
   },
   "client/src/data/constants.js": {
@@ -175,13 +175,13 @@
     "semantic_hash": ""
   },
   "client/src/utils/copbotEnhanced.js": {
-    "mtime": 1783794003.0412183,
-    "ast_hash": "3f5012e222ef7f8d85dd90041dea4753",
+    "mtime": 1784026967.9506297,
+    "ast_hash": "9b88f17bf650e9a6f28e4eb123183706",
     "semantic_hash": ""
   },
   "client/vite.config.js": {
-    "mtime": 1783791864.571764,
-    "ast_hash": "047696c5a9cd2a2e9fe02584d8fbb5b9",
+    "mtime": 1784026218.514858,
+    "ast_hash": "6931d125bdc4d9b4adbf0ef7c542fade",
     "semantic_hash": ""
   },
   "data-generator/generate.py": {
@@ -385,8 +385,8 @@
     "semantic_hash": ""
   },
   "functions/predictions/index.js": {
-    "mtime": 1783793540.878765,
-    "ast_hash": "983dfa828fc508fab9b019419c55ede7",
+    "mtime": 1784025809.7608063,
+    "ast_hash": "2d7e93e54e2939a18267de1aa0b51931",
     "semantic_hash": ""
   },
   "functions/predictions/package.json": {
@@ -480,8 +480,8 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1783791868.557346,
-    "ast_hash": "31aa70d727c250d66ad4d9cb7d0a64f5",
+    "mtime": 1784026287.6476054,
+    "ast_hash": "84b696ee9abb9724b267ab147e528fed",
     "semantic_hash": ""
   },
   "skills-lock.json": {
@@ -647,6 +647,16 @@
   "client/src/assets/vite.svg": {
     "mtime": 1783791864.542293,
     "ast_hash": "6d5180a782d64c8cf51ba01c2a2184d8",
+    "semantic_hash": ""
+  },
+  "client/src/utils/mockApi.js": {
+    "mtime": 1784026944.996122,
+    "ast_hash": "f3b180e2a28f55cf7edf9a7085ac5f05",
+    "semantic_hash": ""
+  },
+  "functions/dev-server.js": {
+    "mtime": 1784026204.2627287,
+    "ast_hash": "298db1af19e840f730d2f9aa3cfad545",
     "semantic_hash": ""
   }
 }

@@ -1,6 +1,7 @@
 /**
  * Enhanced CopBot response generation with live ML predictions
  */
+import { fetchWithFallback, MOCK_OUTCOMES, MOCK_FORECASTS, MOCK_ANOMALIES, MOCK_CLUSTERS, MOCK_TYPOLOGIES } from './mockApi';
 
 export async function generateEnhancedResponse(query, activeRole) {
   const q = query.toLowerCase();
@@ -69,50 +70,23 @@ export async function generateEnhancedResponse(query, activeRole) {
 }
 
 async function fetchPredictions(type, limit) {
-  const response = await fetch(`/predictions?type=${type}&limit=${limit}`, {
-    headers: {
-      'x-employee-role': localStorage.getItem('userRole') || 'SCRB_ADMIN',
-      'x-employee-email': localStorage.getItem('userEmail') || 'test@ksp.in'
-    }
-  });
-  if (!response.ok) throw new Error('Predictions fetch failed');
-  const data = await response.json();
-  return data.caseOutcomes || [];
+  const data = await fetchWithFallback(`/predictions?type=${type}&limit=${limit}`);
+  return data?.caseOutcomes || MOCK_OUTCOMES;
 }
 
 async function fetchForecasts() {
-  const response = await fetch(`/predictions?type=trend&limit=5`, {
-    headers: {
-      'x-employee-role': localStorage.getItem('userRole') || 'SCRB_ADMIN',
-      'x-employee-email': localStorage.getItem('userEmail') || 'test@ksp.in'
-    }
-  });
-  if (!response.ok) throw new Error('Forecasts fetch failed');
-  const data = await response.json();
-  return data.forecasts || [];
+  const data = await fetchWithFallback(`/predictions?type=trend&limit=5`);
+  return data?.forecasts || MOCK_FORECASTS;
 }
 
 async function fetchAnomalies() {
-  const response = await fetch(`/predictions?type=anomaly&limit=10`, {
-    headers: {
-      'x-employee-role': localStorage.getItem('userRole') || 'SCRB_ADMIN',
-      'x-employee-email': localStorage.getItem('userEmail') || 'test@ksp.in'
-    }
-  });
-  if (!response.ok) throw new Error('Anomalies fetch failed');
-  const data = await response.json();
-  return data.anomalies || [];
+  const data = await fetchWithFallback(`/predictions?type=anomaly&limit=10`);
+  return data?.anomalies || MOCK_ANOMALIES;
 }
 
 async function fetchClusters() {
-  const response = await fetch(`/clustering?type=offender`, {
-    headers: {
-      'x-employee-role': localStorage.getItem('userRole') || 'SCRB_ADMIN',
-      'x-employee-email': localStorage.getItem('userEmail') || 'test@ksp.in'
-    }
-  });
-  if (!response.ok) throw new Error('Clusters fetch failed');
-  return await response.json();
+  const data = await fetchWithFallback(`/clustering?type=offender`);
+  return data || { clusters: MOCK_CLUSTERS, typologies: MOCK_TYPOLOGIES, summary: MOCK_TYPOLOGIES.map((t, i) => ({ typology: t.typology, count: t.memberCount, percentage: ((t.memberCount / MOCK_CLUSTERS.reduce((s, c) => s + c.size, 0)) * 100).toFixed(1) })) };
 }
 
 function generateBaseResponse(query, activeRole) {

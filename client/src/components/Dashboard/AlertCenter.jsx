@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AlertTriangle, AlertCircle, Clock, Users, Loader, X, CheckCircle } from 'lucide-react';
+import { MOCK_ALERTS, fetchWithFallback } from '../../utils/mockApi';
 
 const SEVERITY_CONFIG = {
   critical: { color: '#cc3333', bg: '#8b0000', label: 'CRITICAL', icon: AlertTriangle },
@@ -31,10 +32,8 @@ export default function AlertCenter({ isOpen, onClose, filters = {} }) {
           }
         });
 
-        if (response.ok) {
-          const result = await response.json();
-          setAlerts(result.alerts || []);
-        }
+        const result = await fetchWithFallback(`/alerts?${queryParams}`);
+        setAlerts(result?.alerts || MOCK_ALERTS);
       } catch (err) {
         console.error('Failed to fetch alerts:', err);
       } finally {
@@ -113,8 +112,12 @@ export default function AlertCenter({ isOpen, onClose, filters = {} }) {
                 className={`p-3 rounded-sm border-l-4 cursor-pointer transition-all ${
                   isAcknowledged 
                     ? 'bg-[var(--color-surface-card-dark)] border-l-[var(--color-muted)] opacity-60'
-                    : `bg-[${config.bg}]/10 border-l-[${config.color}]`
+                    : 'bg-opacity-10'
                 }`}
+                style={{
+                  backgroundColor: isAcknowledged ? undefined : `${config.bg}1A`,
+                  borderLeftColor: isAcknowledged ? undefined : config.color,
+                }}
                 onClick={() => setExpandedAlert(expandedAlert === alert.alertId ? null : alert.alertId)}
               >
                 <div className="flex items-start justify-between">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FileCheck, TrendingUp, AlertCircle, Loader } from 'lucide-react';
+import { MOCK_OUTCOMES, fetchWithFallback } from '../../utils/mockApi';
 
 export default function CaseOutcomePredictions({ filters = {} }) {
   const [predictions, setPredictions] = useState([]);
@@ -27,10 +28,8 @@ export default function CaseOutcomePredictions({ filters = {} }) {
           }
         });
 
-        if (!response.ok) throw new Error('Failed to fetch predictions');
-        
-        const result = await response.json();
-        setPredictions(result.caseOutcomes || []);
+        const result = await fetchWithFallback(`/predictions?${queryParams}`);
+        setPredictions(result?.caseOutcomes || MOCK_OUTCOMES);
       } catch (err) {
         console.error('Prediction fetch error:', err);
         setError(err.message);
@@ -57,8 +56,8 @@ export default function CaseOutcomePredictions({ filters = {} }) {
   };
 
   return (
-    <div className="card-dark p-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="card-dark p-6 h-full flex flex-col">
+      <div className="flex items-center justify-between mb-6 shrink-0">
         <div className="flex items-center space-x-3">
           <div className="p-2.5 rounded-sm bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20">
             <FileCheck className="h-5 w-5 text-[var(--color-primary)]" />
@@ -76,20 +75,20 @@ export default function CaseOutcomePredictions({ filters = {} }) {
       </div>
 
       {loading && (
-        <div className="flex items-center justify-center py-8">
+        <div className="flex items-center justify-center py-8 flex-1">
           <Loader className="h-5 w-5 text-[var(--color-primary)] animate-spin" />
         </div>
       )}
 
       {error && (
-        <div className="flex items-center space-x-2 p-3 bg-[#8b0000]/10 border border-[#8b0000]/30 rounded-sm text-[#cc3333] text-sm">
+        <div className="flex items-center space-x-2 p-3 bg-[#8b0000]/10 border border-[#8b0000]/30 rounded-sm text-[#cc3333] text-sm shrink-0">
           <AlertCircle className="h-4 w-4 flex-shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
       {!loading && predictions.length > 0 && (
-        <div className="space-y-3">
+        <div className="space-y-3 flex-1 overflow-y-auto min-h-0 pr-1">
           {predictions.map((pred, idx) => (
             <div key={idx} className="p-3 bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)] rounded-sm">
               <div className="flex items-start justify-between mb-2">
@@ -112,11 +111,11 @@ export default function CaseOutcomePredictions({ filters = {} }) {
                       />
                     </div>
                     <span className={`text-xs font-bold ${getConfidenceColor(pred.confidence)}`}>
-                      {pred.chargesheetProbability.toFixed(0)}%
+                      {(pred.chargesheetProbability ?? 0).toFixed(0)}%
                     </span>
                   </div>
                   <p className="text-[9px] text-[var(--color-muted)] mt-1">
-                    {pred.accusedCount} {pred.accusedCount === 1 ? 'Accused' : 'Accused'} • {pred.hasArrest ? '✓ Arrested' : '✗ Not Arrested'}
+                    {pred.accusedCount} Accused • {pred.hasArrest ? '✓ Arrested' : '✗ Not Arrested'}
                   </p>
                 </div>
               </div>
@@ -126,7 +125,7 @@ export default function CaseOutcomePredictions({ filters = {} }) {
       )}
 
       {!loading && predictions.length === 0 && !error && (
-        <p className="text-sm text-[var(--color-muted)] text-center py-6">No predictions available for current filters</p>
+        <p className="text-sm text-[var(--color-muted)] text-center py-6 flex-1 flex items-center justify-center">No predictions available for current filters</p>
       )}
     </div>
   );

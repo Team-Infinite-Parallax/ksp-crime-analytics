@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, Minus, Loader, AlertCircle } from 'lucide-react';
+import { MOCK_FORECASTS, fetchWithFallback } from '../../utils/mockApi';
 
 export default function TrendForecasts({ filters = {} }) {
   const [forecasts, setForecasts] = useState([]);
@@ -27,10 +28,8 @@ export default function TrendForecasts({ filters = {} }) {
           }
         });
 
-        if (!response.ok) throw new Error('Failed to fetch forecasts');
-        
-        const result = await response.json();
-        setForecasts(result.forecasts || []);
+        const result = await fetchWithFallback(`/predictions?${queryParams}`);
+        setForecasts(result?.forecasts || MOCK_FORECASTS);
       } catch (err) {
         console.error('Forecast fetch error:', err);
         setError(err.message);
@@ -59,8 +58,8 @@ export default function TrendForecasts({ filters = {} }) {
   };
 
   return (
-    <div className="card-dark p-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="card-dark p-6 h-full flex flex-col">
+      <div className="flex items-center justify-between mb-6 shrink-0">
         <div className="flex items-center space-x-3">
           <div className="p-2.5 rounded-sm bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20">
             <TrendingUp className="h-5 w-5 text-[var(--color-primary)]" />
@@ -78,23 +77,24 @@ export default function TrendForecasts({ filters = {} }) {
       </div>
 
       {loading && (
-        <div className="flex items-center justify-center py-8">
+        <div className="flex items-center justify-center py-8 flex-1">
           <Loader className="h-5 w-5 text-[var(--color-primary)] animate-spin" />
         </div>
       )}
 
       {error && (
-        <div className="flex items-center space-x-2 p-3 bg-[#8b0000]/10 border border-[#8b0000]/30 rounded-sm text-[#cc3333] text-sm">
+        <div className="flex items-center space-x-2 p-3 bg-[#8b0000]/10 border border-[#8b0000]/30 rounded-sm text-[#cc3333] text-sm shrink-0">
           <AlertCircle className="h-4 w-4 flex-shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
       {!loading && forecasts.length > 0 && (
-        <div className="space-y-3">
+        <div className="space-y-3 flex-1 overflow-y-auto min-h-0 pr-1">
           {forecasts.map((forecast, idx) => {
-            const futureCases = forecast.forecast[forecast.forecast.length - 1]?.yhat || 0;
-            const currentCases = forecast.currentAvg;
+            const fcast = forecast.forecast || [];
+            const futureCases = fcast[fcast.length - 1]?.yhat ?? 0;
+            const currentCases = forecast.currentAvg ?? 0;
             const percentChange = currentCases > 0 ? ((futureCases - currentCases) / currentCases * 100).toFixed(1) : 0;
             
             return (
@@ -113,14 +113,15 @@ export default function TrendForecasts({ filters = {} }) {
                 </div>
 
                 {/* Mini forecast chart */}
+                {fcast.length > 0 && (
                 <div className="space-y-1">
                   <div className="flex items-end justify-between space-x-1 h-12">
-                    {forecast.forecast.slice(0, 12).map((week, widx) => (
+                    {fcast.slice(0, 12).map((week, widx) => (
                       <div
                         key={widx}
                         className="flex-1 bg-[var(--color-primary)] rounded-sm opacity-70 hover:opacity-100 transition-opacity"
                         style={{
-                          height: `${(week.yhat / Math.max(...forecast.forecast.map(w => w.yhat)) * 100).toFixed(0)}%`,
+                          height: `${(week.yhat / Math.max(...fcast.map(w => w.yhat)) * 100).toFixed(0)}%`,
                           minHeight: '2px'
                         }}
                         title={`Week ${widx + 1}: ${week.yhat} cases`}
@@ -131,6 +132,7 @@ export default function TrendForecasts({ filters = {} }) {
                     Peak: {forecast.peakWeek} • Projected: <span className="font-bold text-[var(--color-on-dark)]">{futureCases}</span> cases ({percentChange > 0 ? '+' : ''}{percentChange}%)
                   </p>
                 </div>
+                )}
               </div>
             );
           })}
@@ -138,7 +140,7 @@ export default function TrendForecasts({ filters = {} }) {
       )}
 
       {!loading && forecasts.length === 0 && !error && (
-        <p className="text-sm text-[var(--color-muted)] text-center py-6">No forecast data available</p>
+        <p className="text-sm text-[var(--color-muted)] text-center py-6 flex-1 flex items-center justify-center">No forecast data available</p>
       )}
     </div>
   );

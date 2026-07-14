@@ -24,7 +24,7 @@ const CYTO_STYLE = [
     style: {
       'label': 'data(label)',
       'font-family': 'Outfit, Inter, system-ui, sans-serif',
-      'font-size': '9px',
+      'font-size': '11px',
       'font-weight': '600',
       'text-valign': 'bottom',
       'text-halign': 'center',
@@ -103,7 +103,7 @@ const CYTO_STYLE = [
       'color': '#b0ada6',
       'width': 24,
       'height': 24,
-      'font-size': '8px',
+      'font-size': '10px',
     }
   },
   {

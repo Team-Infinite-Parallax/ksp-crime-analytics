@@ -247,13 +247,13 @@ export default function ReportsAnalytics({ crimes, offenders, activeRole }) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="card-dark p-5 relative overflow-hidden">
+        <div className="card-dark p-5 relative overflow-hidden h-full flex flex-col">
           <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-primary)]/5 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none" />
-          <h3 className="text-xs font-bold text-[var(--color-on-dark)] mb-4 flex items-center relative z-10">
+          <h3 className="text-xs font-bold text-[var(--color-on-dark)] mb-4 flex items-center relative z-10 shrink-0">
             <PieChart className="h-4 w-4 text-[var(--color-primary)] mr-2" />
             Crime Category Breakdown
           </h3>
-          <div className="space-y-3 relative z-10">
+          <div className="space-y-3 relative z-10 flex-1 overflow-y-auto min-h-0 pr-1">
             {categoryBreakdown.map(c => (
               <div key={c.label} className="group">
                 <div className="flex items-center justify-between mb-1">
@@ -274,13 +274,13 @@ export default function ReportsAnalytics({ crimes, offenders, activeRole }) {
           </div>
         </div>
 
-        <div className="card-dark p-5 relative overflow-hidden flex flex-col">
+        <div className="card-dark p-5 relative overflow-hidden h-full flex flex-col">
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-[var(--color-primary)]/5 rounded-full blur-3xl pointer-events-none" />
-          <h3 className="text-xs font-bold text-[var(--color-on-dark)] mb-4 flex items-center relative z-10">
+          <h3 className="text-xs font-bold text-[var(--color-on-dark)] mb-4 flex items-center relative z-10 shrink-0">
             <Calendar className="h-4 w-4 text-[var(--color-primary)] mr-2" />
             Monthly Registration Trend
           </h3>
-          <div className="flex items-end justify-between flex-1 gap-2 relative z-10 pt-4">
+          <div className="flex items-end justify-between flex-1 gap-2 relative z-10 pt-4 min-h-0">
             {/* Grid lines */}
             <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20 py-6">
               {[0, 1, 2, 3].map(i => (

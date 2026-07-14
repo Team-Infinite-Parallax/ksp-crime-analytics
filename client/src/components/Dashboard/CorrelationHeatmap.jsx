@@ -78,8 +78,8 @@ export default function CorrelationHeatmap({ filters = {} }) {
   });
 
   return (
-    <div className="card-dark p-6">
-      <div className="mb-6">
+    <div className="card-dark p-6 h-full flex flex-col">
+      <div className="mb-6 shrink-0">
         <h3 className="text-sm font-bold text-[var(--color-on-dark)]">Feature Importance & Crime Correlations</h3>
         <p className="text-[9px] text-[var(--color-muted)] font-semibold uppercase tracking-[0.12em] mt-0.5">
           SHAP-Based Explainability • Socio-Economic Overlay
@@ -87,7 +87,7 @@ export default function CorrelationHeatmap({ filters = {} }) {
       </div>
 
       {/* Heatmap Grid */}
-      <div className="space-y-6">
+      <div className="space-y-6 flex-1 overflow-y-auto min-h-0 pr-1">
         {Object.entries(byCategory).map(([catKey, features]) => (
           <div key={catKey}>
             <div className="text-xs font-bold text-[var(--color-muted)] uppercase tracking-wider mb-2">
@@ -132,7 +132,7 @@ export default function CorrelationHeatmap({ filters = {} }) {
       </div>
 
       {/* Legend & Interpretation */}
-      <div className="mt-6 p-4 bg-[var(--color-surface-elevated-dark)] rounded-sm border border-[var(--color-hairline-dark)]">
+      <div className="mt-6 p-4 bg-[var(--color-surface-elevated-dark)] rounded-sm border border-[var(--color-hairline-dark)] shrink-0">
         <h5 className="text-[9px] font-bold text-[var(--color-muted)] uppercase tracking-wider mb-3">
           How to Interpret
         </h5>
@@ -146,7 +146,7 @@ export default function CorrelationHeatmap({ filters = {} }) {
       </div>
 
       {/* Actionable Insights */}
-      <div className="mt-4 p-3 bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30 rounded-sm">
+      <div className="mt-4 p-3 bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30 rounded-sm shrink-0">
         <p className="text-[9px] text-[var(--color-muted)]">
           💡 <span className="font-bold">Insight:</span> Socio-economic factors (poverty, unemployment) account for ~47% of crime prediction accuracy. Target resource deployment to high-poverty districts for maximum impact.
         </p>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Loader, AlertCircle, Users, TrendingUp } from 'lucide-react';
+import { MOCK_CLUSTERS, MOCK_TYPOLOGIES, fetchWithFallback } from '../../utils/mockApi';
 
 const TYPOLOGY_ICONS = {
   'Organized Network': '🕷️',
@@ -28,12 +29,10 @@ export default function BehavioralProfiles({ filters = {} }) {
           }
         });
 
-        if (!response.ok) throw new Error('Failed to fetch clusters');
-        
-        const result = await response.json();
-        setClusters(result.clusters || []);
-        setTypologies(result.typologies || []);
-        setSummary(result.summary || []);
+        const result = await fetchWithFallback('/clustering?type=offender');
+        setClusters(result?.clusters || MOCK_CLUSTERS);
+        setTypologies(result?.typologies || MOCK_TYPOLOGIES);
+        setSummary(result?.summary || MOCK_TYPOLOGIES.map((t, i) => ({ typology: t.typology, count: t.memberCount, percentage: ((t.memberCount / MOCK_CLUSTERS.reduce((s, c) => s + c.size, 0)) * 100).toFixed(1) })));
       } catch (err) {
         console.error('Clustering fetch error:', err);
         setError(err.message);
@@ -67,8 +66,8 @@ export default function BehavioralProfiles({ filters = {} }) {
   }
 
   return (
-    <div className="card-dark p-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="card-dark p-6 h-full flex flex-col">
+      <div className="flex items-center justify-between mb-6 shrink-0">
         <div className="flex items-center space-x-3">
           <div className="p-2.5 rounded-sm bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20">
             <Users className="h-5 w-5 text-[var(--color-primary)]" />
@@ -86,15 +85,17 @@ export default function BehavioralProfiles({ filters = {} }) {
       </div>
 
       {/* Typology Summary Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6 shrink-0">
         {typologies.map((type, idx) => (
           <div
             key={idx}
-            className={`p-4 rounded-sm border-2 cursor-pointer transition-all ${
-              selectedCluster === idx
-                ? `border-[${type.color}] bg-[${type.color}]/10`
-                : `border-[var(--color-hairline-dark)] hover:border-[${type.color}]/50`
-            }`}
+            className={`p-4 rounded-sm border-2 cursor-pointer transition-all`}
+            style={{
+              borderColor: selectedCluster === idx ? type.color : 'var(--color-hairline-dark)',
+              backgroundColor: selectedCluster === idx ? `${type.color}1A` : 'transparent',
+            }}
+            onMouseEnter={e => { if (selectedCluster !== idx) e.currentTarget.style.borderColor = type.color + '80'; }}
+            onMouseLeave={e => { if (selectedCluster !== idx) e.currentTarget.style.borderColor = 'var(--color-hairline-dark)'; }}
             onClick={() => setSelectedCluster(selectedCluster === idx ? null : idx)}
           >
             <div className="flex items-start justify-between mb-2">
@@ -111,7 +112,7 @@ export default function BehavioralProfiles({ filters = {} }) {
 
       {/* Detailed Cluster Characteristics */}
       {selectedCluster !== null && typologies[selectedCluster] && (
-        <div className="p-4 bg-[var(--color-surface-elevated-dark)] rounded-sm border border-[var(--color-hairline-dark)] space-y-4">
+        <div className="p-4 bg-[var(--color-surface-elevated-dark)] rounded-sm border border-[var(--color-hairline-dark)] space-y-4 flex-1 overflow-y-auto min-h-0 pr-1">
           <div>
             <h4 className="text-sm font-bold text-[var(--color-on-dark)] mb-3">
               {typologies[selectedCluster].typology} Profile
@@ -166,7 +167,7 @@ export default function BehavioralProfiles({ filters = {} }) {
 
       {/* Summary Table */}
       {!selectedCluster && summary.length > 0 && (
-        <div className="space-y-2">
+        <div className="space-y-2 flex-1 overflow-y-auto min-h-0 pr-1">
           <p className="text-[9px] text-[var(--color-muted)] uppercase font-bold tracking-wider">Cluster Distribution</p>
           <div className="grid grid-cols-2 gap-2">
             {summary.map((item, idx) => (

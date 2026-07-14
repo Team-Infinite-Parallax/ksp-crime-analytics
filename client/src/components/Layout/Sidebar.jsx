@@ -41,7 +41,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout }) {
         }`}
     >
       <div>
-        <div className="p-4 flex items-center justify-between border-b border-[var(--color-hairline-dark)]">
+        <div className={`p-4 flex items-center border-b border-[var(--color-hairline-dark)] ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
           {!isCollapsed && (
             <div className="flex items-center space-x-3">
               <div className="bg-[var(--color-surface-elevated-dark)] p-2 rounded-lg border border-[var(--color-hairline-dark)]">
@@ -55,17 +55,28 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout }) {
             </div>
           )}
           {isCollapsed && (
-            <div className="mx-auto bg-[var(--color-surface-elevated-dark)] p-2 rounded-lg border border-[var(--color-hairline-dark)]">
-              {emblemSvg}
+            <div className="flex flex-col items-center gap-1.5">
+              <div className="bg-[var(--color-surface-elevated-dark)] p-2 rounded-lg border border-[var(--color-hairline-dark)]">
+                {emblemSvg}
+              </div>
+              <button
+                onClick={() => setIsCollapsed(!isCollapsed)}
+                aria-label="Expand sidebar"
+                className="text-[var(--color-muted)] hover:text-[var(--color-on-dark)] p-1 rounded-lg hover:bg-[var(--color-surface-elevated-dark)] transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:outline-none"
+              >
+                <Menu className="h-5 w-5" />
+              </button>
             </div>
           )}
-          <button
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-            className="text-[var(--color-muted)] hover:text-[var(--color-on-dark)] p-1.5 rounded-lg hover:bg-[var(--color-surface-elevated-dark)] transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:outline-none"
-          >
-            {isCollapsed ? <Menu className="h-5 w-5" /> : <ChevronLeft className="h-5 w-5" />}
-          </button>
+          {!isCollapsed && (
+            <button
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              aria-label="Collapse sidebar"
+              className="text-[var(--color-muted)] hover:text-[var(--color-on-dark)] p-1.5 rounded-lg hover:bg-[var(--color-surface-elevated-dark)] transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:outline-none"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+          )}
         </div>
 
         <nav className="p-4 space-y-2">
@@ -77,12 +88,12 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout }) {
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
                 aria-label={item.label}
-                className={`w-full flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 group relative focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:outline-none ${isActive
+                className={`w-full flex items-center p-3 rounded-xl transition-all duration-200 group relative focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:outline-none ${isCollapsed ? 'justify-center' : 'space-x-3'} ${isActive
                     ? 'bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)] border border-[var(--color-hairline-dark)] shadow-[0_0_15px_rgba(59,130,246,0.1)]'
                     : 'text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] border border-transparent hover:translate-x-1'
                   }`}
               >
-                <Icon className={`h-5 w-5 transition-transform duration-200 group-hover:scale-110 ${isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-muted)] group-hover:text-[var(--color-info)]'}`} />
+                <Icon className={`${isCollapsed ? 'h-7 w-7' : 'h-5 w-5'} transition-transform duration-200 group-hover:scale-110 ${isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-muted)] group-hover:text-[var(--color-info)]'}`} />
                 {!isCollapsed && <span className="text-[14px] tracking-wide font-medium">{item.label}</span>}
                 {isCollapsed && (
                   <div className="absolute left-16 bg-[var(--color-surface-elevated-dark)] text-[var(--color-on-dark)] text-[12px] px-3 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 border border-[var(--color-hairline-dark)] shadow-xl">
@@ -109,9 +120,9 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout }) {
         <button 
           onClick={onLogout}
           aria-label="Logout"
-          className="w-full flex items-center space-x-3 p-2.5 text-[var(--color-muted)] hover:text-[var(--color-trading-down)] rounded-lg hover:bg-[var(--color-surface-elevated-dark)] transition-colors group focus-visible:ring-2 focus-visible:ring-[var(--color-trading-down)] focus-visible:outline-none"
+          className={`w-full flex items-center p-2.5 text-[var(--color-muted)] hover:text-[var(--color-trading-down)] rounded-lg hover:bg-[var(--color-surface-elevated-dark)] transition-colors group focus-visible:ring-2 focus-visible:ring-[var(--color-trading-down)] focus-visible:outline-none ${isCollapsed ? 'justify-center' : 'space-x-3'}`}
         >
-          <LogOut className="h-5 w-5 shrink-0 group-hover:-translate-x-1 transition-transform" />
+          <LogOut className={`${isCollapsed ? 'h-6 w-6' : 'h-5 w-5'} shrink-0 group-hover:-translate-x-1 transition-transform`} />
           {!isCollapsed && <span className="text-[14px] font-medium">Logout</span>}
         </button>
       </div>

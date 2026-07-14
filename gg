@@ -1,0 +1,56 @@
+[33m8d5603b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Add EmergingTrendAlerts, ResourceDeployment, SocioEconomicOverlay components; update App routing and constants
+[33m6c68d30[m Merge branch 'main' of https://github.com/Team-Infinite-Parallax/Crime-Intelligence-Agent
+[33mef74772[m Phase 2: alert system, behavioral clustering, correlation heatmap, CopBot ML enhancements
+[33m011bf3e[m Fix build script - remove functions copy
+[33m4cec878[m Update latest code
+[33maba879a[m Add Phase 1 features: trend forecasts, case outcome predictions, alert functions
+[33m9b0819f[m add
+[33m3b930b6[m network section
+[33m0e839e3[m code q
+[33mec3dd82[m theme changes
+[33mde04625[m theme change
+[33m3faa6f2[m theme change
+[33mf14d70a[m password update
+[33mcf06c43[m password update
+[33m7bfdacc[m theme update
+[33me178ea8[m Merge branch 'main' of https://github.com/Team-Infinite-Parallax/Crime-Intelligence-Agent
+[33m4b12035[m montly report
+[33m5728a5e[m Ai chat bot
+[33m0d21324[m Fix voice search network error and add text fallback
+[33mf343c22[m voice fix
+[33mf1f64e8[m Update latest code
+[33m79b6485[m mic
+[33m77938a8[m Update latest code
+[33m7233107[m update the backend
+[33m788f0c8[m Update latest code
+[33mba3bce3[m Update latest code
+[33m521904a[m fix: change vite base path to root for catalyst slate
+[33m798d8bf[m logs q
+[33ma35bd34[m logs
+[33m9d28395[m ji
+[33m8332036[m Update latest code
+[33m91a3256[m Update latest code
+[33mc828968[m Remove 'Infinite' section from README
+[33mbe36f7c[m Add 'Infinite' section to README
+[33m139579f[m Update README with architecture section
+[33m4a90933[m Update README.md
+[33ma242fc4[m Merge pull request #2 from Team-Infinite-Parallax/raw
+[33m33f8666[m[33m ([m[1;31morigin/raw[m[33m)[m Merge branch 'main' into raw
+[33m2dab93c[m Update README.md
+[33mb8936f4[m Update README.md
+[33mea205af[m Update README.md
+[33m6a8678c[m Initial commit
+[33m850a3c4[m Update README.md
+[33mb38f181[m Merge pull request #1 from Team-Infinite-Parallax/raw
+[33mfca1ced[m Update README.md
+[33mb52425d[m Update README.md
+[33mcca15a5[m Update README.md
+[33ma63a83a[m  readme
+[33m5573f3f[m update readme
+[33m563949d[m Fix formatting in README.md
+[33m80e18a5[m Fix formatting in README.md section
+[33mb37ff48[m Update README.md
+[33m7c7a25f[m Add Infinite Parallax section to README
+[33m21df402[m Merge branch 'main' of https://github.com/Team-Infinite-Parallax/ksp-crime-analytics
+[33m160fc47[m Initial commit
+[33m878ae53[m Initial commit

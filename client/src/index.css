@@ -196,3 +196,23 @@
   background-color: var(--color-surface-elevated-dark) !important;
   color: var(--color-on-dark) !important;
 }
+
+/* Accessibility: Boost small font sizes to make them readable */
+.text-\[8px\] {
+  font-size: 11px !important;
+}
+.text-\[9px\] {
+  font-size: 12px !important;
+}
+.text-\[10px\] {
+  font-size: 12.5px !important;
+}
+.text-\[11px\] {
+  font-size: 13px !important;
+}
+.text-\[12px\] {
+  font-size: 13.5px !important;
+}
+.text-xs {
+  font-size: 13.5px !important;
+}

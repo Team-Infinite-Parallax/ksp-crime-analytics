@@ -17,8 +17,8 @@ export default function ResourceDeployment({ activeRole, filters = {} }) {
   const highCount = filtered.filter(r => r.riskLevel === 'high').length;
 
   return (
-    <div className="card-dark p-5">
-      <div className="flex items-center justify-between mb-4">
+    <div className="card-dark p-5 h-full flex flex-col">
+      <div className="flex items-center justify-between mb-4 shrink-0">
         <div>
           <h3 className="text-sm font-bold text-[var(--color-on-dark)]">Smart Resource Deployment</h3>
           <p className="text-[9px] text-[var(--color-muted)] font-semibold uppercase tracking-[0.12em] mt-0.5">
@@ -27,7 +27,7 @@ export default function ResourceDeployment({ activeRole, filters = {} }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 mb-4">
+      <div className="grid grid-cols-3 gap-3 mb-4 shrink-0">
         <div className="p-3 rounded-sm bg-[#8b0000]/10 border border-[#cc3333]/30 text-center">
           <span className="text-lg font-black text-[#cc3333] block">{totalGap}</span>
           <span className="text-[8px] text-[var(--color-muted)] font-bold uppercase tracking-wider">Patrol Deficit</span>
@@ -42,7 +42,7 @@ export default function ResourceDeployment({ activeRole, filters = {} }) {
         </div>
       </div>
 
-      <div className="space-y-2 max-h-[400px] overflow-y-auto pr-1">
+      <div className="space-y-2 flex-1 overflow-y-auto min-h-0 pr-1">
         {filtered.sort((a, b) => b.priorityScore - a.priorityScore).map(r => {
           const theme = r.riskLevel === 'critical'
             ? { bg: 'bg-[#8b0000]/10', border: 'border-[#cc3333]/30', text: 'text-[#cc3333]', bar: 'bg-[#cc3333]', label: 'Critical' }
@@ -107,7 +107,7 @@ export default function ResourceDeployment({ activeRole, filters = {} }) {
         })}
       </div>
 
-      <div className="mt-4 p-3 bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30 rounded-sm">
+      <div className="mt-4 p-3 bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30 rounded-sm shrink-0">
         <p className="text-[9px] text-[var(--color-muted)] flex items-start">
           <Navigation className="h-3 w-3 mr-1.5 mt-0.5 shrink-0 text-[var(--color-primary)]" />
           <span>
