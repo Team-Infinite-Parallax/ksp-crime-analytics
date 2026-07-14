@@ -6,12 +6,12 @@ import {
   KeyRound,
   Eye,
   EyeOff,
-  AlertTriangle,
   LogIn,
   CheckCircle2,
   Sun,
   Moon
 } from 'lucide-react';
+import AlertNotification from '../UI/AlertNotification';
 
 const emblemSvgLarge = (
   <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-[var(--color-primary)] filter drop-shadow-[0_0_15px_var(--color-primary)]">
@@ -163,15 +163,9 @@ export default function Login({ onLogin, isDarkMode, onToggleTheme }) {
           </div>
 
           <div className="mt-4 border-t border-[var(--color-hairline-dark)] pt-4">
-            <div className="bg-[#cc3333]/10 border border-[#cc3333]/30 rounded-2xl p-4 flex items-start space-x-3">
-              <AlertTriangle className="h-5 w-5 text-[#cc3333] shrink-0 mt-0.5" />
-              <div className="text-[11px] leading-relaxed">
-                <p className="font-extrabold text-[#cc3333] uppercase tracking-wider">Security Warning</p>
-                  <p className="text-[var(--color-muted)] mt-1 font-medium">
-                  Unauthorized entry, attempt, or sharing of intelligence from this database constitutes a federal offense and is punishable under Section 66 of the IT Act & IPC laws.
-                </p>
-              </div>
-            </div>
+            <AlertNotification type="critical" title="Security Warning">
+              Unauthorized entry, attempt, or sharing of intelligence from this database constitutes a federal offense and is punishable under Section 66 of the IT Act & IPC laws.
+            </AlertNotification>
           </div>
         </div>
 
