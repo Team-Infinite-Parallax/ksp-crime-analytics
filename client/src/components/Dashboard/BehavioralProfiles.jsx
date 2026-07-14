@@ -24,13 +24,6 @@ export default function BehavioralProfiles() {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(`/clustering?type=offender`, {
-          headers: {
-            'x-employee-role': localStorage.getItem('userRole') || 'SCRB_ADMIN',
-            'x-employee-email': localStorage.getItem('userEmail') || 'test@ksp.in'
-          }
-        });
-
         const result = await fetchWithFallback('/clustering?type=offender');
         setClusters(result?.clusters || MOCK_CLUSTERS);
         setTypologies(result?.typologies || MOCK_TYPOLOGIES);

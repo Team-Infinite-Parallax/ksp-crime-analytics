@@ -9,7 +9,8 @@ import {
   LogIn,
   CheckCircle2,
   Sun,
-  Moon
+  Moon,
+  AlertTriangle
 } from 'lucide-react';
 import AlertNotification from '../UI/AlertNotification';
 

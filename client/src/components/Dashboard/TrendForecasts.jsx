@@ -23,13 +23,6 @@ export default function TrendForecasts() {
           queryParams.append('districtId', filters.districtId);
         }
 
-        const response = await fetch(`/predictions?${queryParams}`, {
-          headers: {
-            'x-employee-role': localStorage.getItem('userRole') || 'SCRB_ADMIN',
-            'x-employee-email': localStorage.getItem('userEmail') || 'test@ksp.in'
-          }
-        });
-
         const result = await fetchWithFallback(`/predictions?${queryParams}`);
         setForecasts(result?.forecasts || MOCK_FORECASTS);
       } catch (err) {
