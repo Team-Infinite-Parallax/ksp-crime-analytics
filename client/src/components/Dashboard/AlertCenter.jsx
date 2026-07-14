@@ -75,7 +75,7 @@ export default function AlertCenter({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-start justify-end">
-      <div className="w-96 h-screen bg-[var(--color-canvas-dark)] border-l border-[var(--color-hairline-dark)] flex flex-col overflow-hidden">
+      <div className="w-full sm:w-96 h-screen bg-[var(--color-canvas-dark)] border-l border-[var(--color-hairline-dark)] flex flex-col overflow-hidden">
         {/* Header */}
         <div className="p-6 border-b border-[var(--color-hairline-dark)] flex items-center justify-between">
           <div>

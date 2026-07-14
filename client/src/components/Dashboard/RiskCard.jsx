@@ -11,7 +11,7 @@ export default function RiskCard({ offender, onViewNetwork }) {
   const scoreTheme = getRiskScoreColor(offender.riskScore);
 
   return (
-    <div className={`card-dark flex flex-col justify-between h-full min-h-[240px] p-6 hover:-translate-y-1 hover:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.6)] transition-all duration-300 group cursor-default relative overflow-hidden`}>
+    <div className={`card-dark flex flex-col justify-between h-full min-h-[200px] sm:min-h-[240px] p-4 sm:p-6 hover:-translate-y-1 hover:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.6)] transition-all duration-300 group cursor-default relative overflow-hidden`}>
 
       {/* Subtle background glow effect on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-surface-elevated-dark)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />

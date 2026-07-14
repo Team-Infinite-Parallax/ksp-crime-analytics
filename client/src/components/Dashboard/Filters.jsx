@@ -25,8 +25,8 @@ export default function Filters() {
   ];
 
   return (
-    <div className="card-dark p-6 flex flex-wrap gap-4 items-center justify-between">
-      <div className="flex flex-wrap gap-3 items-center">
+    <div className="card-dark p-4 sm:p-6 flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center justify-between">
+      <div className="flex flex-wrap gap-2 sm:gap-3 items-center w-full sm:w-auto">
         <div className="flex items-center space-x-2 text-[var(--color-muted)] mr-2">
           <Filter className="h-4 w-4 text-[var(--color-primary)]" />
           <span className="text-[12px] font-bold uppercase tracking-[0.12em]">Filters</span>
@@ -90,10 +90,10 @@ export default function Filters() {
         </div>
       </div>
 
-      <div>
+      <div className="w-full sm:w-auto">
         <button
           onClick={onReset}
-          className="flex items-center space-x-2 px-4 py-2 bg-transparent text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] transition-colors text-[14px] font-medium rounded-sm h-[40px]"
+          className="w-full sm:w-auto flex items-center justify-center space-x-2 px-4 py-2 bg-transparent text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] transition-colors text-[14px] font-medium rounded-sm h-[40px]"
         >
           <RefreshCw className="h-4 w-4 shrink-0" />
           <span>Reset Filters</span>

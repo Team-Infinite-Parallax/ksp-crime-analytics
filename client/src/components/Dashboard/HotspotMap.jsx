@@ -24,7 +24,9 @@ import {
   ShieldAlert,
   FileText,
   Clock,
-  Navigation
+  Navigation,
+  X,
+  Sliders
 } from 'lucide-react';
 import { useFilters } from '../../contexts/FilterContext';
 
@@ -124,6 +126,8 @@ export default function HotspotMap() {
   const [isCumulative, setIsCumulative] = useState(true);
 
   const [flyToTarget, setFlyToTarget] = useState(null);
+  const [showMapControls, setShowMapControls] = useState(true);
+  const [showSummary, setShowSummary] = useState(true);
 
   const timerRef = useRef(null);
 
@@ -221,9 +225,9 @@ export default function HotspotMap() {
   };
 
   return (
-    <div className="flex flex-col grow rounded-sm overflow-hidden border border-[var(--color-hairline-dark)] bg-[var(--color-canvas-dark)] relative h-[calc(100vh-10rem)] min-h-[500px]">
+    <div className="flex flex-col grow rounded-sm overflow-hidden border border-[var(--color-hairline-dark)] bg-[var(--color-canvas-dark)] relative min-h-0 h-full">
 
-      <div className="flex-1 relative">
+      <div className="flex-1 relative min-h-0">
         <MapContainer
           center={mapCenter}
           zoom={mapZoom}
@@ -294,7 +298,7 @@ export default function HotspotMap() {
                     <div className="flex items-center justify-between border-b border-[var(--color-hairline-dark)] pb-1.5">
                       <span className="text-[10px] font-bold text-[#cc3333] uppercase tracking-wider flex items-center space-x-1">
                         <ShieldAlert className="h-3 w-3 mr-1" />
-                        Hotspot Alert
+                        <span>Hotspot Alert</span>
                       </span>
                       <span className="text-[8px] bg-[#8b0000]/10 text-[#cc3333] border border-[#8b0000]/20 px-1 rounded font-bold uppercase">
                         {crime.gravity === '1' ? 'HEINOUS' : 'MINOR'}
@@ -385,22 +389,35 @@ export default function HotspotMap() {
           }
         </MapContainer>
 
-        <MapFilters
-          activeLayers={activeLayers}
-          setActiveLayers={setActiveLayers}
-          selectedCategories={selectedCategories}
-          setSelectedCategories={setSelectedCategories}
-          severity={severity}
-          setSeverity={setSeverity}
-          onFlyToHotspot={handleFlyToHotspot}
-          activeRole={activeRole}
-        />
+        {showMapControls && (
+          <MapFilters
+            activeLayers={activeLayers}
+            setActiveLayers={setActiveLayers}
+            selectedCategories={selectedCategories}
+            setSelectedCategories={setSelectedCategories}
+            severity={severity}
+            setSeverity={setSeverity}
+            onFlyToHotspot={handleFlyToHotspot}
+            activeRole={activeRole}
+            onClose={() => setShowMapControls(false)}
+          />
+        )}
 
-        <div className="absolute top-4 right-4 z-[1000] bg-[var(--color-canvas-dark)]/90 backdrop-blur border border-[var(--color-hairline-dark)] rounded-sm shadow-2xl p-4 w-60 text-[var(--color-on-dark)] pointer-events-auto flex flex-col space-y-3">
-          <div>
-            <span className="text-[8px] text-[var(--color-muted)] font-bold uppercase tracking-wider block">Intelligence Summary</span>
-            <h4 className="text-xs font-bold text-[var(--color-on-dark)]">Filtered Incident Registry</h4>
-          </div>
+        {showSummary && (
+          <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-[1000] bg-[var(--color-canvas-dark)]/90 backdrop-blur border border-[var(--color-hairline-dark)] rounded-sm shadow-2xl p-3 sm:p-4 w-44 sm:w-56 md:w-60 max-w-[calc(100vw-6rem)] text-[var(--color-on-dark)] pointer-events-auto flex flex-col space-y-3">
+            <div className="flex items-start justify-between">
+              <div className="min-w-0">
+                <span className="text-[8px] text-[var(--color-muted)] font-bold uppercase tracking-wider block">Intelligence Summary</span>
+                <h4 className="text-xs font-bold text-[var(--color-on-dark)] truncate">Filtered Incident Registry</h4>
+              </div>
+              <button
+                onClick={() => setShowSummary(false)}
+                className="p-1 rounded-sm text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] transition-colors shrink-0 ml-2"
+                aria-label="Close intelligence summary"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
 
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs border-b border-[var(--color-hairline-dark)] pb-1.5">
@@ -430,13 +447,35 @@ export default function HotspotMap() {
             </div>
           </div>
         </div>
+        )}
+
+        {/* Map controls toggle buttons — always visible when panels hidden */}
+        {!showMapControls && (
+          <button
+            onClick={() => setShowMapControls(true)}
+            className="absolute top-2 left-2 sm:top-4 sm:left-4 z-[1000] p-2.5 bg-[var(--color-canvas-dark)]/90 backdrop-blur border border-[var(--color-hairline-dark)] rounded-sm shadow-2xl text-[var(--color-primary)] hover:bg-[var(--color-surface-elevated-dark)] transition-colors"
+            aria-label="Open map controls"
+          >
+            <Sliders className="h-4 w-4" />
+          </button>
+        )}
+        {!showSummary && (
+          <button
+            onClick={() => setShowSummary(true)}
+            className="absolute top-2 right-2 sm:top-4 sm:right-4 z-[1000] p-2.5 bg-[var(--color-canvas-dark)]/90 backdrop-blur border border-[var(--color-hairline-dark)] rounded-sm shadow-2xl text-[var(--color-primary)] hover:bg-[var(--color-surface-elevated-dark)] transition-colors"
+            aria-label="Open intelligence summary"
+          >
+            <Activity className="h-4 w-4" />
+          </button>
+        )}
       </div>
 
-      <div className="bg-[var(--color-surface-elevated-dark)] border-t border-[var(--color-hairline-dark)] p-4 px-6 flex flex-col md:flex-row items-center gap-4 select-none">
+      {/* Timeline bar */}
+      <div className="bg-[var(--color-surface-elevated-dark)] border-t border-[var(--color-hairline-dark)] p-3 sm:p-4 px-3 sm:px-6 flex flex-col md:flex-row items-center gap-3 sm:gap-4 select-none shrink-0 overflow-hidden">
         <div className="flex items-center space-x-3 shrink-0">
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className={`p-2.5 rounded-sm transition-all border ${
+            className={`p-2 sm:p-2.5 rounded-sm transition-all border ${
               isPlaying
                 ? 'bg-[var(--color-surface-elevated-dark)] text-[var(--color-primary)] border-[var(--color-hairline-dark)] hover:bg-[var(--color-primary)]/20'
                 : 'bg-[var(--color-primary)]/20 hover:bg-[var(--color-primary)]/30 text-[var(--color-primary)] border-[var(--color-primary)]/30'
@@ -455,7 +494,7 @@ export default function HotspotMap() {
           </div>
         </div>
 
-        <div className="flex-1 w-full px-2 relative">
+        <div className="flex-1 w-full min-w-0 px-2 relative">
           <input
             type="range"
             min="0"
@@ -469,6 +508,7 @@ export default function HotspotMap() {
             aria-label="Timeline navigation month slider"
           />
 
+          {/* Month labels — hide some on mobile to prevent overflow */}
           <div className="flex justify-between text-[7px] font-bold text-[var(--color-muted)] mt-2 px-1 uppercase tracking-wide">
             {TIMELINE_STEPS.map((step, idx) => (
               <span
@@ -477,9 +517,22 @@ export default function HotspotMap() {
                   setTimelineIndex(idx);
                   setIsPlaying(false);
                 }}
-                className={`cursor-pointer transition-colors ${idx === timelineIndex ? 'text-[var(--color-primary)] scale-105' : 'hover:text-[var(--color-on-dark)]'}`}
+                className={`cursor-pointer transition-colors hidden sm:inline ${idx === timelineIndex ? 'text-[var(--color-primary)] scale-105' : 'hover:text-[var(--color-on-dark)]'}`}
               >
                 {step.label}
+              </span>
+            ))}
+            {/* Mobile: show only current and adjacent */}
+            {TIMELINE_STEPS.map((step, idx) => (
+              <span
+                key={`mob-${step.label}`}
+                onClick={() => {
+                  setTimelineIndex(idx);
+                  setIsPlaying(false);
+                }}
+                className={`cursor-pointer transition-colors sm:hidden ${idx === timelineIndex ? 'text-[var(--color-primary)] scale-105 font-extrabold' : Math.abs(idx - timelineIndex) <= 1 ? 'text-[var(--color-muted)]' : 'hidden'}`}
+              >
+                {step.label.split(' ')[0].substring(0, 3)}
               </span>
             ))}
           </div>
@@ -488,7 +541,7 @@ export default function HotspotMap() {
         <div className="flex items-center bg-[var(--color-surface-elevated-dark)] p-0.5 rounded-sm border border-[var(--color-hairline-dark)] text-[10px] shrink-0 font-bold">
           <button
             onClick={() => setIsCumulative(true)}
-            className={`px-3 py-1.5 rounded-sm transition-all ${
+            className={`px-2 sm:px-3 py-1.5 rounded-sm transition-all ${
               isCumulative
                 ? 'bg-[var(--color-primary)] text-[#0a0f1a] shadow-sm'
                 : 'text-[var(--color-muted)] hover:text-[var(--color-on-dark)]'
@@ -498,7 +551,7 @@ export default function HotspotMap() {
           </button>
           <button
             onClick={() => setIsCumulative(false)}
-            className={`px-3 py-1.5 rounded-sm transition-all ${
+            className={`px-2 sm:px-3 py-1.5 rounded-sm transition-all ${
               !isCumulative
                 ? 'bg-[var(--color-primary)] text-[#0a0f1a] shadow-sm'
                 : 'text-[var(--color-muted)] hover:text-[var(--color-on-dark)]'

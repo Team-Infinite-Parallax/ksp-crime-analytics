@@ -112,7 +112,7 @@ export default function CrimeTrendsChart({ title, data, showAnomalies = true }) 
   });
 
   return (
-    <div className="card-dark p-6 flex flex-col h-full min-h-[340px] relative select-none">
+    <div className="card-dark p-4 sm:p-6 flex flex-col h-full min-h-[280px] sm:min-h-[340px] relative select-none">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h3 className="text-[20px] font-semibold text-[var(--color-on-dark)]">{title}</h3>

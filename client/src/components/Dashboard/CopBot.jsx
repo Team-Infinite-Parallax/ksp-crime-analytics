@@ -307,7 +307,7 @@ export default function CopBot() {
       )}
 
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[380px] h-[560px] card-dark flex flex-col overflow-hidden">
+        <div className="fixed bottom-4 right-4 z-50 w-[calc(100vw-2rem)] sm:w-[380px] h-[calc(100vh-6rem)] sm:h-[560px] max-h-[560px] card-dark flex flex-col overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-hairline-dark)] bg-[var(--color-surface-elevated-dark)] shrink-0">
             <div className="flex items-center space-x-2">
               <div className="p-1.5 rounded-sm bg-[var(--color-primary)]/10">
