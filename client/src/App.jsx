@@ -164,7 +164,7 @@ function AppContent({ activeTab, setActiveTab }) {
   }, [activeRole]);
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-[var(--color-canvas-dark)] text-[var(--color-body)] font-nova">
+    <div className="flex h-screen w-full overflow-hidden text-[var(--color-body)] font-nova">
       {/* Skip Navigation Link for Keyboard Accessibility */}
       <a
         href="#main-content"
@@ -264,7 +264,7 @@ function AppContent({ activeTab, setActiveTab }) {
               <div className="lg:col-span-2">
                 <CrimeTrendsChart title="Crime Volume Registrations (Year-on-Year)" data={trendData} showAnomalies={true} />
               </div>
-              <div className="card-dark p-4 sm:p-6 h-full min-h-[280px] sm:min-h-[340px] flex flex-col justify-between">
+              <div className="card-dark p-4 sm:p-6 h-full min-h-[320px] sm:min-h-[380px] flex flex-col justify-between">
                 <div>
                   <h3 className="text-[16px] sm:text-[20px] font-semibold text-[var(--color-on-dark)]">Jurisdictional Status</h3>
                   <p className="text-[12px] sm:text-[14px] text-[var(--color-muted)] font-medium mt-0.5">Active Station Performance</p>
