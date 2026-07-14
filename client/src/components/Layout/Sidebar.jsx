@@ -74,8 +74,18 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isMobileOpe
         {/* Header */}
         <div className={`flex items-center border-b border-[var(--color-hairline-dark)] ${collapsed ? 'p-3 justify-center' : 'p-4 justify-between'}`}>
           {collapsed ? (
-            <div className="bg-[var(--color-surface-elevated-dark)] p-2 rounded-lg border border-[var(--color-hairline-dark)]">
-              {emblemSvg}
+            <div className="flex flex-col items-center space-y-2">
+              <button
+                onClick={() => setIsCollapsed(false)}
+                aria-label="Expand sidebar"
+                className="p-2 rounded-lg text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)] transition-all"
+                title="Expand sidebar"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+              <div className="bg-[var(--color-surface-elevated-dark)] p-2 rounded-lg border border-[var(--color-hairline-dark)]">
+                {emblemSvg}
+              </div>
             </div>
           ) : (
             <>
@@ -154,16 +164,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, isMobileOpe
           {!collapsed && <span className="text-[14px] font-medium">Logout</span>}
         </button>
 
-        {/* Expand button when collapsed */}
-        {collapsed && (
-          <button
-            onClick={() => setIsCollapsed(false)}
-            aria-label="Expand sidebar"
-            className="w-full flex items-center justify-center p-3 rounded-xl text-[var(--color-muted)] hover:text-[var(--color-on-dark)] hover:bg-[var(--color-surface-elevated-dark)] border border-transparent hover:border-[var(--color-hairline-dark)] transition-all"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-        )}
+
       </div>
     </div>
   );
