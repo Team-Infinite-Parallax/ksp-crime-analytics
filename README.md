@@ -94,15 +94,118 @@ A comprehensive [design system](./DESIGN_SYSTEM.md) with WCAG 2.1 AAA compliance
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Architecture & Data Flow
 
-The system follows a serverless microservices architecture:
+The system follows a serverless microservices architecture. Below is the end-to-end flow from FIR submission to intelligence output:
 
-1. **FIR Ingestion** — Officer submits FIR via the React dashboard; REST API stores it in Catalyst Datastore
-2. **Event Trigger** — Catalyst Event Signal fires on database insertion
-3. **Orchestration** — Circuits manage the multi-step intelligence pipeline
-4. **AI Inference** — QuickML evaluates historical context and determines anomalies
-5. **Action** — Alerts dispatched via Catalyst Mail, hotspots update on dashboards, intelligence PDFs generated
+```mermaid
+flowchart TB
+    subgraph input["📝 Data Input Layer"]
+        OFFICER["👮‍♂️ Station Officer"] 
+        FIR["📄 FIR Submission (React UI)"]
+        IMPORT["📥 Batch Import / Data Generator"]
+    end
+
+    subgraph api["🌐 API Gateway (Catalyst Advanced I/O)"]
+        REST["REST API (Node.js/Express)"]
+        AUTH["🔐 RBAC Authentication"]
+        VAL["✓ Validation & Enrichment"]
+    end
+
+    subgraph storage["💾 Data Storage Layer"]
+        DS[(Catalyst Datastore)]
+        CACHE[(Redis Cache)]
+    end
+
+    subgraph events["⚡ Event & Orchestration Layer"]
+        SIGNAL["📡 Event Signal<br/>(on new FIR)"]
+        CIRCUITS["🔄 Catalyst Circuits<br/>(Workflow Orchestration)"]
+        CRON["⏰ Scheduled Cron Triggers"]
+    end
+
+    subgraph ml["🧠 AI/ML Inference Layer"]
+        QML["🤖 Catalyst QuickML<br/>• Time-Series Forecasting<br/>• Anomaly Detection<br/>• Risk Scoring"]
+        NLP["📖 NLP Pipeline<br/>• MO Extraction<br/>• Entity Recognition"]
+        PY["🐍 Python ML (Local)<br/>• Feature Engineering<br/>• XGBoost Models"]
+    end
+
+    subgraph intelligence["📊 Intelligence & Output Layer"]
+        PDF["📄 SmartBrowz PDF Reports"]
+        ALERT["📧 Catalyst Mail/SMS Alerts"]
+        HOTSPOT["🗺️ Hotspot Map Update"]
+        TRENDS["📈 Trend Predictions"]
+        NETWORK["🔗 Network Graph<br/>(Link Analysis)"]
+        SOCIO["🏘️ Socio-Economic Overlay"]
+    end
+
+    subgraph dashboard["🖥️ Command Dashboard (React)"]
+        DASH["📊 Real-Time Dashboard"]
+        MAP["🗺️ Geospatial Maps<br/>(React Leaflet)"]
+        CHARTS["📉 Analytics Charts<br/>(Recharts)"]
+        ALERT_UI["🔔 Alert Center"]
+        SEARCH["🎤 Voice Search"]
+    end
+
+    %% Data Flow Connections
+    OFFICER --> FIR
+    IMPORT --> REST
+    FIR --> REST
+    REST --> AUTH
+    AUTH --> VAL
+    VAL --> DS
+
+    DS --> SIGNAL
+    SIGNAL --> CIRCUITS
+    CRON --> CIRCUITS
+
+    CIRCUITS --> QML
+    CIRCUITS --> NLP
+    QML --> PY
+
+    QML --> PDF
+    QML --> ALERT
+    QML --> TRENDS
+    NLP --> NETWORK
+
+    DS --> DASH
+    DS --> MAP
+    DS --> CHARTS
+
+    TRENDS --> DASH
+    HOTSPOT --> MAP
+    ALERT --> ALERT_UI
+    NETWORK --> DASH
+    SOCIO --> DASH
+
+    TRENDS --> HOTSPOT
+
+    %% Styling
+    classDef input fill:#1e3a8a,color:#fff,stroke:#3b82f6
+    classDef api fill:#1e293b,color:#fff,stroke:#3b82f6
+    classDef storage fill:#374151,color:#fff,stroke:#6b7280
+    classDef events fill:#7c3aed,color:#fff,stroke:#a78bfa
+    classDef ml fill:#dc2626,color:#fff,stroke:#f87171
+    classDef intel fill:#f59e0b,color:#000,stroke:#fbbf24
+    classDef dash fill:#059669,color:#fff,stroke:#34d399
+
+    class OFFICER,FIR,IMPORT input
+    class REST,AUTH,VAL api
+    class DS,CACHE storage
+    class SIGNAL,CIRCUITS,CRON events
+    class QML,NLP,PY ml
+    class PDF,ALERT,HOTSPOT,TRENDS,NETWORK,SOCIO intel
+    class DASH,MAP,CHARTS,ALERT_UI,SEARCH dash
+```
+
+### Flow Summary
+
+| Step | Layer | Action |
+|:---|:---|---|
+| **1** | 📝 Input | Officer submits FIR via dashboard or batch import |
+| **2** | 🌐 API Gateway | REST API authenticates, validates, and persists to Datastore |
+| **3** | ⚡ Events | Event Signal fires → Circuits orchestrates the intelligence pipeline |
+| **4** | 🧠 AI/ML | QuickML runs forecasts, anomaly detection, risk scoring; NLP extracts entities |
+| **5** | 📊 Output | PDFs generated, alerts dispatched, dashboard updated in real-time |
 
 Additional documentation:
 - [Database Design](./docs/database_design_document.md)
