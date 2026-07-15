@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Eye, Calendar, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function RecentCrimesTable({ crimes }) {
   const [currentPage, setCurrentPage] = useState(1);

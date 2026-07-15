@@ -16,7 +16,7 @@ import HotspotMap from './components/Dashboard/HotspotMap';
 import NetworkGraph from './components/Dashboard/NetworkGraph';
 import CaseOutcomePredictions from './components/Dashboard/CaseOutcomePredictions';
 import TrendForecasts from './components/Dashboard/TrendForecasts';
-import AlertBadge from './components/Dashboard/AlertBadge';
+
 import AlertCenter from './components/Dashboard/AlertCenter';
 import BehavioralProfiles from './components/Dashboard/BehavioralProfiles';
 import CorrelationHeatmap from './components/Dashboard/CorrelationHeatmap';
@@ -33,7 +33,7 @@ import {
   TrendingUp,
   Fingerprint
 } from 'lucide-react';
-import { districts, units, getUserDetailsByRole, repeatOffenders, rawCrimesLog } from './data/constants';
+import { repeatOffenders, rawCrimesLog } from './data/constants';
 
 const emblemSvg = (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--color-primary)]">
@@ -87,7 +87,7 @@ export default function App() {
 }
 
 function AppWrapper({ activeTab, setActiveTab, mockRole }) {
-  const { activeRole, setActiveRole } = useFilters();
+  const { setActiveRole } = useFilters();
 
   useEffect(() => {
     if (mockRole) {
@@ -103,7 +103,6 @@ function AppContent({ activeTab, setActiveTab }) {
     filters,
     searchTerm,
     activeRole,
-    isDarkMode,
     alertsOpen,
     setAlertsOpen,
     userDetails,

@@ -86,10 +86,10 @@ async function fetchAnomalies() {
 
 async function fetchClusters() {
   const data = await fetchWithFallback(`/clustering?type=offender`);
-  return data || { clusters: MOCK_CLUSTERS, typologies: MOCK_TYPOLOGIES, summary: MOCK_TYPOLOGIES.map((t, i) => ({ typology: t.typology, count: t.memberCount, percentage: ((t.memberCount / MOCK_CLUSTERS.reduce((s, c) => s + c.size, 0)) * 100).toFixed(1) })) };
+  return data || { clusters: MOCK_CLUSTERS, typologies: MOCK_TYPOLOGIES, summary: MOCK_TYPOLOGIES.map(t => ({ typology: t.typology, count: t.memberCount, percentage: ((t.memberCount / MOCK_CLUSTERS.reduce((s, c) => s + c.size, 0)) * 100).toFixed(1) })) };
 }
 
-function generateBaseResponse(query, activeRole) {
+function generateBaseResponse(query, _activeRole) {
   const q = query.toLowerCase();
   const crimeData = {
     crimes: [

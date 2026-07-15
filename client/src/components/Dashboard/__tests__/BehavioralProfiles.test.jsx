@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import BehavioralProfiles from '../BehavioralProfiles';
 import { FilterProvider } from '../../../contexts/FilterContext';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
@@ -40,7 +40,7 @@ describe('BehavioralProfiles', () => {
         <BehavioralProfiles />
       </FilterProvider>
     );
-    const typology = await screen.findByText('Organized Network', {}, { timeout: 3000 });
+    const typology = await screen.findByTestId('typology-organized-network', {}, { timeout: 3000 });
     expect(typology).toBeInTheDocument();
   });
 
@@ -50,7 +50,7 @@ describe('BehavioralProfiles', () => {
         <BehavioralProfiles />
       </FilterProvider>
     );
-    const typology = await screen.findByText('Organized Network', {}, { timeout: 3000 });
+    const typology = await screen.findByTestId('typology-organized-network', {}, { timeout: 3000 });
     fireEvent.click(typology);
     const member = await screen.findByText('Rajesh Choudhary');
     expect(member).toBeInTheDocument();

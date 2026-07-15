@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import RiskProfiling from '../RiskProfiling';
-import { vi, describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 
 const mockOffenders = [
   { id: 1, name: 'Rajesh Choudhary', riskScore: 92, age: 34, gender: 'Male', caseCount: 11, distinctDistricts: 3, districtId: 1, unitId: 1, moPhrase: 'posed as bank official' },
@@ -26,7 +26,7 @@ describe('RiskProfiling', () => {
   it('renders offender watchlist', () => {
     render(<RiskProfiling offenders={mockOffenders} />);
     expect(screen.getByText('Offender Watchlist')).toBeInTheDocument();
-    expect(screen.getByText('Rajesh Choudhary')).toBeInTheDocument();
+    expect(screen.getByTestId('offender-watchlist-1')).toBeInTheDocument();
   });
 
   it('immediate attention section highlights high-risk offenders', () => {
@@ -45,7 +45,7 @@ describe('RiskProfiling', () => {
 
   it('expands offender details on click', () => {
     render(<RiskProfiling offenders={mockOffenders} />);
-    const offender = screen.getByText('Rajesh Choudhary');
+    const offender = screen.getByTestId('offender-watchlist-1');
     fireEvent.click(offender);
     expect(screen.getByText('Modus Operandi')).toBeInTheDocument();
   });

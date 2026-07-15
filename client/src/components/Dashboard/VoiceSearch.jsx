@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Mic, MicOff, Globe, X, Sparkles, AlertCircle, RefreshCw } from 'lucide-react';
 import { useFilters } from '../../contexts/FilterContext';
@@ -57,7 +57,7 @@ export default function VoiceSearch() {
     } else {
       setError('Web Speech API is not supported in this browser. Please use Chrome or Edge.');
     }
-  }, [lang]);
+  }, [lang, isListening]);
 
   useEffect(() => {
     if (isListening && recognitionRef.current) {
@@ -66,7 +66,7 @@ export default function VoiceSearch() {
         recognitionRef.current.start();
       }, 300);
     }
-  }, [lang]);
+  }, [lang, isListening]);
 
   const toggleListening = () => {
     if (!recognitionRef.current) return;
@@ -78,13 +78,13 @@ export default function VoiceSearch() {
       setError(null);
       try {
         recognitionRef.current.start();
-      } catch (err) {
+      } catch {
         setError('Failed to start microphone.');
       }
     }
   };
 
-  const handleProcessSpeech = async (speechText) => {
+  const handleProcessSpeech = useCallback(async (speechText) => {
     if (!speechText) return;
     setProcessing(true);
     setError(null);
@@ -122,7 +122,7 @@ export default function VoiceSearch() {
     } finally {
       setProcessing(false);
     }
-  };
+  }, [activeRole, lang, onVoiceFilters]);
 
   useEffect(() => {
     if (!isListening && transcript && !processing && isOpen && autoSubmitRef.current) {
@@ -134,7 +134,7 @@ export default function VoiceSearch() {
       }, 800);
       return () => clearTimeout(timer);
     }
-  }, [isListening, transcript, processing, isOpen]);
+  }, [isListening, transcript, processing, isOpen, handleProcessSpeech]);
 
   useEffect(() => {
     return () => {

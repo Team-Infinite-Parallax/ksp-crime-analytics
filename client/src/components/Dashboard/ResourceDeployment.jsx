@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Navigation, Shield, ShieldAlert, AlertTriangle, Plus, Minus } from 'lucide-react';
+import { Navigation, Shield, ShieldAlert } from 'lucide-react';
 import { resourceDeployment } from '../../data/constants';
 import { useFilters } from '../../contexts/FilterContext';
 

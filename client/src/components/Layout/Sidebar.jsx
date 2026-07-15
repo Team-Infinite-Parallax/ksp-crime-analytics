@@ -8,7 +8,6 @@ import {
   LogOut,
   UserCheck,
   BarChart3,
-  X,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';

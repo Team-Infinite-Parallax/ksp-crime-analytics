@@ -49,58 +49,26 @@ module.exports = async (req, res) => {
 
       const results = {};
 
-      // CASE OUTCOME PREDICTIONS
+      // CASE OUTCOME PREDICTIONS (from Cache)
       if (predictionType === 'caseOutcome' || predictionType === 'all') {
         try {
-          const caseOutcomeData = await datastore.executeCoQLQuery(`
-            SELECT 
-              cm.CaseID,
-              cm.CaseNo,
-              ch.CrimeHeadName,
-              COUNT(DISTINCT a.AccusedID) AS accusedCount,
-              SUM(CASE WHEN cm.GravityOffenceID = 1 THEN 1 ELSE 0 END) AS heinousCount,
-              SUM(CASE WHEN ar.ArrestID IS NOT NULL THEN 1 ELSE 0 END) AS hasArrest,
-              COALESCE(DATEDIFF(ar.ArrestDate, cm.RegistrationDate), 0) AS arrestLagDays,
-              cm.RegistrationDate
-            FROM CaseMaster cm
-            LEFT JOIN CrimeHead ch ON cm.CrimeHeadID = ch.CrimeHeadID
-            LEFT JOIN Accused a ON cm.CaseID = a.CaseID
-            LEFT JOIN ArrestSurrender ar ON cm.CaseID = ar.CaseID
-            ${filterClause}
-            GROUP BY cm.CaseID, cm.CaseNo, ch.CrimeHeadName, cm.RegistrationDate
-            ORDER BY cm.RegistrationDate DESC
-            LIMIT ${limit}
-          `);
+          let cachedFilter = '';
+          if (user.role === 'DISTRICT_OFFICER' && user.employee?.districtID) {
+            cachedFilter = `WHERE districtId = ${user.employee.districtID}`;
+          }
 
-          // Mock predictions based on case features (in production, call ML model)
-          results.caseOutcomes = caseOutcomeData.map(row => {
-            const heinousCount = Number(row.heinousCount || 0);
-            const accusedCount = Number(row.accusedCount || 1);
-            const hasArrest = Number(row.hasArrest || 0);
-            const arrestLag = Number(row.arrestLagDays || 0);
-            
-            // Simple heuristic: cases with arrest + low lag are more likely to have chargesheet
-            const baseProb = hasArrest ? 0.65 : 0.35;
-            const lagFactor = arrestLag > 0 ? Math.min(arrestLag / 100, 0.15) : 0;
-            const heinousFactor = heinousCount > 0 ? 0.1 : 0;
-            const accusedFactor = Math.min(accusedCount / 10, 0.15);
-            
-            const chargesheetProb = Math.min(baseProb + lagFactor + heinousFactor + accusedFactor, 0.95);
-            
-            return {
-              caseId: String(row.CaseID),
-              caseNo: row.CaseNo,
-              crimeHead: row.CrimeHeadName,
-              predictedOutcome: chargesheetProb > 0.65 ? 'DETECTED' : chargesheetProb > 0.35 ? 'UNDETECTED' : 'FALSE',
-              chargesheetProbability: parseFloat((chargesheetProb * 100).toFixed(1)),
-              confidence: parseFloat((Math.abs(chargesheetProb - 0.5) * 2 * 100).toFixed(1)),
-              accusedCount,
-              hasArrest: Boolean(hasArrest),
-              registrationDate: row.RegistrationDate
-            };
-          });
+          const caseOutcomeQuery = `
+            SELECT * FROM PredictedCaseOutcomes
+            ${cachedFilter}
+            ORDER BY updatedAt DESC
+            LIMIT ${limit}
+          `;
+
+          results.caseOutcomes = await datastore.executeCoQLQuery(caseOutcomeQuery);
+          console.log(`[PRED-API] Fetched ${results.caseOutcomes.length} cached case outcomes`);
+
         } catch (err) {
-          console.error('CaseOutcome prediction error:', err);
+          console.error('CaseOutcome prediction fetch error:', err);
           results.caseOutcomes = [];
         }
       }

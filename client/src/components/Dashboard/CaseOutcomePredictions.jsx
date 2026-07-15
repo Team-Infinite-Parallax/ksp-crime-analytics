@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FileCheck, TrendingUp, AlertCircle, Loader } from 'lucide-react';
+import { FileCheck, AlertCircle, Loader } from 'lucide-react';
 import { MOCK_OUTCOMES, fetchWithFallback } from '../../utils/mockApi';
 import { useFilters } from '../../contexts/FilterContext';
 

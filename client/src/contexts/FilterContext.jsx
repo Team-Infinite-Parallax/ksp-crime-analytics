@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useMemo, useEffect } from 'react';
+import React, { createContext, useContext, useState, useMemo, useEffect, useCallback } from 'react';
 import { getUserDetailsByRole, districts, units } from '../data/constants';
 
 const FilterContext = createContext(null);
@@ -27,7 +27,7 @@ export function FilterProvider({ children, isLoggedIn, onLogout, isDarkMode, tog
     }
   }, [activeRole]);
   
-  const resetFilters = () => {
+  const resetFilters = useCallback(() => {
     if (activeRole === 'DISTRICT_OFFICER') {
       setFilters({ districtId: '1', unitId: 'all', dateRange: '30days', gravity: 'all' });
     } else if (activeRole === 'INVESTIGATION_OFFICER') {
@@ -36,9 +36,9 @@ export function FilterProvider({ children, isLoggedIn, onLogout, isDarkMode, tog
       setFilters({ districtId: 'all', unitId: 'all', dateRange: '30days', gravity: 'all' });
     }
     setSearchTerm('');
-  };
+  }, [activeRole]);
 
-  const handleVoiceFilters = (newFilters, queryText) => {
+  const handleVoiceFilters = (newFilters, _queryText) => {
     setFilters(prev => ({
       ...prev,
       ...newFilters
@@ -66,7 +66,7 @@ export function FilterProvider({ children, isLoggedIn, onLogout, isDarkMode, tog
     handleVoiceFilters,
     isLoggedIn,
     onLogout
-  }), [filters, searchTerm, activeRole, isDarkMode, alertsOpen, userDetails, isLoggedIn, onLogout]);
+  }), [filters, searchTerm, activeRole, isDarkMode, toggleDarkMode, alertsOpen, userDetails, isLoggedIn, onLogout, resetFilters]);
 
   return (
     <FilterContext.Provider value={value}>
@@ -75,6 +75,7 @@ export function FilterProvider({ children, isLoggedIn, onLogout, isDarkMode, tog
   );
 }
 
+// eslint-disable-next-line react/only-export-components
 export function useFilters() {
   const context = useContext(FilterContext);
   if (!context) {

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Calendar, AlertTriangle, TrendingUp } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { useFilters } from '../../contexts/FilterContext';
 
 export default function CrimeTrendsChart({ title, data, showAnomalies = true }) {
@@ -7,6 +7,7 @@ export default function CrimeTrendsChart({ title, data, showAnomalies = true }) 
   const [hoveredIdx, setHoveredIdx] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [anomalies, setAnomalies] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false);
   const containerRef = useRef(null);
 
@@ -60,8 +61,6 @@ export default function CrimeTrendsChart({ title, data, showAnomalies = true }) 
   const chartHeight = height - paddingTop - paddingBottom;
 
   const values = data.map(d => d.value);
-  const labels = data.map(d => d.label);
-
   const minVal = 0;
   const maxVal = Math.max(...values, 100) * 1.15;
   const range = maxVal - minVal;

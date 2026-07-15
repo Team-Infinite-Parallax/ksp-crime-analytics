@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AlertTriangle, AlertCircle, Clock, Users, Loader, X, CheckCircle } from 'lucide-react';
 import { MOCK_ALERTS, fetchWithFallback } from '../../utils/mockApi';
-import { useFilters } from '../../contexts/FilterContext';
 
 const SEVERITY_CONFIG = {
   critical: { color: '#cc3333', bg: '#8b0000', label: 'CRITICAL', icon: AlertTriangle },
@@ -11,7 +10,6 @@ const SEVERITY_CONFIG = {
 };
 
 export default function AlertCenter({ isOpen, onClose }) {
-  const { filters } = useFilters();
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedAlert, setExpandedAlert] = useState(null);
@@ -25,13 +23,6 @@ export default function AlertCenter({ isOpen, onClose }) {
       try {
         const queryParams = new URLSearchParams({
           limit: 100
-        });
-
-        const response = await fetch(`/alerts?${queryParams}`, {
-          headers: {
-            'x-employee-role': localStorage.getItem('userRole') || 'SCRB_ADMIN',
-            'x-employee-email': localStorage.getItem('userEmail') || 'test@ksp.in'
-          }
         });
 
         const result = await fetchWithFallback(`/alerts?${queryParams}`);

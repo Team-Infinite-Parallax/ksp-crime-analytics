@@ -12,7 +12,7 @@ vi.mock('cytoscape', () => {
     edges: vi.fn().mockReturnThis(),
     remove: vi.fn(),
     add: vi.fn(),
-    layout: vi.fn().mockReturnValue({ run: vi.fn(), stop: vi.fn() }),
+    layout: vi.fn().mockReturnValue({ run: vi.fn(), stop: vi.fn(), on: vi.fn() }),
     on: vi.fn(),
     off: vi.fn(),
     destroy: vi.fn(),

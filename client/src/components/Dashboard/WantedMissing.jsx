@@ -17,10 +17,7 @@ const statusColors = {
   missing: { text: 'text-[var(--color-primary)]', bg: 'bg-[var(--color-primary)]/10', border: 'border-[var(--color-primary)]/20', label: 'Missing' },
 };
 
-import { useFilters } from '../../contexts/FilterContext';
-
 export default function WantedMissing() {
-  const { activeRole } = useFilters();
   const [searchQuery, setSearchQuery] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
   const [selectedPerson, setSelectedPerson] = useState(null);

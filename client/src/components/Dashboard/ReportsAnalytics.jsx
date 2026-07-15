@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { BarChart3, Download, Calendar, TrendingUp, Shield, AlertTriangle, FileText, PieChart, MapPin } from 'lucide-react';
 
-export default function ReportsAnalytics({ crimes, offenders, activeRole }) {
+export default function ReportsAnalytics({ crimes, offenders: _offenders, activeRole }) {
   const [period, setPeriod] = useState('monthly');
 
   const filteredCrimes = useMemo(() => {
@@ -58,7 +58,7 @@ export default function ReportsAnalytics({ crimes, offenders, activeRole }) {
 
   const maxCategory = Math.max(...categoryBreakdown.map(c => c.count), 1);
   const maxMonthly = Math.max(...monthlyData.map(m => m.value), 1);
-  const maxStation = Math.max(...stationWise.map(s => s.count), 1);
+
 
   const exportPDF = () => {
     const now = new Date();
@@ -237,7 +237,7 @@ export default function ReportsAnalytics({ crimes, offenders, activeRole }) {
         ].map((item, idx) => {
           const Icon = item.icon;
           return (
-            <div key={idx} className={`card-dark p-4 rounded-sm border ${item.border} bg-[var(--color-surface-card-dark)]/80`}>
+            <div key={idx} data-testid={`metric-${item.label.toLowerCase().replace(/\s+/g, '-')}`} className={`card-dark p-4 rounded-sm border ${item.border} bg-[var(--color-surface-card-dark)]/80`}>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--color-muted)]">{item.label}</span>
                 <Icon className={`h-4 w-4 ${item.color}`} />

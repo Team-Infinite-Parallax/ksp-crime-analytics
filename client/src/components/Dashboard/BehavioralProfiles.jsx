@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Loader, AlertCircle, Users, TrendingUp } from 'lucide-react';
+import { Loader, AlertCircle, Users } from 'lucide-react';
 import { MOCK_CLUSTERS, MOCK_TYPOLOGIES, fetchWithFallback } from '../../utils/mockApi';
 import { useFilters } from '../../contexts/FilterContext';
 
@@ -27,7 +27,7 @@ export default function BehavioralProfiles() {
         const result = await fetchWithFallback('/clustering?type=offender');
         setClusters(result?.clusters || MOCK_CLUSTERS);
         setTypologies(result?.typologies || MOCK_TYPOLOGIES);
-        setSummary(result?.summary || MOCK_TYPOLOGIES.map((t, i) => ({ typology: t.typology, count: t.memberCount, percentage: ((t.memberCount / MOCK_CLUSTERS.reduce((s, c) => s + c.size, 0)) * 100).toFixed(1) })));
+        setSummary(result?.summary || MOCK_TYPOLOGIES.map(t => ({ typology: t.typology, count: t.memberCount, percentage: ((t.memberCount / MOCK_CLUSTERS.reduce((s, c) => s + c.size, 0)) * 100).toFixed(1) })));
       } catch (err) {
         console.error('Clustering fetch error:', err);
         setError(err.message);
@@ -86,6 +86,7 @@ export default function BehavioralProfiles() {
         {typologies.map((type, idx) => (
           <div
             key={idx}
+            data-testid={`typology-${type.typology.toLowerCase().replace(/\s+/g, '-')}`}
             className={`p-4 rounded-sm border-2 cursor-pointer transition-all`}
             style={{
               borderColor: selectedCluster === idx ? type.color : 'var(--color-hairline-dark)',

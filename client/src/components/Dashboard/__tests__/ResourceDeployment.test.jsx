@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ResourceDeployment from '../ResourceDeployment';
 import { FilterProvider } from '../../../contexts/FilterContext';
-import { vi, describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 
 describe('ResourceDeployment', () => {
   it('renders the component title', () => {

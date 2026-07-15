@@ -50,6 +50,10 @@ desktop.ini
 # Puppeteer cache
 .cache/
 
+# Python
+__pycache__/
+*.pyc
+
 # Temporary files
 *.tmp
 *.temp

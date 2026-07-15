@@ -4,15 +4,6 @@
 // Edge Types: committed | victimized | investigatedBy | coAccused | linkedTo | transferred | called
 // ============================================================
 
-function seededRng(seed) {
-  let h = seed ^ 0xdeadbeef;
-  return function () {
-    h = Math.imul(h ^ (h >>> 16), 2246822507);
-    h = Math.imul(h ^ (h >>> 13), 3266489909);
-    return ((h ^= h >>> 16) >>> 0) / 4294967296;
-  };
-}
-
 // ── Police Stations ──────────────────────────────────────────
 export const stationNodes = [
   { data: { id: 'ps-1', label: 'Shivajinagar PS',    type: 'policeStation', district: 'Bengaluru Urban', staff: 42, status: 'High Alert',   community: 0 } },

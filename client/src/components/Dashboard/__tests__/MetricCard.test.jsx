@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import MetricCard from '../MetricCard';
 import { FolderOpen } from 'lucide-react';
-import { vi, describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 
 describe('MetricCard', () => {
   const defaultProps = {

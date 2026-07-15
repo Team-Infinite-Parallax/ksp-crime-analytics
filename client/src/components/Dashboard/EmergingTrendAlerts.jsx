@@ -1,13 +1,12 @@
 import React, { useMemo } from 'react';
 import { TrendingUp, TrendingDown, AlertTriangle, Activity, BarChart3, Clock } from 'lucide-react';
-import { crimeCategoryTrends } from '../../data/constants';
 import { crimeIncidents } from '../../data/mockCrimeData';
 import { useFilters } from '../../contexts/FilterContext';
 
 const DISTRICTS = ['Bengaluru Urban', 'Mysuru', 'Belagavi', 'Dakshina Kannada', 'Kalaburagi'];
 
 export default function EmergingTrendAlerts() {
-  const { activeRole, filters } = useFilters();
+  const { activeRole } = useFilters();
   const [selectedDistrict, setSelectedDistrict] = React.useState('all');
   const [timeRange, setTimeRange] = React.useState('3months');
 
@@ -53,7 +52,7 @@ export default function EmergingTrendAlerts() {
         anomalyThreshold: 1.3,
       };
     }).sort((a, b) => b.spikeRatio - a.spikeRatio);
-  }, [activeRole, filters, selectedDistrict, timeRange, dates]);
+  }, [activeRole, selectedDistrict, timeRange, dates]);
 
   const maxSpike = Math.max(...categoryStats.map(c => c.spikeRatio), 1);
 

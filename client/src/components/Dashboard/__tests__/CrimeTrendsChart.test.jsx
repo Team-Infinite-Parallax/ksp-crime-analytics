@@ -64,12 +64,26 @@ describe('CrimeTrendsChart', () => {
   });
 
   it('shows anomalies when enabled', async () => {
+    // Mock fetch to return anomaly data for this test
+    global.fetch = vi.fn(() =>
+      Promise.resolve({
+        ok: true,
+        headers: { get: () => 'application/json' },
+        json: () => Promise.resolve({
+          anomalies: [
+            { caseId: '1', isAnomaly: true, anomalyScore: 75 },
+            { caseId: '2', isAnomaly: true, anomalyScore: 82 }
+          ]
+        })
+      })
+    );
+
     render(
       <FilterProvider>
         <CrimeTrendsChart title="Test" data={mockData} showAnomalies={true} />
       </FilterProvider>
     );
-    const el = await screen.findByText('Anomalies Detected');
+    const el = await screen.findByText(/Anomalies Detected/);
     expect(el).toBeInTheDocument();
   });
 });

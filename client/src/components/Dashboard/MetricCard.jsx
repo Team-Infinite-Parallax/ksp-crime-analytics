@@ -17,8 +17,6 @@ export default function MetricCard({ title, value, trend, isPositive, icon: Icon
   const linePath = `M ${points.join(' L ')}`;
   const areaPath = `${linePath} L ${width},${height} L 0,${height} Z`;
 
-  const graphColor = isPositive ? 'var(--color-trading-up)' : 'var(--color-trading-down)';
-
   return (
     <div className="glass-card p-4 sm:p-6 flex flex-col justify-between h-full min-h-[180px] sm:min-h-[200px] hover:-translate-y-1 transition-transform duration-300 cursor-default group relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br backdrop-blur-sm pointer-events-none" style={{ background: `linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary) 50%, transparent 100%)`, opacity: 0.06 }} />

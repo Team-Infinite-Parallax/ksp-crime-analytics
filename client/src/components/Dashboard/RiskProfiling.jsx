@@ -282,6 +282,7 @@ export default function RiskProfiling({ offenders }) {
                 return (
                   <div
                     key={o.id}
+                    data-testid={`offender-watchlist-${o.id}`}
                     className={`p-3 rounded-sm border transition-all cursor-pointer ${
                       isSelected
                         ? 'bg-[var(--color-surface-card-dark)] border-[var(--color-primary)]/40'

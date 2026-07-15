@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import SocioEconomicOverlay from '../SocioEconomicOverlay';
 import { FilterProvider } from '../../../contexts/FilterContext';
 import { vi, describe, it, expect } from 'vitest';
@@ -28,8 +28,8 @@ describe('SocioEconomicOverlay', () => {
         <SocioEconomicOverlay />
       </FilterProvider>
     );
-    expect(screen.getByText('Poverty Index')).toBeInTheDocument();
-    expect(screen.getByText('Population Density')).toBeInTheDocument();
+    expect(screen.getByTestId('factor-button-povertyIndex')).toBeInTheDocument();
+    expect(screen.getByTestId('factor-button-populationDensity')).toBeInTheDocument();
   });
 
   it('renders district correlation data', () => {
@@ -38,7 +38,7 @@ describe('SocioEconomicOverlay', () => {
         <SocioEconomicOverlay />
       </FilterProvider>
     );
-    expect(screen.getByText(/Bengaluru Urban|Mysuru|Belagavi|Dakshina Kannada|Kalaburagi/i)).toBeInTheDocument();
+    expect(screen.getByTestId('district-card-1')).toBeInTheDocument();
   });
 
   it('renders insight section', () => {

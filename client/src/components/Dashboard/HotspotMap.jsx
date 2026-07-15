@@ -10,21 +10,16 @@ import {
 import L from 'leaflet';
 import {
   policeStations,
-  crimeIncidents,
-  districts
+  crimeIncidents
 } from '../../data/mockCrimeData';
 import MapFilters from './MapFilters';
 import {
   Play,
   Pause,
   Calendar,
-  TrendingUp,
   Activity,
-  Shield,
   ShieldAlert,
-  FileText,
   Clock,
-  Navigation,
   X,
   Sliders
 } from 'lucide-react';

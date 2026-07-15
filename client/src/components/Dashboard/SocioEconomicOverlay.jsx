@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { TrendingUp, MapPin, Users, DollarSign, GraduationCap } from 'lucide-react';
+import { TrendingUp, Users, DollarSign, GraduationCap } from 'lucide-react';
 import { districtSocioEconomic } from '../../data/constants';
 import { crimeIncidents } from '../../data/mockCrimeData';
 import { useFilters } from '../../contexts/FilterContext';
@@ -64,6 +64,7 @@ export default function SocioEconomicOverlay() {
           return (
             <button
               key={key}
+              data-testid={`factor-button-${key}`}
               onClick={() => setSelectedFactor(key)}
               className={`flex items-center space-x-1.5 text-[9px] font-bold px-2.5 py-1.5 rounded-sm border transition-all ${
                 isActive
@@ -86,7 +87,7 @@ export default function SocioEconomicOverlay() {
           const isCorrelated = correlationDelta < 20;
 
           return (
-            <div key={d.districtId} className="p-3 rounded-sm bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)]">
+            <div key={d.districtId} data-testid={`district-card-${d.districtId}`} className="p-3 rounded-sm bg-[var(--color-surface-elevated-dark)] border border-[var(--color-hairline-dark)]">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-bold text-[var(--color-on-dark)]">{d.name}</span>
                 <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded-sm ${
